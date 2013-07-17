@@ -1,0 +1,6 @@
+{
+    "name": "test/silex",
+    "require": {
+        "silex/silex": "1.1.*"
+    }
+}
