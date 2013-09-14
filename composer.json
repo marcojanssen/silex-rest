@@ -21,6 +21,6 @@
         "dflydev/doctrine-orm-service-provider": "1.*"
     },
     "autoload": {
-        "psr-0": {"Marco\\": "src/"}
+        "psr-0": {"MJ\\": "src/"}
     }
 }
