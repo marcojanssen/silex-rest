@@ -6,8 +6,22 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-$app->get('/', function () use ($app) {
-    return $app['twig']->render('index.html', array());
+$app->get('/', function (Request $request) use ($app) {
+    $limit = $request->query->get('limit');
+    $start = $request->query->get('start');
+
+    if(empty($limit)) {
+        $limit = 25;
+    }
+
+    if(empty($start)) {
+        $start = 0;
+    }
+
+    $sql = "SELECT * FROM items LIMIT ?,?";
+    $items = $app['db']->fetchAll($sql, array((int) $start, (int) $limit));
+
+    return new JsonResponse($items);
 })
 ->bind('homepage')
 ;
