@@ -2,6 +2,10 @@
     "name": "test/silex",
     "require": {
         "silex/silex": "1.1.*",
-        "doctrine/dbal": "2.2.*"
+        "doctrine/orm": "2.4.*",
+        "dflydev/doctrine-orm-service-provider": "1.*"
+    },
+    "autoload": {
+        "psr-0": {"Marco\\": "src/"}
     }
 }
