@@ -2,6 +2,7 @@
 namespace MJ\Doctrine\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Entity
@@ -11,6 +12,7 @@ class Item
 {
 
     /**
+     * @Type("integer")
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
@@ -18,16 +20,19 @@ class Item
     private $id;
 
     /**
+     * @Type("string")
      * @ORM\Column(type="string")
      */
     private $name;
 
     /**
+     * @Type("string")
      * @ORM\Column(type="string")
      */
     private $email;
 
     /**
+     * @Type("string")
      * @ORM\Column(type="string")
      */
     private $phone;

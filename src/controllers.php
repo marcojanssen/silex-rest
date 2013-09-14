@@ -1,10 +1,12 @@
 <?php
+$app->get('/', 'MJ\Controllers\IndexController::getAction');
 
-use Symfony\Component\HttpFoundation\Request;
+$app->get('/items', 'MJ\Controllers\ItemsController::getAction');
+$app->post('/items', 'MJ\Controllers\ItemsController::postAction');
 
-
-
-$app->get('/', 'MJ\Controllers\IndexController::indexAction');
+$app->get('/item/{id}', 'MJ\Controllers\ItemController::getAction');
+$app->put('/item/{id}', 'MJ\Controllers\ItemController::putAction');
+$app->delete('/item/{id}', 'MJ\Controllers\ItemController::deleteAction');
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
