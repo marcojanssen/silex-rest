@@ -30,13 +30,13 @@ $app->register(new DoctrineServiceProvider(), array(
 ));
 
 $app->register(new DoctrineOrmServiceProvider, array(
-    "db.orm.proxies_dir" => __DIR__."/../src/MJ/Doctrine/Proxies",
-    "db.orm.em.options" => array(
+    "orm.proxies_dir" => __DIR__."/../src/MJ/Doctrine/Proxies",
+    "orm.em.options" => array(
         "mappings" => array(
             array(
                 "type" => "annotation",
                 "namespace" => "MJ\Doctrine\Entities",
-                "resources_namespace" => "MJ\Doctrine\Entities",
+                "path" => __DIR__."/../src/MJ/Entities",
             )
         ),
     ),

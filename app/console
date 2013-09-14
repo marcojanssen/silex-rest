@@ -6,21 +6,12 @@ require_once __DIR__.'/../vendor/autoload.php';
 set_time_limit(0);
 
 use Symfony\Component\Console\Input\ArgvInput;
-use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
-use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
-use Doctrine\ORM\Tools\Console\ConsoleRunner;
-use Symfony\Component\Console\Helper\HelperSet;
 
 $input = new ArgvInput();
 $env = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
 
 $app = require __DIR__.'/app.php';
 require __DIR__.'/config/'.$env.'.php';
-
-/*$helperSet = new HelperSet(array(
-    'db' => new ConnectionHelper($app['db.orm.em']->getConnection()),
-    'em' => new EntityManagerHelper($app['db.orm.em'])
-));*/
 
 $console = require __DIR__.'/console.php';
 $console->run();
