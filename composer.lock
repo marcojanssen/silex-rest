@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7a1a04ed88e2fc4074a8e1f35e8cd93a",
+    "hash": "fc5da0ee3d916870167048c83aab49f9",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -760,6 +760,57 @@
                 "xml"
             ],
             "time": "2013-07-29 13:39:49"
+        },
+        {
+            "name": "macedigital/silex-jms-serializer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/macedigital/silex-jms-serializer-provider.git",
+                "reference": "c81246fc559b063e45a247418ffe4224a1e2406f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/macedigital/silex-jms-serializer-provider/zipball/c81246fc559b063e45a247418ffe4224a1e2406f",
+                "reference": "c81246fc559b063e45a247418ffe4224a1e2406f",
+                "shasum": ""
+            },
+            "require": {
+                "jms/serializer": ">=0.12,<=0.13.x-dev",
+                "php": ">=5.3.10",
+                "silex/silex": "1.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "symfony/yaml": "Required if you'd like to deserialize data from YAML format."
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/SerializerProvider.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Adler",
+                    "email": "macedigital@gmail.com"
+                }
+            ],
+            "description": "Use JMS Serializer for (de-)serializing object graphs in silex applications",
+            "homepage": "https://github.com/macedigital/silex-jms-serializer-provider",
+            "keywords": [
+                "jms",
+                "provider",
+                "serializer",
+                "silex"
+            ],
+            "time": "2013-08-30 14:42:24"
         },
         {
             "name": "monolog/monolog",
@@ -2626,9 +2677,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "macedigital/silex-jms-serializer": 20
+    },
     "platform": {
         "php": ">=5.3.3"
     },
