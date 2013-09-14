@@ -18,7 +18,8 @@
         "symfony/twig-bridge": "~2.2",
         "symfony/validator": "~2.2",
         "doctrine/orm": "2.4.*",
-        "dflydev/doctrine-orm-service-provider": "1.*"
+        "dflydev/doctrine-orm-service-provider": "1.*",
+        "jms/serializer": "0.13.0"
     },
     "autoload": {
         "psr-0": {"MJ\\": "src/"}
