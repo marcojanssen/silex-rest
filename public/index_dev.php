@@ -12,7 +12,7 @@ if ('cli' !== php_sapi_name()) {
     ExceptionHandler::register();
 }
 
-$app = require __DIR__.'/../src/app.php';
+$app = require __DIR__.'/../app/app.php';
 require __DIR__.'/../app/config/dev.php';
 require __DIR__.'/../src/controllers.php';
 $app->run();
