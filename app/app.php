@@ -36,7 +36,7 @@ $app->register(new DoctrineOrmServiceProvider, array(
             array(
                 "type" => "annotation",
                 "namespace" => "MJ\Doctrine\Entities",
-                "path" => __DIR__."/../src/MJ/Entities",
+                "path" => __DIR__."/../src/MJ/Doctrine/Entities",
             )
         ),
     ),
