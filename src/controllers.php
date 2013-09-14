@@ -2,9 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use JMS\Serializer\SerializerBuilder;
 
 $app->get('/', function (Request $request) use ($app) {
     $limit = $request->query->get('limit');
@@ -18,13 +16,19 @@ $app->get('/', function (Request $request) use ($app) {
         $start = 0;
     }
 
-    $sql = "SELECT * FROM items LIMIT ?,?";
-    $items = $app['db']->fetchAll($sql, array((int) $start, (int) $limit));
+    $serializer = SerializerBuilder::create()->setCacheDir(__DIR__.'/../app/cache/serializer')->build();
+    $items = $serializer->serialize(
+        $app['orm.em']->getRepository('MJ\Doctrine\Entities\Item')->findBy(
+            array(),
+            array('id' => 'ASC'),
+            (int) $limit,
+            (int) $start
+        ),
+        'json'
+    );
 
-    return new JsonResponse($items);
-})
-->bind('homepage')
-;
+    return new Response($items);
+});
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
