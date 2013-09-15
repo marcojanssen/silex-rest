@@ -28,8 +28,12 @@ $app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
 
 $app->register(new DoctrineServiceProvider(), array(
     'db.options' => array(
-        'driver'   => 'pdo_sqlite',
-        'path'     => __DIR__.'/../db/app.db',
+        'driver'   => 'pdo_mysql',
+        'dbname'   => 'silexrest',
+        'host'     => 'localhost',
+        'username' => 'root',
+        'password' => 'root',
+        'charset'  => 'UTF8'
     ),
 ));
 
