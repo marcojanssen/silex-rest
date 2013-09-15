@@ -94,6 +94,14 @@ class Items
     }
 
     /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
      * @param User $user
      * @return mixed
      */
