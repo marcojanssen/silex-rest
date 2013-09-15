@@ -1,12 +1,12 @@
 <?php
 $app->get('/', 'MJ\Controllers\IndexController::getAction');
 
-$app->get('/items', 'MJ\Controllers\ItemsController::getAction');
-$app->post('/items', 'MJ\Controllers\ItemsController::postAction');
+$app->get('/{section}', 'MJ\Controllers\RestController::getAction');
+$app->post('/{section}', 'MJ\Controllers\RestController::postAction');
+$app->get('/{section}/{id}', 'MJ\Controllers\RestController::getAction');
+$app->put('/{section}/{id}', 'MJ\Controllers\RestController::putAction');
+$app->delete('/{section}/{id}', 'MJ\Controllers\RestController::deleteAction');
 
-$app->get('/items/{id}', 'MJ\Controllers\ItemController::getAction');
-$app->put('/items/{id}', 'MJ\Controllers\ItemController::putAction');
-$app->delete('/items/{id}', 'MJ\Controllers\ItemController::deleteAction');
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
