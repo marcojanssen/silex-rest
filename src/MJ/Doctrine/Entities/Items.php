@@ -105,7 +105,7 @@ class Items
      * @param User $user
      * @return mixed
      */
-    public function setCategory(Categories $category)
+    public function setCategory($category)
     {
         $this->category = $category;
         return $this;
