@@ -25,9 +25,7 @@ class RestController
             return new JsonResponse(
                 $app['doctrine.extractor']->extractEntity(
                     $app['doctrine.repository']->findEntityById(
-                        $app['doctrine.resolver']->resolveEntity(
-                            $request->attributes->get('section')
-                        ),
+                        $this->getEntityName($request, $app),
                         $id
                     )
                 )
@@ -37,9 +35,7 @@ class RestController
         return new JsonResponse(
             $app['doctrine.extractor']->extractEntities(
                 $app['doctrine.repository']->findEntitiesByCriteria(
-                    $app['doctrine.resolver']->resolveEntity(
-                        $request->attributes->get('section')
-                    ),
+                    $this->getEntityName($request, $app),
                     array(),
                     array('id' => 'ASC'),
                     (int) $this->getPaginatorParameter($request, 'limit', 25),
@@ -59,15 +55,13 @@ class RestController
     {
         $app['orm.em']->remove(
             $app['doctrine.repository']->findEntityById(
-                $app['doctrine.resolver']->resolveEntity(
-                    $request->attributes->get('section')
-                ),
+                $this->getEntityName($request, $app),
                 $id
             )
         );
         $app['orm.em']->flush();
 
-        return new JsonResponse(array('item deleted'));
+        return new JsonResponse(array('item removed'));
     }
 
     /**
@@ -80,9 +74,7 @@ class RestController
     {
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
-            $app['doctrine.resolver']->resolveEntity(
-                $request->attributes->get('section')
-            )
+            $this->getEntity($request, $app)
         );
 
         $app['orm.em']->persist($item);
@@ -101,9 +93,7 @@ class RestController
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
             $app['doctrine.repository']->findEntityById(
-                $app['doctrine.resolver']->resolveEntity(
-                    $request->attributes->get('section')
-                ),
+                $this->getEntityName($request, $app),
                 $id
             )
         );
@@ -112,6 +102,29 @@ class RestController
         $app['orm.em']->flush();
 
         return new JsonResponse(array('item updated'));
+    }
+
+    /**
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
+    protected function getEntity(Request $request, Application $app)
+    {
+        $entityName = $this->getEntityName($request, $app);
+        return new $entityName;
+    }
+
+    /**
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
+    protected function getEntityName(Request $request, Application $app)
+    {
+        return $app['doctrine.resolver']->resolveEntity(
+            $request->attributes->get('section')
+        );
     }
 
     /**
