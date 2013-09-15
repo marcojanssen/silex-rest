@@ -21,6 +21,11 @@ class ItemsController
         );
     }
 
+    /**
+     * @param Request $request
+     * @param Application $app
+     * @return array
+     */
     private function getExtractedItems(Request $request, Application $app)
     {
         $hydrator = new DoctrineHydrator($app['orm.em']);
