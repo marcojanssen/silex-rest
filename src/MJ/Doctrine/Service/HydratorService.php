@@ -1,9 +1,9 @@
 <?php
-namespace MJ\Service;
+namespace MJ\Doctrine\Service;
 
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
-class DoctrineHydratorService
+class HydratorService
 {
     protected $hydrator;
 

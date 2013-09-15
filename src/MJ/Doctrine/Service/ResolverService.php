@@ -1,7 +1,7 @@
 <?php
-namespace MJ\Service;
+namespace MJ\Doctrine\Service;
 
-class DoctrineResolverService
+class ResolverService
 {
     protected $entityManager;
 

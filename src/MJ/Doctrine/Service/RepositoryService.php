@@ -1,9 +1,9 @@
 <?php
-namespace MJ\Service;
+namespace MJ\Doctrine\Service;
 
 use Doctrine\ORM\EntityManager;
 
-class DoctrineRepositoryService
+class RepositoryService
 {
     protected $entityManager;
 

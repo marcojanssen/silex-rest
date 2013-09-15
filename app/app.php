@@ -8,10 +8,10 @@ use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
-use MJ\Service\DoctrineExtractorService;
-use MJ\Service\DoctrineHydratorService;
-use MJ\Service\DoctrineRepositoryService;
-use MJ\Service\DoctrineResolverService;
+use MJ\Doctrine\Service\ExtractorService;
+use MJ\Doctrine\Service\HydratorService;
+use MJ\Doctrine\Service\RepositoryService;
+use MJ\Doctrine\Service\ResolverService;
 
 $app = new Application();
 $app->register(new UrlGeneratorServiceProvider());
@@ -58,19 +58,19 @@ $app['hydrator'] = $app->share(function($app) {
 });
 
 $app['doctrine.extractor'] = $app->share(function($app) {
-    return new DoctrineExtractorService($app['hydrator']);
+    return new ExtractorService($app['hydrator']);
 });
 
 $app['doctrine.hydrator'] = $app->share(function($app) {
-    return new DoctrineHydratorService($app['hydrator']);
+    return new HydratorService($app['hydrator']);
 });
 
 $app['doctrine.repository'] = $app->share(function($app) {
-    return new DoctrineRepositoryService($app['orm.em']);
+    return new RepositoryService($app['orm.em']);
 });
 
 $app['doctrine.resolver'] = $app->share(function() {
-    return new DoctrineResolverService();
+    return new ResolverService();
 });
 
 Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
