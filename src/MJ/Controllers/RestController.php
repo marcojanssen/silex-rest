@@ -16,29 +16,22 @@ class RestController
 
     public function testHydrateAction(Request $request, Application $app)
     {
-
-        $item = new Items();
-        $item->setId(0);
-        $item->setName('test');
-        $item->setEmail('test');
-        $item->setPhone('test');
-        $items[] = $item;
-
-        $item = new Items();
-        $item->setId(0);
-        $item->setName('test');
-        $item->setEmail('test');
-        $item->setPhone('test');
-        $items[] = $item;
-
         $data = array(
             'name' => 'Wazzup',
-            'items' => $items // Note that you can mix integers and entities without any problem
+            'items' => array(
+                array(
+                    'id' => null,
+                    'name' => 'bla',
+                    'email' => 'bla',
+                    'phone' => 'bla'
+                )
+            )
         );
 
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $data,
-            new \MJ\Doctrine\Entities\Categories()
+            new \MJ\Doctrine\Entities\Categories(),
+            true
         );
 
         $app['orm.em']->persist($item);

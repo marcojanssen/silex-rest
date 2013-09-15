@@ -62,7 +62,7 @@ $app['doctrine.extractor'] = $app->share(function($app) {
 });
 
 $app['doctrine.hydrator'] = $app->share(function($app) {
-    return new HydratorService($app['hydrator']);
+    return new HydratorService($app['hydrator'], $app['orm.em']);
 });
 
 $app['doctrine.repository'] = $app->share(function($app) {
