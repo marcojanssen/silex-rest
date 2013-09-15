@@ -44,8 +44,6 @@ $app->register(new DoctrineOrmServiceProvider, array(
     "orm.default_cache" => "array"
 ));
 
-$app->register(new Macedigital\Silex\Provider\SerializerProvider);
-
 Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 return $app;
