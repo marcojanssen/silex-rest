@@ -1,7 +1,6 @@
 <?php
 namespace MJ\Controllers;
 
-use MJ\Doctrine\Entities\Items;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +29,7 @@ class RestController
 
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $data,
-            new \MJ\Doctrine\Entities\Categories(),
+            new \MJ\Doctrine\Entity\Categories(),
             true
         );
 

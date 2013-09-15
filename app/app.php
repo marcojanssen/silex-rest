@@ -44,8 +44,8 @@ $app->register(new DoctrineOrmServiceProvider, array(
         "mappings" => array(
             array(
                 "type" => "annotation",
-                "namespace" => "MJ\\Doctrine\\Entities",
-                "path" => __DIR__."/../src/MJ/Doctrine/Entities",
+                "namespace" => "MJ\\Doctrine\\Entity",
+                "path" => __DIR__."/../src/MJ/Doctrine/Entity",
                 "use_simple_annotation_reader" => false
             )
         ),

@@ -28,6 +28,6 @@ class ResolverService
      */
     public function getEntityClassName($entityName)
     {
-        return sprintf('MJ\Doctrine\Entities\%s', ucfirst($entityName));
+        return sprintf('MJ\Doctrine\Entity\%s', ucfirst($entityName));
     }
 }
