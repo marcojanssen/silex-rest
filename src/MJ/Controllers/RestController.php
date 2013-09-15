@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class RestController
 {
-
     /**
      * @param Request $request
      * @param Application $app
@@ -56,6 +55,25 @@ class RestController
         $app['orm.em']->flush();
 
         return new JsonResponse(array('item deleted'));
+    }
+
+    /**
+     * @param Request $request
+     * @param Application $app
+     * @param $id
+     * @return JsonResponse
+     */
+    public function postAction(Request $request, Application $app)
+    {
+        $item = $app['doctrine.hydrator']->hydrateEntity(
+            $request->getContent(),
+            new \MJ\Doctrine\Entities\Item()
+        );
+
+        $app['orm.em']->persist($item);
+        $app['orm.em']->flush();
+
+        return new JsonResponse(array('item posted'));
     }
 
     /**
