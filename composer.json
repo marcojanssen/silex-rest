@@ -20,7 +20,8 @@
         "doctrine/orm": "2.4.*",
         "dflydev/doctrine-orm-service-provider": "1.*",
         "jms/serializer": "0.13.0",
-        "macedigital/silex-jms-serializer": "dev-master"
+        "macedigital/silex-jms-serializer": "dev-master",
+        "doctrine/doctrine-module": "dev-master"
     },
     "autoload": {
         "psr-0": {"MJ\\": "src/"}

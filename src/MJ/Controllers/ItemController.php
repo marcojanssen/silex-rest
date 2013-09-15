@@ -5,7 +5,7 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use JMS\Serializer\SerializerBuilder;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 class ItemController
 {
@@ -16,10 +16,11 @@ class ItemController
      */
     public function getAction(Request $request, Application $app, $id)
     {
-        return new Response(
-            $app['serializer']->serialize(
-                $this->findItem($app, $id),
-                'json'
+        $hydrator = new DoctrineHydrator($app['orm.em']);
+
+        return new JsonResponse(
+            $hydrator->extract(
+                $this->findItem($app, $id)
             )
         );
     }
@@ -44,9 +45,15 @@ class ItemController
      */
     public function putAction(Request $request, Application $app, $id)
     {
-        $item = $app['serializer']->deserialize($request->getContent(), 'MJ\Doctrine\Entities\Item','json');
 
-        $app['orm.em']->merge($item);
+        $hydrator = new DoctrineHydrator($app['orm.em']);
+
+        $item = $hydrator->hydrate(
+            json_decode($request->getContent(), true),
+            $this->findItem($app, $id)
+        );
+
+        $app['orm.em']->persist($item);
         $app['orm.em']->flush();
 
         return new JsonResponse(array('item updated'));

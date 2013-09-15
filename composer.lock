@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "fc5da0ee3d916870167048c83aab49f9",
+    "hash": "cb4f6877f55e74015347f0d0cad5b897",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -416,6 +416,90 @@
                 "queryobject"
             ],
             "time": "2013-09-07 10:49:18"
+        },
+        {
+            "name": "doctrine/doctrine-module",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/DoctrineModule.git",
+                "reference": "b49c8fa093a1fa94917dc212512d529ac3a683bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/DoctrineModule/zipball/b49c8fa093a1fa94917dc212512d529ac3a683bf",
+                "reference": "b49c8fa093a1fa94917dc212512d529ac3a683bf",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": ">=2.3,<2.5-dev",
+                "php": ">=5.3.3",
+                "symfony/console": "~2.1",
+                "zendframework/zend-authentication": "~2.1",
+                "zendframework/zend-cache": "~2.1",
+                "zendframework/zend-mvc": "~2.1",
+                "zendframework/zend-paginator": "~2.1",
+                "zendframework/zend-servicemanager": "~2.1",
+                "zendframework/zend-stdlib": "~2.1",
+                "zendframework/zend-validator": "~2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7",
+                "squizlabs/php_codesniffer": "1.4.*",
+                "zendframework/zendframework": "~2.1"
+            },
+            "suggest": {
+                "doctrine/data-fixtures": "Data Fixtures if you want to generate test data or bootstrap data for your deployments"
+            },
+            "bin": [
+                "bin/doctrine-module"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.8.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "DoctrineModule\\": "src/",
+                    "DoctrineModuleTest\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Spraggs",
+                    "email": "theman@spiffyjr.me",
+                    "homepage": "http://www.spiffyjr.me/"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com",
+                    "homepage": "http://marco-pivetta.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@hotmail.com"
+                },
+                {
+                    "name": "Michaël Gallego",
+                    "email": "mic.gallego@gmail.com",
+                    "homepage": "http://www.michaelgallego.fr"
+                }
+            ],
+            "description": "Zend Framework 2 Module that provides Doctrine basic functionality required for ORM and ODM modules",
+            "homepage": "http://www.doctrine-project.org/",
+            "keywords": [
+                "doctrine",
+                "module",
+                "zf2"
+            ],
+            "time": "2013-08-26 16:43:31"
         },
         {
             "name": "doctrine/inflector",
@@ -2668,6 +2752,396 @@
                 "templating"
             ],
             "time": "2013-08-03 15:35:31"
+        },
+        {
+            "name": "zendframework/zend-authentication",
+            "version": "2.2.4",
+            "target-dir": "Zend/Authentication",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendAuthentication.git",
+                "reference": "616c76c068d3fd2d70bdd8689f1647b76e5deaf4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendAuthentication/zipball/616c76c068d3fd2d70bdd8689f1647b76e5deaf4",
+                "reference": "616c76c068d3fd2d70bdd8689f1647b76e5deaf4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-crypt": "Zend\\Crypt component",
+                "zendframework/zend-db": "Zend\\Db component",
+                "zendframework/zend-session": "Zend\\Session component",
+                "zendframework/zend-uri": "Zend\\Uri component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Authentication\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides an API for authentication and includes concrete authentication adapters for common use case scenarios",
+            "keywords": [
+                "Authentication",
+                "zf2"
+            ],
+            "time": "2013-06-12 19:47:09"
+        },
+        {
+            "name": "zendframework/zend-cache",
+            "version": "2.2.4",
+            "target-dir": "Zend/Cache",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendCache.git",
+                "reference": "64044faa106710a6dd2735a06b5034cd9cb2dc67"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendCache/zipball/64044faa106710a6dd2735a06b5034cd9cb2dc67",
+                "reference": "64044faa106710a6dd2735a06b5034cd9cb2dc67",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-eventmanager": "self.version",
+                "zendframework/zend-servicemanager": "self.version",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "require-dev": {
+                "zendframework/zend-serializer": "self.version"
+            },
+            "suggest": {
+                "ext-apc": "APC >= 3.1.6 to use the APC storage adapter",
+                "ext-dba": "DBA, to use the DBA storage adapter",
+                "ext-memcached": "Memcached >= 1.0.0 to use the Memcached storage adapter",
+                "ext-wincache": "WinCache, to use the WinCache storage adapter",
+                "zendframework/zend-serializer": "Zend\\Serializer component",
+                "zendframework/zend-session": "Zend\\Session component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Cache\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides a generic way to cache any data",
+            "keywords": [
+                "cache",
+                "zf2"
+            ],
+            "time": "2013-07-17 10:00:05"
+        },
+        {
+            "name": "zendframework/zend-eventmanager",
+            "version": "2.2.4",
+            "target-dir": "Zend/EventManager",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendEventManager.git",
+                "reference": "f325feef4e1a19b873936e5b116980fbe88dd176"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendEventManager/zipball/f325feef4e1a19b873936e5b116980fbe88dd176",
+                "reference": "f325feef4e1a19b873936e5b116980fbe88dd176",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\EventManager\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "eventmanager",
+                "zf2"
+            ],
+            "time": "2013-06-12 19:45:10"
+        },
+        {
+            "name": "zendframework/zend-mvc",
+            "version": "2.2.4",
+            "target-dir": "Zend/Mvc",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendMvc.git",
+                "reference": "2015bed8819079fcf87aa46cfacab21dda89dd43"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendMvc/zipball/2015bed8819079fcf87aa46cfacab21dda89dd43",
+                "reference": "2015bed8819079fcf87aa46cfacab21dda89dd43",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-eventmanager": "self.version",
+                "zendframework/zend-servicemanager": "self.version",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-authentication": "Zend\\Authentication component for Identity plugin",
+                "zendframework/zend-config": "Zend\\Config component",
+                "zendframework/zend-console": "Zend\\Console component",
+                "zendframework/zend-di": "Zend\\Di component",
+                "zendframework/zend-filter": "Zend\\Filter component",
+                "zendframework/zend-form": "Zend\\Form component",
+                "zendframework/zend-http": "Zend\\Http component",
+                "zendframework/zend-i18n": "Zend\\I18n component for translatable segments",
+                "zendframework/zend-inputfilter": "Zend\\Inputfilter component",
+                "zendframework/zend-modulemanager": "Zend\\ModuleManager component",
+                "zendframework/zend-serializer": "Zend\\Serializer component",
+                "zendframework/zend-session": "Zend\\Session component for FlashMessenger, PRG, and FPRG plugins",
+                "zendframework/zend-stdlib": "Zend\\Stdlib component",
+                "zendframework/zend-text": "Zend\\Text component",
+                "zendframework/zend-uri": "Zend\\Uri component",
+                "zendframework/zend-validator": "Zend\\Validator component",
+                "zendframework/zend-view": "Zend\\View component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Mvc\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "mvc",
+                "zf2"
+            ],
+            "time": "2013-08-21 17:08:04"
+        },
+        {
+            "name": "zendframework/zend-paginator",
+            "version": "2.2.4",
+            "target-dir": "Zend/Paginator",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendPaginator.git",
+                "reference": "4be5fee3b8a68fe7a2e7779cc5d94898ccbec8fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendPaginator/zipball/4be5fee3b8a68fe7a2e7779cc5d94898ccbec8fa",
+                "reference": "4be5fee3b8a68fe7a2e7779cc5d94898ccbec8fa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Paginator\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "paginator",
+                "zf2"
+            ],
+            "time": "2013-06-20 18:01:18"
+        },
+        {
+            "name": "zendframework/zend-servicemanager",
+            "version": "2.2.4",
+            "target-dir": "Zend/ServiceManager",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendServiceManager.git",
+                "reference": "e05c29f8d7da6e2c26d2d8b334324932a73afa78"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendServiceManager/zipball/e05c29f8d7da6e2c26d2d8b334324932a73afa78",
+                "reference": "e05c29f8d7da6e2c26d2d8b334324932a73afa78",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "zendframework/zend-di": "Zend\\Di component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\ServiceManager\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "servicemanager",
+                "zf2"
+            ],
+            "time": "2013-08-21 17:07:36"
+        },
+        {
+            "name": "zendframework/zend-stdlib",
+            "version": "2.2.4",
+            "target-dir": "Zend/Stdlib",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendStdlib.git",
+                "reference": "7c87ce4e840957596bf3401fa4ae4fb0355682e2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendStdlib/zipball/7c87ce4e840957596bf3401fa4ae4fb0355682e2",
+                "reference": "7c87ce4e840957596bf3401fa4ae4fb0355682e2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "zendframework/zend-eventmanager": "To support aggregate hydrator usage",
+                "zendframework/zend-servicemanager": "To support hydrator plugin manager usage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Stdlib\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "stdlib",
+                "zf2"
+            ],
+            "time": "2013-08-21 17:08:07"
+        },
+        {
+            "name": "zendframework/zend-validator",
+            "version": "2.2.4",
+            "target-dir": "Zend/Validator",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendValidator.git",
+                "reference": "3aa2c87ee3d36763b30087b1188f42a6c95f414f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendValidator/zipball/3aa2c87ee3d36763b30087b1188f42a6c95f414f",
+                "reference": "3aa2c87ee3d36763b30087b1188f42a6c95f414f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "require-dev": {
+                "zendframework/zend-filter": "self.version",
+                "zendframework/zend-i18n": "self.version",
+                "zendframework/zend-math": "self.version",
+                "zendframework/zend-servicemanager": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-db": "Zend\\Db component",
+                "zendframework/zend-filter": "Zend\\Filter component, required by the Digits validator",
+                "zendframework/zend-i18n": "Zend\\I18n component to allow translation of validation error messages as well as to use the various Date validators",
+                "zendframework/zend-math": "Zend\\Math component",
+                "zendframework/zend-resources": "Translations of validator messages",
+                "zendframework/zend-servicemanager": "Zend\\ServiceManager component to allow using the ValidatorPluginManager and validator chains"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Validator\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides a set of commonly needed validators",
+            "keywords": [
+                "validator",
+                "zf2"
+            ],
+            "time": "2013-08-21 17:07:51"
         }
     ],
     "packages-dev": [
@@ -2678,7 +3152,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "macedigital/silex-jms-serializer": 20
+        "macedigital/silex-jms-serializer": 20,
+        "doctrine/doctrine-module": 20
     },
     "platform": {
         "php": ">=5.3.3"
