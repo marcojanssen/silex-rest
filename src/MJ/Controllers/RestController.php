@@ -27,8 +27,10 @@ class RestController
                     $app['doctrine.repository']->findEntityById(
                         $this->getEntityName($request, $app),
                         $id
-                    )
+                    ),
+                    true
                 )
+
             );
         }
 
