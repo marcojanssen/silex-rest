@@ -16,25 +16,10 @@ class ItemsController
     public function getAction(Request $request, Application $app)
     {
         return new JsonResponse(
-            $this->getExtractedItems($request, $app)
+            $app['doctrine.extractor']->extractEntities(
+                $this->findItems($request, $app)
+            )
         );
-    }
-
-    /**
-     * @param Request $request
-     * @param Application $app
-     * @return array
-     */
-    private function getExtractedItems(Request $request, Application $app)
-    {
-        $items = $this->findItems($request, $app);
-
-        foreach($items AS $item) {
-            $extractedItems[] = $app['hydrator']->extract($item);
-        }
-
-        return $extractedItems;
-
     }
 
     /**

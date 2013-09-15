@@ -17,7 +17,7 @@ class ItemController
     public function getAction(Request $request, Application $app, $id)
     {
         return new JsonResponse(
-            $app['hydrator']->extract(
+            $app['doctrine.extractor']->extractEntity(
                 $this->findItem($app, $id)
             )
         );
