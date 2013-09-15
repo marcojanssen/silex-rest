@@ -1,6 +1,7 @@
 <?php
 namespace MJ\Controllers;
 
+use MJ\Doctrine\Entities\Items;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,6 +13,41 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class RestController
 {
+
+    public function testHydrateAction(Request $request, Application $app)
+    {
+
+        $item = new Items();
+        $item->setId(0);
+        $item->setName('test');
+        $item->setEmail('test');
+        $item->setPhone('test');
+        $items[] = $item;
+
+        $item = new Items();
+        $item->setId(0);
+        $item->setName('test');
+        $item->setEmail('test');
+        $item->setPhone('test');
+        $items[] = $item;
+
+        $data = array(
+            'name' => 'Wazzup',
+            'items' => $items // Note that you can mix integers and entities without any problem
+        );
+
+        $item = $app['doctrine.hydrator']->hydrateEntity(
+            $data,
+            new \MJ\Doctrine\Entities\Categories()
+        );
+
+        $app['orm.em']->persist($item);
+        $app['orm.em']->flush();
+
+        return new Response('aight');
+
+    }
+
     /**
      * @param Request $request
      * @param Application $app

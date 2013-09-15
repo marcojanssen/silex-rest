@@ -1,6 +1,9 @@
 <?php
 $app->get('/', 'MJ\Controllers\IndexController::getAction');
 
+$app->get('/test', 'MJ\Controllers\RestController::testHydrateAction');
+$app->get('/testextract', 'MJ\Controllers\RestController::testExtractAction');
+
 $app->get('/{section}', 'MJ\Controllers\RestController::getAction');
 $app->post('/{section}', 'MJ\Controllers\RestController::postAction');
 $app->get('/{section}/{id}', 'MJ\Controllers\RestController::getAction');
