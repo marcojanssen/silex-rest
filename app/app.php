@@ -7,6 +7,7 @@ use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 $app = new Application();
 $app->register(new UrlGeneratorServiceProvider());
@@ -43,6 +44,10 @@ $app->register(new DoctrineOrmServiceProvider, array(
     ),
     "orm.default_cache" => "array"
 ));
+
+$app['hydrator'] = $app->share(function($app) {
+    return new DoctrineHydrator($app['orm.em']);
+});
 
 Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 

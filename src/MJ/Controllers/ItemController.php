@@ -5,7 +5,7 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+
 
 class ItemController
 {
@@ -16,10 +16,8 @@ class ItemController
      */
     public function getAction(Request $request, Application $app, $id)
     {
-        $hydrator = new DoctrineHydrator($app['orm.em']);
-
         return new JsonResponse(
-            $hydrator->extract(
+            $app['hydrator']->extract(
                 $this->findItem($app, $id)
             )
         );
@@ -45,10 +43,7 @@ class ItemController
      */
     public function putAction(Request $request, Application $app, $id)
     {
-
-        $hydrator = new DoctrineHydrator($app['orm.em']);
-
-        $item = $hydrator->hydrate(
+        $item = $app['hydrator']->hydrate(
             json_decode($request->getContent(), true),
             $this->findItem($app, $id)
         );
