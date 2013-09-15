@@ -43,8 +43,8 @@ class ItemController
      */
     public function putAction(Request $request, Application $app, $id)
     {
-        $item = $app['hydrator']->hydrate(
-            json_decode($request->getContent(), true),
+        $item = $app['doctrine.hydrator']->hydrateEntity(
+            $request->getContent(),
             $this->findItem($app, $id)
         );
 

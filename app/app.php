@@ -9,6 +9,7 @@ use Silex\Provider\DoctrineServiceProvider;
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use MJ\Service\DoctrineExtractorService;
+use MJ\Service\DoctrineHydratorService;
 
 $app = new Application();
 $app->register(new UrlGeneratorServiceProvider());
@@ -52,6 +53,10 @@ $app['hydrator'] = $app->share(function($app) {
 
 $app['doctrine.extractor'] = $app->share(function($app) {
     return new DoctrineExtractorService($app['hydrator']);
+});
+
+$app['doctrine.hydrator'] = $app->share(function($app) {
+    return new DoctrineHydratorService($app['hydrator']);
 });
 
 Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
