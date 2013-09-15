@@ -11,6 +11,7 @@ use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use MJ\Service\DoctrineExtractorService;
 use MJ\Service\DoctrineHydratorService;
 use MJ\Service\DoctrineRepositoryService;
+use MJ\Service\DoctrineResolverService;
 
 $app = new Application();
 $app->register(new UrlGeneratorServiceProvider());
@@ -66,6 +67,10 @@ $app['doctrine.hydrator'] = $app->share(function($app) {
 
 $app['doctrine.repository'] = $app->share(function($app) {
     return new DoctrineRepositoryService($app['orm.em']);
+});
+
+$app['doctrine.resolver'] = $app->share(function() {
+    return new DoctrineResolverService();
 });
 
 Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));

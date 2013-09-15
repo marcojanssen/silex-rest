@@ -20,10 +20,16 @@ class RestController
      */
     public function getAction(Request $request, Application $app, $id = null)
     {
+
         if(null !== $id) {
             return new JsonResponse(
                 $app['doctrine.extractor']->extractEntity(
-                    $app['doctrine.repository']->findEntityById('MJ\Doctrine\Entities\Item', $id)
+                    $app['doctrine.repository']->findEntityById(
+                        $app['doctrine.resolver']->resolveEntity(
+                            $request->attributes->get('section')
+                        ),
+                        $id
+                    )
                 )
             );
         }
@@ -31,7 +37,9 @@ class RestController
         return new JsonResponse(
             $app['doctrine.extractor']->extractEntities(
                 $app['doctrine.repository']->findEntitiesByCriteria(
-                    'MJ\Doctrine\Entities\Item',
+                    $app['doctrine.resolver']->resolveEntity(
+                        $request->attributes->get('section')
+                    ),
                     array(),
                     array('id' => 'ASC'),
                     (int) $this->getPaginatorParameter($request, 'limit', 25),
@@ -50,7 +58,12 @@ class RestController
     public function deleteAction(Request $request, Application $app, $id)
     {
         $app['orm.em']->remove(
-            $app['doctrine.repository']->findEntityById('MJ\Doctrine\Entities\Item', $id)
+            $app['doctrine.repository']->findEntityById(
+                $app['doctrine.resolver']->resolveEntity(
+                    $request->attributes->get('section')
+                ),
+                $id
+            )
         );
         $app['orm.em']->flush();
 
@@ -67,7 +80,9 @@ class RestController
     {
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
-            new \MJ\Doctrine\Entities\Item()
+            $app['doctrine.resolver']->resolveEntity(
+                $request->attributes->get('section')
+            )
         );
 
         $app['orm.em']->persist($item);
@@ -86,7 +101,9 @@ class RestController
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
             $app['doctrine.repository']->findEntityById(
-                'MJ\Doctrine\Entities\Item',
+                $app['doctrine.resolver']->resolveEntity(
+                    $request->attributes->get('section')
+                ),
                 $id
             )
         );
