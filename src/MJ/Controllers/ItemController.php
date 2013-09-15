@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-
 class ItemController
 {
     /**
@@ -18,7 +17,7 @@ class ItemController
     {
         return new JsonResponse(
             $app['doctrine.extractor']->extractEntity(
-                $this->findItem($app, $id)
+                $app['doctrine.repository']->findEntityById('MJ\Doctrine\Entities\Item', $id)
             )
         );
     }
@@ -30,7 +29,9 @@ class ItemController
      */
     public function deleteAction(Request $request, Application $app, $id)
     {
-        $app['orm.em']->remove($this->findItem($app, $id));
+        $app['orm.em']->remove(
+            $app['doctrine.repository']->findEntityById('MJ\Doctrine\Entities\Item', $id)
+        );
         $app['orm.em']->flush();
 
         return new JsonResponse(array('item deleted'));
@@ -45,7 +46,10 @@ class ItemController
     {
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
-            $this->findItem($app, $id)
+            $app['doctrine.repository']->findEntityById(
+                'MJ\Doctrine\Entities\Item',
+                $id
+            )
         );
 
         $app['orm.em']->persist($item);
@@ -53,23 +57,4 @@ class ItemController
 
         return new JsonResponse(array('item updated'));
     }
-
-    /**
-     * Find item in database
-     *
-     * @param Application $app
-     * @param $id
-     * @return mixed
-     */
-    private function findItem(Application $app, $id)
-    {
-        return $app['orm.em']->getRepository('MJ\Doctrine\Entities\Item')->findOneBy(
-            array('id' => (int) $id)
-        );
-
-        if (null === $item) {
-            $app->abort(404, "Item not found");
-        }
-    }
-
 }
