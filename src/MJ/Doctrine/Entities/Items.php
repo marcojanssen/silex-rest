@@ -33,6 +33,11 @@ class Items
     private $phone;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Categories", inversedBy="items")
+     */
+    private $category;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -87,4 +92,15 @@ class Items
     {
         return $this->phone;
     }
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function setCategory(Categories $category)
+    {
+        $this->category = $category;
+        return $this;
+    }
+
 }

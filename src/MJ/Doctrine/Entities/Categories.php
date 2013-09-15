@@ -2,12 +2,14 @@
 namespace MJ\Doctrine\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="category")
+ * @ORM\Table(name="categories")
  */
-class Category
+class Categories
 {
     /**
      * @ORM\Id
@@ -20,6 +22,16 @@ class Category
      * @ORM\Column(type="string")
      */
     private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Items", mappedBy="category", cascade={"persist", "remove"})
+     */
+    protected $items;
+
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -45,4 +57,33 @@ class Category
         return $this->name;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    /**
+     * @param Collection $items
+     */
+    public function addItems(Collection $items)
+    {
+        foreach ($items as $item) {
+            $item->setCategory($this);
+            $this->items->add($item);
+        }
+    }
+
+    /**
+     * @param Collection $items
+     */
+    public function removeItems(Collection $items)
+    {
+        foreach ($items as $item) {
+            $item->setCategory(null);
+            $this->items->removeElement($item);
+        }
+    }
 }
