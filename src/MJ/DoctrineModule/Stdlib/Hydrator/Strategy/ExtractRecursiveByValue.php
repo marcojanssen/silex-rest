@@ -122,7 +122,6 @@ class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
     protected function getHydrator($object)
     {
         $metadata    = $this->getMetadata($object);
-        $identifiers = $metadata->getIdentifier();
         $class       = $this->hydratorClass;
         $hydrator    = new $class($this->objectManager, get_class($object));
 
@@ -189,11 +188,10 @@ class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
         $object      = $collection->first();
         $hydrator    = $this->getHydrator($object);
         $metadata    = $this->getMetadata($object);
-        $identifiers = $metadata->getIdentifier();
 
         foreach ($collection as $object) {
             if ($this->hasSeen($object)) {
-                $results[] = $this->getIdentifier($object, $identifiers);
+                $results[] = $this->getIdentifier($object, $metadata);
             } else {
                 $this->saw($object);
                 $results[] = $hydrator->extract($object);
