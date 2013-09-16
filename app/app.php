@@ -15,7 +15,6 @@ use MJ\Doctrine\Service\ResolverService;
 use MJ\Doctrine\Service\PrepareService;
 
 $app = new Application();
-$app->register(new UrlGeneratorServiceProvider());
 $app->register(new ValidatorServiceProvider());
 $app->register(new ServiceControllerServiceProvider());
 $app->register(new TwigServiceProvider(), array(
