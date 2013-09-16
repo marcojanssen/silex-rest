@@ -105,6 +105,8 @@ class RestController
      */
     public function postAction(Request $request, Application $app)
     {
+        $this->validateRequest($request, $app);
+
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
             $this->getEntity($request, $app)
@@ -123,6 +125,8 @@ class RestController
      */
     public function putAction(Request $request, Application $app, $id)
     {
+        $this->validateRequest($request, $app);
+
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
             $app['doctrine.repository']->findEntityById(
@@ -135,6 +139,21 @@ class RestController
         $app['orm.em']->flush();
 
         return new JsonResponse(array('item updated'));
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function validateRequest(Request $request, Application $app)
+    {
+        $app['service.validator']->validate(
+            $this->getRequestName($request),
+            $request->getContent()
+        );
+
+        if($app['service.validator']->hasErrors()) {
+            //$app->abort(403, 'validation failed');
+        }
     }
 
     /**
@@ -153,10 +172,21 @@ class RestController
      * @param Application $app
      * @return mixed
      */
+    protected function getRequestName(Request $request)
+    {
+        return $request->attributes->get('section');
+    }
+
+
+    /**
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     protected function getEntityName(Request $request, Application $app)
     {
         return $app['doctrine.resolver']->resolveEntity(
-            $request->attributes->get('section')
+            $this->getRequestName($request)
         );
     }
 

@@ -2,7 +2,6 @@
 
 use Silex\Application;
 use Silex\Provider\TwigServiceProvider;
-use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
@@ -13,6 +12,7 @@ use MJ\Doctrine\Service\HydratorService;
 use MJ\Doctrine\Service\RepositoryService;
 use MJ\Doctrine\Service\ResolverService;
 use MJ\Doctrine\Service\PrepareService;
+use MJ\Service\ValidatorService;
 
 $app = new Application();
 $app->register(new ValidatorServiceProvider());
@@ -76,6 +76,10 @@ $app['doctrine.resolver'] = $app->share(function() {
 
 $app['doctrine.prepare'] = $app->share(function($app) {
     return new PrepareService($app['hydrator'], $app['orm.em']);
+});
+
+$app['service.validator'] = $app->share(function($app) {
+    return new ValidatorService($app['validator'], $app['request']);
 });
 
 Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
