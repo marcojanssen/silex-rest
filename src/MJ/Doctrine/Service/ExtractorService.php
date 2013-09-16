@@ -23,12 +23,12 @@ class ExtractorService
      * @param $entities
      * @return array
      */
-    public function extractEntities($entities)
+    public function extractEntities($entities, $extractAssociations = false)
     {
         $extractedItems = array();
 
         foreach($entities AS $entity) {
-            $extractedItems[] = $this->extractEntity($entity);
+            $extractedItems[] = $this->extractEntity($entity, $extractAssociations);
         }
 
         return $extractedItems;
