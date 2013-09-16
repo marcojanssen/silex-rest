@@ -24,7 +24,7 @@ class Categories
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Items", mappedBy="category", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Items", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $items;
 
