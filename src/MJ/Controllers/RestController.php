@@ -17,26 +17,29 @@ class RestController
     {
         $data = array(
             'name' => 'Wazzup',
-            'items' => array(
+            "items" => array (
                 array(
-                    'id' => null,
-                    'name' => 'bla',
-                    'email' => 'bla',
-                    'phone' => 'bla'
+                    "name" => "bla2",
+                    "phone" => "bla2",
+                    "email" => "bla2"
                 )
             )
         );
 
+        $data = $app['doctrine.prepare']->prepareEntity(
+            $data,
+            new \MJ\Doctrine\Entity\Categories()
+        );
+
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $data,
-            new \MJ\Doctrine\Entity\Categories(),
-            true
+            new \MJ\Doctrine\Entity\Categories()
         );
 
         $app['orm.em']->persist($item);
         $app['orm.em']->flush();
 
-        return new Response('aight');
+        return new Response('yeah?');
 
     }
 
