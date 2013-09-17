@@ -5,6 +5,8 @@ use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use MJ\Doctrine\Service\ExtractorService;
@@ -81,6 +83,21 @@ $app['doctrine.prepare'] = $app->share(function($app) {
 $app['service.validator'] = $app->share(function($app) {
     return new ValidatorService($app['validator'], $app['request']);
 });
+
+$validation = function (Request $request, Application $app) {
+    $app['service.validator']->validate(
+        $request->attributes->get('section'),
+        $request->getContent()
+    );
+
+    if($app['service.validator']->hasErrors()) {
+        foreach ($app['service.validator']->getErrors() as $error) {
+            $errorResponse[] = $error->getPropertyPath().' '.$error->getMessage()."\n";
+        }
+
+        return new JsonResponse(array('errors' => $errorResponse));
+    }
+};
 
 Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
