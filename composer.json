@@ -1,5 +1,11 @@
 {
     "name": "mj/silex",
+    "repositories": [
+        {
+            "url": "https://github.com/marcojanssen/dflydev-doctrine-orm-service-provider.git",
+            "type": "git"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "silex/silex": "1.1.*",
@@ -18,7 +24,7 @@
         "symfony/twig-bridge": "~2.3",
         "symfony/validator": "~2.3",
         "doctrine/orm": "2.4.*",
-        "dflydev/doctrine-orm-service-provider": "1.*",
+        "dflydev/doctrine-orm-service-provider": "dev-master",
         "doctrine/doctrine-module": "dev-master",
         "zendframework/zend-filter": "2.*"
     },

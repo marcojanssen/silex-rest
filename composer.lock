@@ -3,21 +3,15 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7ceeb622e803a229133c26942971a222",
+    "hash": "b9fa90977f3a9a4520eae1ba82d87d80",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
-            "version": "v1.0.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/dflydev/dflydev-doctrine-orm-service-provider.git",
-                "reference": "24be501eee4986b7a69dafa361172478cd3be8d8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dflydev/dflydev-doctrine-orm-service-provider/zipball/24be501eee4986b7a69dafa361172478cd3be8d8",
-                "reference": "24be501eee4986b7a69dafa361172478cd3be8d8",
-                "shasum": ""
+                "url": "https://github.com/marcojanssen/dflydev-doctrine-orm-service-provider.git",
+                "reference": "c4a77d901d75423b06718c82dea909bb3698014a"
             },
             "require": {
                 "doctrine/orm": "~2.3",
@@ -45,7 +39,6 @@
                     "Dflydev\\Silex\\Provider\\DoctrineOrm": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -69,7 +62,7 @@
                 "pimple",
                 "silex"
             ],
-            "time": "2013-08-23 18:47:48"
+            "time": "2013-09-17 16:58:55"
         },
         {
             "name": "doctrine/annotations",
@@ -759,12 +752,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Pimple.git",
-                "reference": "v1.0.2"
+                "reference": "ae11e57e8c2bb414b2ff93396dbbfc0eb92feb94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/v1.0.2",
-                "reference": "v1.0.2",
+                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/ae11e57e8c2bb414b2ff93396dbbfc0eb92feb94",
+                "reference": "ae11e57e8c2bb414b2ff93396dbbfc0eb92feb94",
                 "shasum": ""
             },
             "require": {
@@ -804,13 +797,13 @@
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-fig/log",
-                "reference": "1.0.0"
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/php-fig/log/archive/1.0.0.zip",
-                "reference": "1.0.0",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
                 "shasum": ""
             },
             "type": "library",
@@ -843,12 +836,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Silex.git",
-                "reference": "v1.1.0"
+                "reference": "a4d3f85ffbd6946b69f142f2965f56cb35ee95ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/v1.1.0",
-                "reference": "v1.1.0",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/a4d3f85ffbd6946b69f142f2965f56cb35ee95ea",
+                "reference": "a4d3f85ffbd6946b69f142f2965f56cb35ee95ea",
                 "shasum": ""
             },
             "require": {
@@ -2594,6 +2587,58 @@
             "time": "2013-06-12 19:45:10"
         },
         {
+            "name": "zendframework/zend-filter",
+            "version": "2.2.4",
+            "target-dir": "Zend/Filter",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendFilter.git",
+                "reference": "58f5a5d531bd8c46f6b89b83c43ba8d1efd3dd74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendFilter/zipball/58f5a5d531bd8c46f6b89b83c43ba8d1efd3dd74",
+                "reference": "58f5a5d531bd8c46f6b89b83c43ba8d1efd3dd74",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "require-dev": {
+                "zendframework/zend-crypt": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-crypt": "Zend\\Crypt component",
+                "zendframework/zend-i18n": "Zend\\I18n component",
+                "zendframework/zend-stdlib": "Zend\\Stdlib component",
+                "zendframework/zend-uri": "Zend\\Uri component for UriNormalize filter",
+                "zendframework/zend-validator": "Zend\\Validator component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Filter\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides a set of commonly needed data filters",
+            "keywords": [
+                "filter",
+                "zf2"
+            ],
+            "time": "2013-08-21 17:07:02"
+        },
+        {
             "name": "zendframework/zend-mvc",
             "version": "2.2.4",
             "target-dir": "Zend/Mvc",
@@ -2848,6 +2893,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "dflydev/doctrine-orm-service-provider": 20,
         "doctrine/doctrine-module": 20
     },
     "platform": {

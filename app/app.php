@@ -49,6 +49,7 @@ $app->register(new DoctrineOrmServiceProvider, array(
             array(
                 "type" => "annotation",
                 "namespace" => "MJ\\Doctrine\\Entity",
+                "alias" => 'mj',
                 "path" => __DIR__."/../src/MJ/Doctrine/Entity",
                 "use_simple_annotation_reader" => false
             ),
@@ -101,5 +102,6 @@ $validation = function (Request $request, Application $app) {
 };
 
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
+AnnotationRegistry::registerAutoloadNamespace("MJ", __DIR__."/../src/MJ/Doctrine/Entity");
 
 return $app;
