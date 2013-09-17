@@ -1,20 +1,21 @@
 <?php
 
-use Silex\Application;
-use Silex\Provider\TwigServiceProvider;
-use Silex\Provider\ValidatorServiceProvider;
-use Silex\Provider\ServiceControllerServiceProvider;
-use Silex\Provider\DoctrineServiceProvider;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use MJ\Doctrine\Service\ExtractorService;
 use MJ\Doctrine\Service\HydratorService;
+use MJ\Doctrine\Service\PrepareService;
 use MJ\Doctrine\Service\RepositoryService;
 use MJ\Doctrine\Service\ResolverService;
-use MJ\Doctrine\Service\PrepareService;
 use MJ\Service\ValidatorService;
+use Silex\Application;
+use Silex\Provider\DoctrineServiceProvider;
+use Silex\Provider\ServiceControllerServiceProvider;
+use Silex\Provider\TwigServiceProvider;
+use Silex\Provider\ValidatorServiceProvider;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 $app = new Application();
 $app->register(new ValidatorServiceProvider());
@@ -50,7 +51,7 @@ $app->register(new DoctrineOrmServiceProvider, array(
                 "namespace" => "MJ\\Doctrine\\Entity",
                 "path" => __DIR__."/../src/MJ/Doctrine/Entity",
                 "use_simple_annotation_reader" => false
-            )
+            ),
         ),
     ),
     "orm.default_cache" => "array"
@@ -72,8 +73,8 @@ $app['doctrine.repository'] = $app->share(function($app) {
     return new RepositoryService($app['orm.em']);
 });
 
-$app['doctrine.resolver'] = $app->share(function() {
-    return new ResolverService();
+$app['doctrine.resolver'] = $app->share(function($app) {
+    return new ResolverService($app['orm.em']);
 });
 
 $app['doctrine.prepare'] = $app->share(function($app) {
@@ -99,6 +100,6 @@ $validation = function (Request $request, Application $app) {
     }
 };
 
-Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
+AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 return $app;
