@@ -153,21 +153,11 @@ class RestController
      * @param Application $app
      * @return mixed
      */
-    protected function getRequestName(Request $request)
-    {
-        return $request->attributes->get('section');
-    }
-
-
-    /**
-     * @param Request $request
-     * @param Application $app
-     * @return mixed
-     */
     protected function getEntityName(Request $request, Application $app)
     {
-        return $app['doctrine.resolver']->resolveEntity(
-            $this->getRequestName($request)
+        return $app['doctrine.resolver']->getEntityClassName(
+            $request->attributes->get('namespace'),
+            $request->attributes->get('entity')
         );
     }
 
