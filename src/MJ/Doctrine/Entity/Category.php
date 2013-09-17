@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Entity
  * @ORM\Table(name="categories")
  */
-class Categories
+class Category
 {
     /**
      * @ORM\Id
@@ -24,7 +24,7 @@ class Categories
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Items", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Item", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $items;
 

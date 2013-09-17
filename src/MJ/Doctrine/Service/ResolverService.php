@@ -1,6 +1,9 @@
 <?php
 namespace MJ\Doctrine\Service;
 
+use Exception;
+use Symfony\Component\PropertyAccess\StringUtil;
+
 class ResolverService
 {
     protected $entityManager;
@@ -28,6 +31,9 @@ class ResolverService
      */
     public function getEntityClassName($entityName)
     {
-        return sprintf('MJ\Doctrine\Entity\%s', ucfirst($entityName));
+        return sprintf(
+            'MJ\Doctrine\Entity\%s',
+            ucfirst(StringUtil::singularify($entityName))
+        );
     }
 }
