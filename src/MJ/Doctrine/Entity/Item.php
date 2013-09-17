@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="items")
  */
-class Items
+class Item
 {
 
     /**
@@ -33,7 +33,7 @@ class Items
     private $phone;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Categories", inversedBy="items")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="items")
      */
     private $category;
 
