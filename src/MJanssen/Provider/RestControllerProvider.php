@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class RestControllerProvider implements ControllerProviderInterface
 {
+
     /**
      * @param Application $app
      * @return \Silex\ControllerCollection
@@ -21,12 +22,14 @@ class RestControllerProvider implements ControllerProviderInterface
         // creates a new controller based on the default route
         $controllers = $app['controllers_factory'];
 
-        //$validation = $this->getValidationMiddleware($app);
+        $validation = $this->getValidationMiddleware($app);
 
         $controllers->get('/{entity}', 'MJanssen\Controllers\RestController::getAction');
-        $controllers->post('/{entity}', 'MJanssen\Controllers\RestController::postAction');
+        $controllers->post('/{entity}', 'MJanssen\Controllers\RestController::postAction')
+                    ->before($validation);
         $controllers->get('/{entity}/{id}', 'MJanssen\Controllers\RestController::getAction');
-        $controllers->put('/{entity}/{id}', 'MJanssen\Controllers\RestController::putAction');
+        $controllers->put('/{entity}/{id}', 'MJanssen\Controllers\RestController::putAction')
+                    ->before($validation);
         $controllers->delete('/{entity}/{id}', 'MJanssen\Controllers\RestController::deleteAction');
 
         return $controllers;
@@ -38,11 +41,10 @@ class RestControllerProvider implements ControllerProviderInterface
      */
     private function getValidationMiddleware(Application $app)
     {
-        $request = $app['request'];
         $validation = function (Request $request, Application $app) {
             $app['service.validator']->validate(
-                $request->attributes->get('entity'),
-                $request->getContent()
+                $app['request']->attributes->get('entity'),
+                $app['request']->getContent()
             );
 
             if($app['service.validator']->hasErrors()) {
