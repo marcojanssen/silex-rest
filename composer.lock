@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8b22f8323675a4ea17b692442a9ff921",
+    "hash": "c4f8b26b942adf719fe7656f309408bb",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -690,6 +690,57 @@
                 "orm"
             ],
             "time": "2013-09-07 16:19:56"
+        },
+        {
+            "name": "filp/whoops",
+            "version": "1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "d086796e7cfb59f532d07738e5e4cf0ac3c6deb8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/d086796e7cfb59f532d07738e5e4cf0ac3c6deb8",
+                "reference": "d086796e7cfb59f532d07738e5e4cf0ac3c6deb8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "silex/silex": "1.0.*@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Whoops": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filipe Dobreira",
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
+                }
+            ],
+            "description": "php error handling for cool kids",
+            "homepage": "https://github.com/filp/whoops",
+            "keywords": [
+                "error",
+                "exception",
+                "handling",
+                "library",
+                "silex-provider",
+                "whoops",
+                "zf2"
+            ],
+            "time": "2013-08-06 20:39:59"
         },
         {
             "name": "herrera-io/silex-wise",

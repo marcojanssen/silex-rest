@@ -44,6 +44,9 @@ $app->register(new MonologServiceProvider(), array(
 $app->register($p = new WebProfilerServiceProvider(), array(
     'profiler.cache_dir' => __DIR__.'/../app/cache/profiler',
 ));
+
+$app->register(new Whoops\Provider\Silex\WhoopsServiceProvider());
+
 $app->mount('/_profiler', $p);
 $app->mount('/{namespace}', new MJanssen\Provider\RestControllerProvider());
 
