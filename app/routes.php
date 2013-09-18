@@ -1,4 +1,22 @@
 <?php
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+
+$validation = function (Request $request, Application $app) {
+    $app['service.validator']->validate(
+        $request->attributes->get('entity'),
+        $request->getContent()
+    );
+
+    if($app['service.validator']->hasErrors()) {
+        foreach ($app['service.validator']->getErrors() as $error) {
+            $errorResponse[] = $error->getPropertyPath().' '.$error->getMessage()."\n";
+        }
+
+        return new JsonResponse(array('errors' => $errorResponse));
+    }
+};
+
 $app->get('/', 'MJanssen\Controllers\IndexController::getAction');
 
 $app->get('/test', 'MJanssen\Controllers\RestController::testHydrateAction');
