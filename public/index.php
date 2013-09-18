@@ -34,8 +34,10 @@ AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 $app->mount('/{namespace}', new MJanssen\Provider\RestControllerProvider());
 
 $app->error(function (\Exception $e, $code) use ($app) {
-    $page = 404 == $code ? '404.html' : '500.html';
-    return new Response($app['twig']->render($page, array('code' => $code)), $code);
+    if(404 === $code) {
+        return;
+    }
+    return new JsonResponse(array('application error'));
 });
 
 $app->run();
