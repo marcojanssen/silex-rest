@@ -6,8 +6,8 @@ use Silex\Application;
 $loader = require_once __DIR__.'/../vendor/autoload.php';
 
 $app = new Application();
-
 $app['app_path'] = __DIR__.'/..';
+
 $app->register(
     new WiseServiceProvider(),
     array(
@@ -31,5 +31,11 @@ AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 //$app['controllers']->requireHttps();
 
-require __DIR__.'/../app/routes.php';
+$app->mount('/{namespace}', new MJanssen\Provider\RestControllerProvider());
+
+$app->error(function (\Exception $e, $code) use ($app) {
+    $page = 404 == $code ? '404.html' : '500.html';
+    return new Response($app['twig']->render($page, array('code' => $code)), $code);
+});
+
 $app->run();

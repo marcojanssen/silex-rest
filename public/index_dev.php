@@ -13,7 +13,6 @@ Debug::enable();
 
 $app = new Application();
 $app['debug'] = true;
-
 $app['app_path'] = __DIR__.'/..';
 
 $app->register(
@@ -46,6 +45,10 @@ $app->register($p = new WebProfilerServiceProvider(), array(
     'profiler.cache_dir' => __DIR__.'/../app/cache/profiler',
 ));
 $app->mount('/_profiler', $p);
+$app->mount('/{namespace}', new MJanssen\Provider\RestControllerProvider());
 
-require __DIR__.'/../app/routes.php';
+$app->error(function (\Exception $e, $code) use ($app) {
+    return;
+});
+
 $app->run();
