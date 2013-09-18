@@ -88,7 +88,7 @@ $app['service.validator'] = $app->share(function($app) {
 
 $validation = function (Request $request, Application $app) {
     $app['service.validator']->validate(
-        $request->attributes->get('section'),
+        $request->attributes->get('entity'),
         $request->getContent()
     );
 
