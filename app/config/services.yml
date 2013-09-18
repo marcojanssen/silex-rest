@@ -7,8 +7,6 @@ service.controller.service:
 twig:
   class: Silex\Provider\TwigServiceProvider
   parameters:
-      twig.path:
-        - "%app_path%/app/templates"
       twig.options:
         - "%app_path%/app/cache/twig"
 
