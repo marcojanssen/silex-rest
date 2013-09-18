@@ -1,5 +1,5 @@
 <?php
-namespace MJ\Controllers;
+namespace MJanssen\Controllers;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class RestController
- * @package MJ\Controllers
+ * @package MJanssen\Controllers
  */
 class RestController
 {
@@ -28,12 +28,12 @@ class RestController
 
         $data = $app['doctrine.prepare']->prepareEntity(
             $data,
-            new \MJ\Doctrine\Entity\Categories()
+            new \MJanssen\Doctrine\Entity\Categories()
         );
 
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $data,
-            new \MJ\Doctrine\Entity\Categories()
+            new \MJanssen\Doctrine\Entity\Categories()
         );
 
         $app['orm.em']->persist($item);

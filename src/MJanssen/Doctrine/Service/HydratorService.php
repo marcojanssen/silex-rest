@@ -1,9 +1,9 @@
 <?php
-namespace MJ\Doctrine\Service;
+namespace MJanssen\Doctrine\Service;
 
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Doctrine\ORM\EntityManager;
-use MJ\DoctrineModule\Stdlib\Hydrator\Strategy\HydrateRecursiveByValue;
+use MJanssen\DoctrineModule\Stdlib\Hydrator\Strategy\HydrateRecursiveByValue;
 
 class HydratorService
 {

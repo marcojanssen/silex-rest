@@ -1,20 +1,20 @@
 <?php
-namespace MJ\Provider;
+namespace MJanssen\Provider;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
-use MJ\Doctrine\Service\ExtractorService;
-use MJ\Doctrine\Service\HydratorService;
-use MJ\Doctrine\Service\PrepareService;
-use MJ\Doctrine\Service\RepositoryService;
-use MJ\Doctrine\Service\ResolverService;
-use MJ\Service\ValidatorService;
+use MJanssen\Doctrine\Service\ExtractorService;
+use MJanssen\Doctrine\Service\HydratorService;
+use MJanssen\Doctrine\Service\PrepareService;
+use MJanssen\Doctrine\Service\RepositoryService;
+use MJanssen\Doctrine\Service\ResolverService;
+use MJanssen\Service\ValidatorService;
 
 /**
  * Class ServiceProvider
- * @package MJ\Provider
+ * @package MJanssen\Provider
  */
 class ServiceProvider implements ServiceProviderInterface
 {

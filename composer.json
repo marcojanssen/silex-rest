@@ -1,5 +1,5 @@
 {
-    "name": "mj/silex",
+    "name": "marcojanssen/silex-rest",
     "require": {
         "php": ">=5.3.3",
         "dflydev/doctrine-orm-service-provider": "dev-master",
@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-0": {
-            "MJ\\": "src/"
+            "MJanssen\\": "src/"
         }
     }
 }

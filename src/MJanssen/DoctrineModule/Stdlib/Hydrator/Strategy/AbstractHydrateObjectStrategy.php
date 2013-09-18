@@ -17,7 +17,7 @@
  * <http://www.doctrine-project.org>.
  */
 
-namespace MJ\DoctrineModule\Stdlib\Hydrator\Strategy;
+namespace MJanssen\DoctrineModule\Stdlib\Hydrator\Strategy;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Collections\Collection;

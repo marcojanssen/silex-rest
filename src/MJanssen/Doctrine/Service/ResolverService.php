@@ -1,5 +1,5 @@
 <?php
-namespace MJ\Doctrine\Service;
+namespace MJanssen\Doctrine\Service;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;

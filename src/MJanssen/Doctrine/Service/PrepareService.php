@@ -1,5 +1,5 @@
 <?php
-namespace MJ\Doctrine\Service;
+namespace MJanssen\Doctrine\Service;
 
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Doctrine\ORM\EntityManager;
@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManager;
 /**
  * Prepare incoming data for hydration
  * Class PrepareService
- * @package MJ\Doctrine\Service
+ * @package MJanssen\Doctrine\Service
  */
 class PrepareService
 {

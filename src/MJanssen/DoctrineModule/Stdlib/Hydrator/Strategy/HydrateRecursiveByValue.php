@@ -1,23 +1,5 @@
 <?php
-/*
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
- * <http://www.doctrine-project.org>.
- */
-
-namespace MJ\DoctrineModule\Stdlib\Hydrator\Strategy;
+namespace MJanssen\DoctrineModule\Stdlib\Hydrator\Strategy;
 
 use Doctrine\Common\Collections\Collection;
 use Zend\Stdlib\Hydrator\Strategy\StrategyInterface;
@@ -28,9 +10,9 @@ use Zend\Stdlib\Hydrator\Strategy\StrategyInterface;
  *
  * @license MIT
  * @link    http://www.doctrine-project.org/
- * @author  Liam O'Boyle <liam@ontheroad.net.nz>
+ * @author  Marco Janssen
  */
-class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
+class HydrateRecursiveByValue extends AbstractHydrateObjectStrategy
 {
     /**
      * Stores a hash of each object seen to be used for loop detection.
@@ -163,7 +145,7 @@ class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
     /**
      * {@inheritdoc}
      */
-    protected function extractObject($object)
+    protected function hydrateObject($object)
     {
         if ($this->hasSeen($object)) {
             $metadata = $this->getMetadata($object);
@@ -171,14 +153,14 @@ class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
         } else {
             $this->saw($object);
 
-            return $this->getHydrator($object)->extract($object);
+            return $this->getHydrator($object)->hydrate($object);
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function extractCollection(Collection $collection)
+    protected function hydrateCollection(Collection $collection)
     {
         if ($collection->isEmpty()) {
             return [];
@@ -188,13 +170,14 @@ class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
         $object      = $collection->first();
         $hydrator    = $this->getHydrator($object);
         $metadata    = $this->getMetadata($object);
+        $identifiers = $metadata->getIdentifier();
 
         foreach ($collection as $object) {
             if ($this->hasSeen($object)) {
-                $results[] = $this->getIdentifier($object, $metadata);
+                $results[] = $this->getIdentifier($object, $identifiers);
             } else {
                 $this->saw($object);
-                $results[] = $hydrator->extract($object);
+                $results[] = $hydrator->hydrate($object);
             }
         }
 

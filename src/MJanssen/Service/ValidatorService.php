@@ -1,5 +1,5 @@
 <?php
-namespace MJ\Service;
+namespace MJanssen\Service;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator;
@@ -35,7 +35,7 @@ class ValidatorService
      */
     public function validate($validatorName, $data)
     {
-        $validatorClass = sprintf('MJ\Validator\%sValidator', ucfirst($validatorName));
+        $validatorClass = sprintf('MJanssen\Validator\%sValidator', ucfirst($validatorName));
         try {
             $validator = new $validatorClass;
         } catch (Exception $e) {

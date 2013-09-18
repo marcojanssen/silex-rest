@@ -11,7 +11,7 @@ use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 
 
-$console = new Application('MJ/Silex', 'n/a');
+$console = new Application('MJanssen/Silex', 'n/a');
 $console->getDefinition()->addOption(new InputOption('--env', '-e', InputOption::VALUE_REQUIRED, 'The Environment name.', 'dev'));
 $console
     ->register('my-command')

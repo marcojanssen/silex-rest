@@ -1,5 +1,5 @@
 <?php
-namespace MJ\Controllers;
+namespace MJanssen\Controllers;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;

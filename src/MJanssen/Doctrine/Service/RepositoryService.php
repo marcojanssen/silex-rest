@@ -1,5 +1,5 @@
 <?php
-namespace MJ\Doctrine\Service;
+namespace MJanssen\Doctrine\Service;
 
 use Doctrine\ORM\EntityManager;
 

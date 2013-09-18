@@ -39,10 +39,10 @@ doctrine.orm:
         mappings:
            0:
              type: 'annotation'
-             namespace: 'MJ\Doctrine\Entity'
+             namespace: 'MJanssen\Doctrine\Entity'
              alias: 'core'
              path: '%app_path%/src/MJ/Doctrine/Entity'
              use_simple_annotation_reader: false
 
 custom:
-  class: MJ\Provider\ServiceProvider
+  class: MJanssen\Provider\ServiceProvider
