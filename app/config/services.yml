@@ -18,17 +18,9 @@ doctrine.dbal:
       db.options:
         driver: 'pdo_mysql'
         charset: 'UTF8'
-        master:
-          user: 'root'
-          password: 'root'
-          host: 'localhost'
-          dbname: 'silexrest'
+        master: '%config.mysql.master%'
         slaves:
-          0:
-            user: 'root'
-            password: 'root'
-            host: 'localhost'
-            dbname: 'silexrest'
+          0: '%config.mysql.slaves.0%'
         wrapperClass: 'Doctrine\DBAL\Connections\MasterSlaveConnection'
 
 doctrine.orm:

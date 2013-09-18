@@ -1,2 +1,12 @@
 mysql:
-  bla: 1
+  master:
+    user: 'root'
+    password: 'root'
+    host: 'localhost'
+    dbname: 'silexrest'
+  slaves:
+    0:
+      user: 'root'
+      password: 'root'
+      host: 'localhost'
+      dbname: 'silexrest'
