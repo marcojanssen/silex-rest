@@ -28,7 +28,7 @@ $app->register(
             'config' => array (
                 'services' => 'services'
             ),
-            'mode' => 'prod',
+            'mode' => 'dev',
             'parameters' => $app
         )
     )

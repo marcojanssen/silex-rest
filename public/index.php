@@ -14,6 +14,7 @@ $app->register(
     new WiseServiceProvider(),
     array(
         'wise.path' => __DIR__.'/../app/config',
+        'cache.path' => __DIR__.'/../app/cache',
         'wise.options' => array(
             'type' => 'yml',
             'config' => array (
