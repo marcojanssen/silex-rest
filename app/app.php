@@ -18,6 +18,17 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 $app = new Application();
+
+$app->register(
+    new Herrera\Wise\WiseServiceProvider(),
+    array(
+        'wise.cache_dir' => __DIR__.'/../app/cache/config',
+        'wise.path' => __DIR__.'/../app/config',
+    )
+);
+
+//$config = $app['wise']->load('config.yml');
+
 $app->register(new ValidatorServiceProvider());
 $app->register(new ServiceControllerServiceProvider());
 $app->register(new TwigServiceProvider(), array(
@@ -97,6 +108,5 @@ $validation = function (Request $request, Application $app) {
 };
 
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
-AnnotationRegistry::registerAutoloadNamespace("MJ", __DIR__."/../src/MJ/Doctrine/Entity");
 
 return $app;
