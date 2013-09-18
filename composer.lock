@@ -3,15 +3,21 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "811cca0e874a052cc0d0c43a0d2bc7e3",
+    "hash": "0dafaa2cbc4bae77fdeacd8e2f7441ce",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/marcojanssen/dflydev-doctrine-orm-service-provider.git",
-                "reference": "93b4b8eb9ac2f90c7da891d6ca3483c53ddd949c"
+                "url": "https://github.com/dflydev/dflydev-doctrine-orm-service-provider.git",
+                "reference": "93306ed9279113ff3062f41d9e53588ea21c51de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dflydev/dflydev-doctrine-orm-service-provider/zipball/93306ed9279113ff3062f41d9e53588ea21c51de",
+                "reference": "93306ed9279113ff3062f41d9e53588ea21c51de",
+                "shasum": ""
             },
             "require": {
                 "doctrine/orm": "~2.3",
@@ -39,6 +45,7 @@
                     "Dflydev\\Silex\\Provider\\DoctrineOrm": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -62,7 +69,7 @@
                 "pimple",
                 "silex"
             ],
-            "time": "2013-09-18 09:49:00"
+            "time": "2013-09-18 14:43:01"
         },
         {
             "name": "doctrine/annotations",

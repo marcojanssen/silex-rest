@@ -1,11 +1,5 @@
 {
     "name": "mj/silex",
-    "repositories": [
-        {
-            "url": "https://github.com/marcojanssen/dflydev-doctrine-orm-service-provider.git",
-            "type": "git"
-        }
-    ],
     "require": {
         "php": ">=5.3.3",
         "dflydev/doctrine-orm-service-provider": "dev-master",
