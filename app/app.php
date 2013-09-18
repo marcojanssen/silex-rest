@@ -24,11 +24,6 @@ $app->register(new TwigServiceProvider(), array(
     'twig.path'    => array(__DIR__.'/../app/templates'),
     'twig.options' => array('cache' => __DIR__.'/../app/cache/twig'),
 ));
-$app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
-    // add custom globals, filters, tags, ...
-
-    return $twig;
-}));
 
 $app->register(new DoctrineServiceProvider(), array(
     'db.options' => array(
