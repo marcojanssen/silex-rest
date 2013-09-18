@@ -1,6 +1,5 @@
 <?php
 
-use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use MJ\Doctrine\Service\ExtractorService;
@@ -10,59 +9,31 @@ use MJ\Doctrine\Service\RepositoryService;
 use MJ\Doctrine\Service\ResolverService;
 use MJ\Service\ValidatorService;
 use Silex\Application;
-use Silex\Provider\DoctrineServiceProvider;
-use Silex\Provider\ServiceControllerServiceProvider;
-use Silex\Provider\TwigServiceProvider;
-use Silex\Provider\ValidatorServiceProvider;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Herrera\Wise\WiseServiceProvider;
 
 $app = new Application();
 
+$app['app_path'] = __DIR__.'/..';
 $app->register(
-    new Herrera\Wise\WiseServiceProvider(),
+    new WiseServiceProvider(),
     array(
-        'wise.cache_dir' => __DIR__.'/../app/cache/config',
         'wise.path' => __DIR__.'/../app/config',
+        'wise.options' => array(
+            'type' => 'yml',
+            'config' => array (
+                'services' => 'services'
+            ),
+            'mode' => 'prod',
+            'parameters' => $app
+        )
     )
 );
 
-//$config = $app['wise']->load('config.yml');
+$app['config'] = $app['wise']->load('config.yml');
 
-$app->register(new ValidatorServiceProvider());
-$app->register(new ServiceControllerServiceProvider());
-$app->register(new TwigServiceProvider(), array(
-    'twig.path'    => array(__DIR__.'/../app/templates'),
-    'twig.options' => array('cache' => __DIR__.'/../app/cache/twig'),
-));
-
-$app->register(new DoctrineServiceProvider(), array(
-    'db.options' => array(
-        'driver'   => 'pdo_mysql',
-        'charset'  => 'UTF8',
-        'master' => array('user' => 'root', 'password' => 'root', 'host' => 'localhost', 'dbname' => 'silexrest'),
-        'slaves' => array(
-            array('user' => 'root', 'password' => 'root', 'host' => 'localhost', 'dbname' => 'silexrest'),
-        ),
-        'wrapperClass' => 'Doctrine\DBAL\Connections\MasterSlaveConnection'
-    )
-));
-
-$app->register(new DoctrineOrmServiceProvider, array(
-    "orm.proxies_dir" => __DIR__."/../app/cache/Doctrine/Proxies",
-    "orm.em.options" => array(
-        "mappings" => array(
-            array(
-                "type" => "annotation",
-                "namespace" => "MJ\\Doctrine\\Entity",
-                "alias" => 'mj',
-                "path" => __DIR__."/../src/MJ/Doctrine/Entity",
-                "use_simple_annotation_reader" => false
-            ),
-        ),
-    ),
-    "orm.default_cache" => "array"
-));
+WiseServiceProvider::registerServices($app);
 
 $app['hydrator'] = $app->share(function($app) {
     return new DoctrineHydrator($app['orm.em']);

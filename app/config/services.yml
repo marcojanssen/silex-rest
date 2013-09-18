@@ -1,0 +1,45 @@
+validator:
+  class: Silex\Provider\ValidatorServiceProvider
+
+service.controller.service:
+  class: Silex\Provider\ServiceControllerServiceProvider
+
+twig:
+  class: Silex\Provider\TwigServiceProvider
+  parameters:
+      twig.path:
+        - "%app_path%/app/templates"
+      twig.options:
+        - "%app_path%/app/cache/twig"
+
+doctrine.dbal:
+  class: Silex\Provider\DoctrineServiceProvider
+  parameters:
+      db.options:
+        driver: 'pdo_mysql'
+        charset: 'UTF8'
+        master:
+          user: 'root'
+          password: 'root'
+          host: 'localhost'
+          dbname: 'silexrest'
+        slaves:
+          0:
+            user: 'root'
+            password: 'root'
+            host: 'localhost'
+            dbname: 'silexrest'
+        wrapperClass: 'Doctrine\DBAL\Connections\MasterSlaveConnection'
+
+doctrine.orm:
+  class: Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider
+  parameters:
+      orm.proxies_dir: '%app_path%/app/cache/Doctrine/Proxies'
+      orm.em.options:
+        mappings:
+           0:
+             type: 'annotation'
+             namespace: 'MJ\Doctrine\Entity'
+             alias: 'core'
+             path: '%app_path%/src/MJ/Doctrine/Entity'
+             use_simple_annotation_reader: false
