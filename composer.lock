@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b9fa90977f3a9a4520eae1ba82d87d80",
+    "hash": "811cca0e874a052cc0d0c43a0d2bc7e3",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -11,7 +11,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/marcojanssen/dflydev-doctrine-orm-service-provider.git",
-                "reference": "c4a77d901d75423b06718c82dea909bb3698014a"
+                "reference": "93b4b8eb9ac2f90c7da891d6ca3483c53ddd949c"
             },
             "require": {
                 "doctrine/orm": "~2.3",
@@ -62,7 +62,7 @@
                 "pimple",
                 "silex"
             ],
-            "time": "2013-09-17 16:58:55"
+            "time": "2013-09-18 09:49:00"
         },
         {
             "name": "doctrine/annotations",
@@ -683,6 +683,121 @@
                 "orm"
             ],
             "time": "2013-09-07 16:19:56"
+        },
+        {
+            "name": "herrera-io/silex-wise",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/herrera-io/php-silex-wise.git",
+                "reference": "d1181e1dca2939eac8bb5687bcea548478b0db50"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/herrera-io/php-silex-wise/zipball/d1181e1dca2939eac8bb5687bcea548478b0db50",
+                "reference": "d1181e1dca2939eac8bb5687bcea548478b0db50",
+                "shasum": ""
+            },
+            "require": {
+                "herrera-io/wise": "~1.0",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "ext-dom": "*",
+                "herrera-io/json": "~1.0",
+                "herrera-io/phpunit-test-case": "1.*",
+                "monolog/monolog": "1.*",
+                "phpunit/phpunit": "3.7.*",
+                "silex/silex": "~1.0",
+                "symfony/yaml": "~2.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Herrera\\Wise": "src/lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Herrera",
+                    "email": "kevin@herrera.io",
+                    "homepage": "http://kevin.herrera.io"
+                }
+            ],
+            "description": "A Silex service provider for Wise.",
+            "homepage": "http://github.com/herrera-io/php-silex-wise",
+            "keywords": [
+                "config",
+                "silex"
+            ],
+            "time": "2013-08-16 00:17:36"
+        },
+        {
+            "name": "herrera-io/wise",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/herrera-io/php-wise.git",
+                "reference": "b2faabe54a4b7a21df6d6b6adc4eab2d4a0ea90e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/herrera-io/php-wise/zipball/b2faabe54a4b7a21df6d6b6adc4eab2d4a0ea90e",
+                "reference": "b2faabe54a4b7a21df6d6b6adc4eab2d4a0ea90e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/config": "~2.2"
+            },
+            "require-dev": {
+                "herrera-io/json": "~1.0",
+                "herrera-io/phpunit-test-case": "1.*",
+                "phpunit/phpunit": "3.7.*",
+                "symfony/yaml": "~2.2"
+            },
+            "suggest": {
+                "ext-dom": "For parsing XML files.",
+                "herrera-io/json": "For parsing JSON files.",
+                "symfony/yaml": "For parsing YAML files."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Herrera\\Wise": "src/lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Herrera",
+                    "email": "kevin@herrera.io",
+                    "homepage": "http://kevin.herrera.io"
+                }
+            ],
+            "description": "Symfony Config for everyone else.",
+            "homepage": "http://github.com/herrera-io/php-wise",
+            "keywords": [
+                "config"
+            ],
+            "time": "2013-08-15 19:05:34"
         },
         {
             "name": "monolog/monolog",
@@ -2392,6 +2507,53 @@
             "description": "Symfony WebProfilerBundle",
             "homepage": "http://symfony.com",
             "time": "2013-07-21 12:12:18"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v2.3.4",
+            "target-dir": "Symfony/Component/Yaml",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Yaml.git",
+                "reference": "5a279f1b5f5e1045a6c432354d9ea727ff3a9847"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/5a279f1b5f5e1045a6c432354d9ea727ff3a9847",
+                "reference": "5a279f1b5f5e1045a6c432354d9ea727ff3a9847",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Yaml\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-08-24 15:26:22"
         },
         {
             "name": "twig/twig",
