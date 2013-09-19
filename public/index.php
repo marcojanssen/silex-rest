@@ -2,6 +2,7 @@
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Herrera\Wise\WiseServiceProvider;
 use Silex\Application;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 $loader = require_once __DIR__.'/../vendor/autoload.php';
 
