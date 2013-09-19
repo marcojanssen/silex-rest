@@ -3,9 +3,12 @@ namespace MJanssen\Service;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator;
+use MJanssen\Service\Traits\ErrorTrait;
 
 class ValidatorService
 {
+    use ErrorTrait;
+
     /**
      * @var \Symfony\Component\HttpFoundation\Request
      */
@@ -15,8 +18,6 @@ class ValidatorService
      * @var \Symfony\Component\Validator\Validator
      */
     protected $validator;
-
-    protected $errors = array();
 
     /**
      * @param Request $request
@@ -50,32 +51,6 @@ class ValidatorService
             $data,
             $validator->getConstraints()
         );
-    }
-
-    /**
-     * Check if errors exist
-     * @return bool
-     */
-    public function hasErrors()
-    {
-        if (count($this->errors) > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Returns the errors
-     *
-     * @return array
-     */
-    public function getErrors()
-    {
-        if ($this->hasErrors()) {
-            return $this->errors;
-        } else {
-            return;
-        }
     }
 
     /**
