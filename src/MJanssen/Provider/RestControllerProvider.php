@@ -37,6 +37,7 @@ class RestControllerProvider implements ControllerProviderInterface
 
     /**
      * Returns validation middleware for post & put requests
+     * @param \Silex\Application $app
      * @return callable
      */
     private function getValidationMiddleware(Application $app)
