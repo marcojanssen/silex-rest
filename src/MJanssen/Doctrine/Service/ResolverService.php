@@ -1,13 +1,10 @@
 <?php
 namespace MJanssen\Doctrine\Service;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\PropertyAccess\StringUtil;
-use Zend\Filter\Callback;
-use Zend\Filter\Inflector;
-use Zend\Filter\Word\DashToCamelCase;
+
 
 class ResolverService
 {
@@ -15,12 +12,9 @@ class ResolverService
      * @var EntityManagerInterface
      */
     private $entityManager;
-    
-    /**
-     * @var Inflector
-     */
-    private $inflector;
-    
+
+
+
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -42,54 +36,47 @@ class ResolverService
         return $entityClassName;
     }
 
+
     /**
-     * 
-     * @param $entityName
+     * Get class name of entity
+     * @param $namespace
+     * @param $name
      * @return string
      */
     public function getEntityClassName($namespace, $name)
     {
-        return $this->getInflector()->filter(array(
-            'namespace' => $namespace,
-            'name'      => $name
-        ));
-    }
-    
-    /**
-     * Set inflector which is used to form a fully qualified class name
-     * 
-     * @param Inflector $inflector
-     */
-    public function setInflector(Inflector $inflector)
-    {
-        $this->inflector = $inflector;
-    }
-    
-    /**
-     * Get inflector which is used to form a fully qualified class name
-     * 
-     * @return Inflector
-     */
-    public function getInflector()
-    {
-        if (null === $this->inflector) {
-            $configuration = $this->entityManager->getConfiguration();
-            $inflector = new Inflector(':namespace\\:name');
-            $inflector->setRules(array(
-                ':namespace' => array(
-                    new Callback(function($value) use ($configuration) {
-                        return $configuration->getEntityNamespace($value);
-                    })
-                ),
-                ':name' => array(
-                    new DashToCamelCase(),
-                    new Callback(function($value) {
-                        return ucfirst(StringUtil::singularify($value));
-                    })
-                )
-            ));
-            $this->setInflector($inflector);
+        $configuration = $this->entityManager->getConfiguration();
+        $namespace = $configuration->getEntityNamespace($namespace);
+
+
+        $nameResults = StringUtil::singularify($name);
+
+        if(is_string($nameResults)) {
+            return $this->formatClassName($namespace,$nameResults);
         }
-        return $this->inflector;
+        if (is_array($nameResults)) {
+            foreach ($nameResults as $nameResult) {
+                $className = $this->formatClassName($namespace,$nameResult);
+
+                if (class_exists($className)) {
+                    return $className;
+                }
+            }
+        }
+        return '';
+    }
+
+    /**
+     * format the class namespace
+     * @param $namespace
+     * @param $name
+     * @return string
+     */
+    private function formatClassName($namespace, $name)
+    {
+        return sprintf('%s\\%s',
+            $namespace,
+            ucfirst($name)
+        );
     }
 }
