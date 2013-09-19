@@ -5,13 +5,34 @@ $loader = require_once __DIR__.'/../vendor/autoload.php';
 
 set_time_limit(0);
 
+use Herrera\Wise\WiseServiceProvider;
+use Silex\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 
 $input = new ArgvInput();
 $env = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
 
-$app = require __DIR__.'/app.php';
-require __DIR__.'/config/'.$env.'.php';
+$app = new Application();
+$app['app_path'] = __DIR__.'/..';
+$app->register(
+    new WiseServiceProvider(),
+    array(
+        'wise.path' => __DIR__.'/../app/config',
+        'cache.path' => __DIR__.'/../app/cache',
+        'wise.options' => array(
+            'type' => 'yml',
+            'config' => array (
+                'services' => 'services'
+            ),
+            'mode' => 'prod',
+            'parameters' => $app
+        )
+    )
+);
+
+$app['config'] = $app['wise']->load('config.yml');
+
+WiseServiceProvider::registerServices($app);
 
 $console = require __DIR__.'/console.php';
 $console->run();
