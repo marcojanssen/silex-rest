@@ -27,12 +27,7 @@ doctrine.orm:
       orm.proxies_dir: '%app_path%/app/cache/Doctrine/Proxies'
       orm.em.options:
         mappings:
-           0:
-             type: 'annotation'
-             namespace: 'MJanssen\Doctrine\Entity'
-             alias: 'core'
-             path: '%app_path%/src/MJanssen/Doctrine/Entity'
-             use_simple_annotation_reader: false
+           '%config.doctrine.orm.mappings%'
 
 custom:
   class: MJanssen\Provider\ServiceProvider

@@ -12,3 +12,13 @@ mysql:
       dbname: 'silexrest'
 
 base.url: ''
+
+doctrine:
+  orm:
+    mappings:
+      0:
+        type: 'annotation'
+        namespace: 'MJanssen\Doctrine\Entity'
+        alias: 'core'
+        path: '%app_path%/src/MJanssen/Doctrine/Entity'
+        use_simple_annotation_reader: false
