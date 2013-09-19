@@ -52,6 +52,7 @@ class RestController
     /**
      * @param Request $request
      * @param Application $app
+     * @param $id
      * @return JsonResponse
      */
     public function deleteAction(Request $request, Application $app, $id)
@@ -70,7 +71,7 @@ class RestController
     /**
      * @param Request $request
      * @param Application $app
-     * @param $id
+     * @internal param $id
      * @return JsonResponse
      */
     public function postAction(Request $request, Application $app)
@@ -89,6 +90,7 @@ class RestController
     /**
      * @param Request $request
      * @param Application $app
+     * @param $id
      * @return JsonResponse
      */
     public function putAction(Request $request, Application $app, $id)
