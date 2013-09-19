@@ -22,7 +22,7 @@
         "symfony/yaml": "~2.3",
         "filp/whoops": "1.*",
         "zendframework/zend-filter": "2.*",
-        "mardy-git/hmac": "dev-master"
+        "mardy-git/hmac": "0.2.*"
     },
     "autoload": {
         "psr-0": {
