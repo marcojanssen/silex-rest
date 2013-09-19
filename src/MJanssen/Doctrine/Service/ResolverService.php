@@ -3,6 +3,7 @@ namespace MJanssen\Doctrine\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use UnexpectedValueException;
 use Symfony\Component\PropertyAccess\StringUtil;
 
 
@@ -13,8 +14,6 @@ class ResolverService
      */
     private $entityManager;
 
-
-
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -22,12 +21,13 @@ class ResolverService
 
     /**
      * @todo this is a cheap way to find the entity, need to check the class meta data from doctrine
+     * @param $namespaceAlias
      * @param $name
-     * @return null|string
+     * @return string
      */
-    public function resolveEntity($namespace, $name)
+    public function resolveEntity($namespaceAlias, $name)
     {
-        $entityClassName = $this->getEntityClassName($namespace, $name);
+        $entityClassName = $this->getEntityClassName($namespaceAlias, $name);
 
         try {
             $entity = new $entityClassName;
@@ -36,17 +36,17 @@ class ResolverService
         return $entityClassName;
     }
 
-
     /**
      * Get class name of entity
-     * @param $namespace
+     * @param $namespaceAlias
      * @param $name
      * @return string
+     * @throws \UnexpectedValueException
      */
-    public function getEntityClassName($namespace, $name)
+    public function getEntityClassName($namespaceAlias, $name)
     {
         $configuration = $this->entityManager->getConfiguration();
-        $namespace = $configuration->getEntityNamespace($namespace);
+        $namespace = $configuration->getEntityNamespace($namespaceAlias);
 
 
         $nameResults = StringUtil::singularify($name);
@@ -63,7 +63,7 @@ class ResolverService
                 }
             }
         }
-        return '';
+        throw new UnexpectedValueException('Entity not found');
     }
 
     /**
