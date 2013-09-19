@@ -63,7 +63,7 @@ class ServiceProvider implements ServiceProviderInterface
          * Add the HMAC validation service
          */
         $app['service.hmac'] = $app->share(function($app) {
-            return new HmacService($app['request']);
+            return new HmacService($app['validator'], $app['request']);
         });
     }
 }

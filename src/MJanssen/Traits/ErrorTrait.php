@@ -2,6 +2,8 @@
 
 namespace MJanssen\Traits;
 
+use Symfony\Component\Validator\ConstraintViolationListInterface;
+
 trait ErrorTrait
 {
     protected $errors = array();
@@ -37,27 +39,9 @@ trait ErrorTrait
      *
      * @throws \Exception
      */
-    public function setErrors($errors = array())
+    public function setErrors(ConstraintViolationListInterface $errors)
     {
-        if(!is_array($errors)) {
-            throw new \Exception('setErrors: supplied argument must be an array', 500);
-        }
-
         $this->errors = $errors;
-    }
-
-    /**
-     * @param array $errorInformation
-     *
-     * @throws \Exception
-     */
-    public function setError($errorInformation = array())
-    {
-        if(!is_array($errorInformation)) {
-            throw new \Exception('setError: supplied argument must be an array', 500);
-        }
-
-        $this->errors[] = $errorInformation;
     }
 
     /**

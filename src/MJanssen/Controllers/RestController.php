@@ -13,36 +13,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class RestController
 {
 
-    public function testHydrateAction(Request $request, Application $app)
-    {
-        $data = array(
-            'name' => 'Wazzup',
-            "items" => array (
-                array(
-                    "name" => "bla2",
-                    "phone" => "bla2",
-                    "email" => "bla2"
-                )
-            )
-        );
-
-        $data = $app['doctrine.prepare']->prepareEntity(
-            $data,
-            new \MJanssen\Doctrine\Entity\Categories()
-        );
-
-        $item = $app['doctrine.hydrator']->hydrateEntity(
-            $data,
-            new \MJanssen\Doctrine\Entity\Categories()
-        );
-
-        $app['orm.em']->persist($item);
-        $app['orm.em']->flush();
-
-        return new Response('yeah?');
-
-    }
-
     /**
      * @param Request $request
      * @param Application $app
@@ -82,6 +52,7 @@ class RestController
     /**
      * @param Request $request
      * @param Application $app
+     * @param $id
      * @return JsonResponse
      */
     public function deleteAction(Request $request, Application $app, $id)
@@ -100,7 +71,7 @@ class RestController
     /**
      * @param Request $request
      * @param Application $app
-     * @param $id
+     * @internal param $id
      * @return JsonResponse
      */
     public function postAction(Request $request, Application $app)
@@ -119,6 +90,7 @@ class RestController
     /**
      * @param Request $request
      * @param Application $app
+     * @param $id
      * @return JsonResponse
      */
     public function putAction(Request $request, Application $app, $id)

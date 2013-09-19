@@ -10,3 +10,5 @@ mysql:
       password: 'root'
       host: 'localhost'
       dbname: 'silexrest'
+
+base.url: ''

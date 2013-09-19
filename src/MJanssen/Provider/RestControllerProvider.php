@@ -30,19 +30,33 @@ class RestControllerProvider implements ControllerProviderInterface
         $controllers->get('/{entity}', 'MJanssen\Controllers\RestController::getAction');
         $controllers->post('/{entity}', 'MJanssen\Controllers\RestController::postAction')
                     ->before($validation)
-                    ->before($hmacValidation);
-        $controllers->get('/{entity}/{id}', 'MJanssen\Controllers\RestController::getAction');
+		    ->before($hmacValidation);
+
+        $controllers->get('/{entity}/{id}', 'MJanssen\Controllers\RestController::getAction')
+                    ->assert('id','^[a-zA-Z\d]{8}-[a-zA-Z\d]{4}-[a-zA-Z\d]{4}-[a-zA-Z\d]{4}-[a-zA-Z\d]{12}$');
+        $controllers->get('/{entity}/{id}', 'MJanssen\Controllers\RestController::getAction')
+                    ->assert('id','^[\d]+$');
+
         $controllers->put('/{entity}/{id}', 'MJanssen\Controllers\RestController::putAction')
+                    ->assert('id','^[a-zA-Z\d]{8}-[a-zA-Z\d]{4}-[a-zA-Z\d]{4}-[a-zA-Z\d]{4}-[a-zA-Z\d]{12}$')
                     ->before($validation)
-                    ->before($hmacValidation);
+		    ->before($hmacValidation);
+        $controllers->put('/{entity}/{id}', 'MJanssen\Controllers\RestController::putAction')
+                    ->assert('id','^[\d]+$')
+                    ->before($validation)
+		    ->before($hmacValidation);
+
         $controllers->delete('/{entity}/{id}', 'MJanssen\Controllers\RestController::deleteAction')
-                    ->before($hmacValidation);
+                    ->assert('id','^[a-zA-Z\d]{8}-[a-zA-Z\d]{4}-[a-zA-Z\d]{4}-[a-zA-Z\d]{4}-[a-zA-Z\d]{12}$');
+        $controllers->delete('/{entity}/{id}', 'MJanssen\Controllers\RestController::deleteAction')
+                    ->assert('id','^[\d]+$');
 
         return $controllers;
     }
 
     /**
      * Returns validation middleware for post & put requests
+     * @param \Silex\Application $app
      * @return callable
      */
     private function getValidationMiddleware(Application $app)

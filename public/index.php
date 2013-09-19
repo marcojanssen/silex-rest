@@ -2,6 +2,7 @@
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Herrera\Wise\WiseServiceProvider;
 use Silex\Application;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 $loader = require_once __DIR__.'/../vendor/autoload.php';
 
@@ -31,7 +32,7 @@ AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 //$app['controllers']->requireHttps();
 
-$app->mount('/{namespace}', new MJanssen\Provider\RestControllerProvider());
+$app->mount($app['config']['base.url'].'/{namespace}', new MJanssen\Provider\RestControllerProvider());
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if(404 === $code) {
