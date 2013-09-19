@@ -1,7 +1,7 @@
 {
     "name": "marcojanssen/silex-rest",
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4.0",
         "dflydev/doctrine-orm-service-provider": "dev-master",
         "doctrine/doctrine-module": "dev-master",
         "doctrine/orm": "2.4.*",
@@ -23,7 +23,7 @@
         "symfony/yaml": "~2.3",
         "filp/whoops": "1.*",
         "zendframework/zend-filter": "2.*",
-        "mardy-git/hmac": "dev-master"
+        "mardy-git/hmac": "0.2.*"
     },
     "autoload": {
         "psr-0": {
