@@ -3,9 +3,11 @@ namespace MJanssen\Service;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator;
+use MJanssen\Validator\HmacValidator;
 use MJanssen\Traits\ErrorTrait;
+use Mardy\Hmac\Headers\Headers;
 
-class ValidatorService
+class HmacService
 {
     use ErrorTrait;
 
@@ -13,6 +15,11 @@ class ValidatorService
      * @var \Symfony\Component\HttpFoundation\Request
      */
     protected $request;
+
+    /**
+     * @var \Mardy\Hmac\Hmac
+     */
+    protected $hmac;
 
     /**
      * @var \Symfony\Component\Validator\Validator
@@ -29,45 +36,19 @@ class ValidatorService
     }
 
     /**
-     * Validates incoming data
-     *
-     * @param $validatorName
      * @param $data
+     * @param $privateKey
      */
-    public function validate($validatorName, $data)
+    public function validate($data)
     {
-        $validatorClass = sprintf('MJanssen\Validator\%sValidator', ucfirst($validatorName));
-        try {
-            $validator = new $validatorClass;
-        } catch (Exception $e) {
-
-        }
-
-        if($this->isJson($data)) {
-            $data = json_decode($data, true);
-        }
+        $validator = new HmacValidator();
+        $headers = new Headers();
 
         $this->setErrors(
             $this->validator->validateValue(
-                $data,
+                $headers->get(),
                 $validator->getConstraints()
             )
         );
     }
-
-    /**
-     * Check if incoming data is JSON
-     * @param $string
-     * @return bool
-     */
-    protected function isJson($string)
-    {
-        if(!is_string($string)) {
-            return false;
-        }
-
-        json_decode($string);
-        return (json_last_error() == JSON_ERROR_NONE);
-    }
-
 }

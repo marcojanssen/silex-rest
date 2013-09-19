@@ -21,7 +21,8 @@
         "symfony/validator": "~2.3",
         "symfony/yaml": "~2.3",
         "filp/whoops": "1.*",
-        "zendframework/zend-filter": "2.*"
+        "zendframework/zend-filter": "2.*",
+        "mardy-git/hmac": "dev-master"
     },
     "autoload": {
         "psr-0": {
