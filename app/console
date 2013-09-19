@@ -5,6 +5,7 @@ $loader = require_once __DIR__.'/../vendor/autoload.php';
 
 set_time_limit(0);
 
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use Herrera\Wise\WiseServiceProvider;
 use Silex\Application;
 use Symfony\Component\Console\Input\ArgvInput;
@@ -33,6 +34,14 @@ $app->register(
 $app['config'] = $app['wise']->load('config.yml');
 
 WiseServiceProvider::registerServices($app);
+
+$sluggableListener = new Gedmo\Sluggable\SluggableListener;
+$app['db.event_manager']->addEventSubscriber($sluggableListener);
+
+$softdeletableListener = new Gedmo\SoftDeleteable\SoftDeleteableListener();
+$app['db.event_manager']->addEventSubscriber($softdeletableListener);
+
+AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 $console = require __DIR__.'/console.php';
 $console->run();

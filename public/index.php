@@ -28,6 +28,13 @@ $app->register(
 $app['config'] = $app['wise']->load('config.yml');
 
 WiseServiceProvider::registerServices($app);
+
+$sluggableListener = new Gedmo\Sluggable\SluggableListener;
+$app['db.event_manager']->addEventSubscriber($sluggableListener);
+
+$softdeletableListener = new Gedmo\SoftDeleteable\SoftDeleteableListener();
+$app['db.event_manager']->addEventSubscriber($softdeletableListener);
+
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 //$app['controllers']->requireHttps();
