@@ -47,8 +47,8 @@ $app->register($p = new WebProfilerServiceProvider(), array(
 
 $app->register(new Whoops\Provider\Silex\WhoopsServiceProvider());
 
-$app->mount('/_profiler', $p);
-$app->mount('/{namespace}', new MJanssen\Provider\RestControllerProvider());
+$app->mount($app['config']['base.url'].'/_profiler', $p);
+$app->mount($app['config']['base.url'].'/{namespace}', new MJanssen\Provider\RestControllerProvider());
 
 $app->error(function (\Exception $e, $code) use ($app) {
     return;
