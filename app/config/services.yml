@@ -31,7 +31,7 @@ doctrine.orm:
              type: 'annotation'
              namespace: 'MJanssen\Doctrine\Entity'
              alias: 'core'
-             path: '%app_path%/src/MJ/Doctrine/Entity'
+             path: '%app_path%/src/MJanssen/Doctrine/Entity'
              use_simple_annotation_reader: false
 
 custom:
