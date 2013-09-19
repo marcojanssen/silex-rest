@@ -1,13 +1,11 @@
 <?php
 namespace MJanssen\Doctrine\Service;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use UnexpectedValueException;
 use Symfony\Component\PropertyAccess\StringUtil;
-use Zend\Filter\Callback;
-use Zend\Filter\Inflector;
-use Zend\Filter\Word\DashToCamelCase;
+
 
 class ResolverService
 {
@@ -15,12 +13,7 @@ class ResolverService
      * @var EntityManagerInterface
      */
     private $entityManager;
-    
-    /**
-     * @var Inflector
-     */
-    private $inflector;
-    
+
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -28,12 +21,13 @@ class ResolverService
 
     /**
      * @todo this is a cheap way to find the entity, need to check the class meta data from doctrine
+     * @param $namespaceAlias
      * @param $name
-     * @return null|string
+     * @return string
      */
-    public function resolveEntity($namespace, $name)
+    public function resolveEntity($namespaceAlias, $name)
     {
-        $entityClassName = $this->getEntityClassName($namespace, $name);
+        $entityClassName = $this->getEntityClassName($namespaceAlias, $name);
 
         try {
             $entity = new $entityClassName;
@@ -43,53 +37,46 @@ class ResolverService
     }
 
     /**
-     * 
-     * @param $entityName
+     * Get class name of entity
+     * @param $namespaceAlias
+     * @param $name
+     * @return string
+     * @throws \UnexpectedValueException
+     */
+    public function getEntityClassName($namespaceAlias, $name)
+    {
+        $configuration = $this->entityManager->getConfiguration();
+        $namespace = $configuration->getEntityNamespace($namespaceAlias);
+
+
+        $nameResults = StringUtil::singularify($name);
+
+        if(is_string($nameResults)) {
+            return $this->formatClassName($namespace,$nameResults);
+        }
+        if (is_array($nameResults)) {
+            foreach ($nameResults as $nameResult) {
+                $className = $this->formatClassName($namespace,$nameResult);
+
+                if (class_exists($className)) {
+                    return $className;
+                }
+            }
+        }
+        throw new UnexpectedValueException('Entity not found');
+    }
+
+    /**
+     * format the class namespace
+     * @param $namespace
+     * @param $name
      * @return string
      */
-    public function getEntityClassName($namespace, $name)
+    private function formatClassName($namespace, $name)
     {
-        return $this->getInflector()->filter(array(
-            'namespace' => $namespace,
-            'name'      => $name
-        ));
-    }
-    
-    /**
-     * Set inflector which is used to form a fully qualified class name
-     * 
-     * @param Inflector $inflector
-     */
-    public function setInflector(Inflector $inflector)
-    {
-        $this->inflector = $inflector;
-    }
-    
-    /**
-     * Get inflector which is used to form a fully qualified class name
-     * 
-     * @return Inflector
-     */
-    public function getInflector()
-    {
-        if (null === $this->inflector) {
-            $configuration = $this->entityManager->getConfiguration();
-            $inflector = new Inflector(':namespace\\:name');
-            $inflector->setRules(array(
-                ':namespace' => array(
-                    new Callback(function($value) use ($configuration) {
-                        return $configuration->getEntityNamespace($value);
-                    })
-                ),
-                ':name' => array(
-                    new DashToCamelCase(),
-                    new Callback(function($value) {
-                        return ucfirst(StringUtil::singularify($value));
-                    })
-                )
-            ));
-            $this->setInflector($inflector);
-        }
-        return $this->inflector;
+        return sprintf('%s\\%s',
+            $namespace,
+            ucfirst($name)
+        );
     }
 }
