@@ -5,6 +5,7 @@ use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use MJanssen\Traits\ErrorTrait;
 
 /**
  * Class RestControllerProvider
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class RestControllerProvider implements ControllerProviderInterface
 {
+    use ErrorTrait;
 
     /**
      * @param Application $app
@@ -23,14 +25,18 @@ class RestControllerProvider implements ControllerProviderInterface
         $controllers = $app['controllers_factory'];
 
         $validation = $this->getValidationMiddleware($app);
+        $hmacValidation = $this->getHmacMiddleware($app);
 
         $controllers->get('/{entity}', 'MJanssen\Controllers\RestController::getAction');
         $controllers->post('/{entity}', 'MJanssen\Controllers\RestController::postAction')
-                    ->before($validation);
+                    ->before($validation)
+                    ->before($hmacValidation);
         $controllers->get('/{entity}/{id}', 'MJanssen\Controllers\RestController::getAction');
         $controllers->put('/{entity}/{id}', 'MJanssen\Controllers\RestController::putAction')
-                    ->before($validation);
-        $controllers->delete('/{entity}/{id}', 'MJanssen\Controllers\RestController::deleteAction');
+                    ->before($validation)
+                    ->before($hmacValidation);
+        $controllers->delete('/{entity}/{id}', 'MJanssen\Controllers\RestController::deleteAction')
+                    ->before($hmacValidation);
 
         return $controllers;
     }
@@ -48,14 +54,32 @@ class RestControllerProvider implements ControllerProviderInterface
             );
 
             if($app['service.validator']->hasErrors()) {
-                foreach ($app['service.validator']->getErrors() as $error) {
-                    $errorResponse[] = $error->getPropertyPath().' '.$error->getMessage()."\n";
-                }
-
-                return new JsonResponse(array('errors' => $errorResponse));
+                $this->setErrors($app['service.validator']->getErrors());
+                return new JsonResponse(array('errors' => $this->getErrorResponse()));
             }
         };
 
         return $validation;
+    }
+
+    /**
+     * Returns hmac middleware for post, put and delete requests
+     * @return callable
+     */
+    private function getHmacMiddleware(Application $app)
+    {
+        $hmacValidation = function (Request $request, Application $app) {
+            $app['service.hmac']->validate(
+                $app['request']->attributes->get('entity'),
+                $app['request']->getContent()
+            );
+
+            if($app['service.hmac']->hasErrors()) {
+                $this->setErrors($app['service.hmac']->getErrors());
+                return new JsonResponse(array('errors' => $this->getErrorResponse()));
+            }
+        };
+
+        return $hmacValidation;
     }
 }

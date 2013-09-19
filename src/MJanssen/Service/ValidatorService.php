@@ -3,7 +3,7 @@ namespace MJanssen\Service;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator;
-use MJanssen\Service\Traits\ErrorTrait;
+use MJanssen\Traits\ErrorTrait;
 
 class ValidatorService
 {
@@ -47,9 +47,11 @@ class ValidatorService
             $data = json_decode($data, true);
         }
 
-        $this->errors = $this->validator->validateValue(
-            $data,
-            $validator->getConstraints()
+        $this->setErrors(
+            $this->validator->validateValue(
+                $data,
+                $validator->getConstraints()
+            )
         );
     }
 

@@ -11,6 +11,7 @@ use MJanssen\Doctrine\Service\PrepareService;
 use MJanssen\Doctrine\Service\RepositoryService;
 use MJanssen\Doctrine\Service\ResolverService;
 use MJanssen\Service\ValidatorService;
+use MJanssen\Service\HmacService;
 
 /**
  * Class ServiceProvider
@@ -56,6 +57,13 @@ class ServiceProvider implements ServiceProviderInterface
 
         $app['service.validator'] = $app->share(function($app) {
             return new ValidatorService($app['validator'], $app['request']);
+        });
+
+        /**
+         * Add the HMAC validation service
+         */
+        $app['service.hmac'] = $app->share(function($app) {
+            return new HmacService($app['request']);
         });
     }
 }

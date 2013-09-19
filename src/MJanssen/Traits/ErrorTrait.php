@@ -1,6 +1,6 @@
 <?php
 
-namespace MJanssen\Service\Traits;
+namespace MJanssen\Traits;
 
 trait ErrorTrait
 {
@@ -59,4 +59,21 @@ trait ErrorTrait
 
         $this->errors[] = $errorInformation;
     }
+
+    /**
+     * Return the errors in a response ready format
+     *
+     * @return array with errors
+     */
+    public function getErrorResponse()
+    {
+        $errorResponse = array();
+
+        foreach ($this->getErrors() as $error) {
+            $errorResponse[] = $error->getPropertyPath().' '.$error->getMessage()."\n";
+        }
+
+        return $errorResponse;
+    }
+
 }
