@@ -4,7 +4,7 @@ namespace MJanssen\Doctrine\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Spray\PersistenceBundle\Repository\FilterableEntityRepository")
  * @ORM\Table(name="items")
  */
 class Item
