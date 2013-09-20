@@ -1,6 +1,7 @@
 <?php
 namespace MJanssen\Provider;
 
+use MJanssen\Filters\PropertyFilter;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
@@ -41,10 +42,6 @@ class ServiceProvider implements ServiceProviderInterface
 
         $app['doctrine.hydrator'] = $app->share(function($app) {
             return new HydratorService($app['hydrator'], $app['orm.em']);
-        });
-
-        $app['doctrine.repository'] = $app->share(function($app) {
-            return new RepositoryService($app['orm.em']);
         });
 
         $app['doctrine.resolver'] = $app->share(function($app) {
