@@ -12,9 +12,7 @@ class HmacValidator implements ValidatorInterface
     public function getConstraints()
     {
         $constraint = new Assert\Collection(array(
-            'key'  => new HmacAssert\Hmac(array('privateKey' => 'testkey')),
-            'when'  => new Assert\Length(array('min' => 1)),
-            'uri'   => new Assert\Url()
+            'app'   => new HmacAssert\Hmac(),
         ));
 
         return $constraint;
