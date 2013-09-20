@@ -23,7 +23,9 @@
         "symfony/yaml": "~2.3",
         "filp/whoops": "1.*",
         "zendframework/zend-filter": "2.*",
-        "mardy-git/hmac": "0.2.*"
+        "mardy-git/hmac": "0.2.*",
+        "jurjean/spray-persistence-bundle": "dev-master",
+        "zendframework/zend-loader": "2.2.4"
     },
     "autoload": {
         "psr-0": {

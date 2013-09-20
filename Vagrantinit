@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password vagrant'
+sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password vagrant'
+
+apt-get update
+apt-get install -y git apache2 mysql-server php5 php-apc php5-xdebug php5-cli php5-mysql
+
+mysql -uroot -pvagrant -Bse 'CREATE DATABASE silexrest;'
+
+a2enmod rewrite
+sed -i '11 s/AllowOverride None/AllowOverride All/' /etc/apache2/sites-enabled/000-default
+service apache2 restart
+
+wget http://getcomposer.org/composer.phar -O /usr/bin/composer
+chmod +x /usr/bin/composer
+
+rm -rf /var/www
+ln -fs /vagrant/public /var/www
+mkdir -p /tmp/silexrest/cache
+mkdir -p /tmp/silexrest/logs
+touch /tmp/silexrest/logs/silex_dev.log
+chmod -R 777 /tmp/silexrest/cache /tmp/silexrest/logs
+
+cd /vagrant
+composer update
+app/console orm:schema-tool:update --force
