@@ -9,7 +9,6 @@ use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use MJanssen\Doctrine\Service\ExtractorService;
 use MJanssen\Doctrine\Service\HydratorService;
 use MJanssen\Doctrine\Service\PrepareService;
-use MJanssen\Doctrine\Service\RepositoryService;
 use MJanssen\Doctrine\Service\ResolverService;
 use MJanssen\Service\ValidatorService;
 use MJanssen\Service\HmacService;
