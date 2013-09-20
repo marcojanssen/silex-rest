@@ -1,7 +1,9 @@
 <?php
 namespace MJanssen\Controllers;
 
+use MJanssen\Filters\FilterLoader;
 use Silex\Application;
+use Spray\PersistenceBundle\Repository\FilterableRepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -21,28 +23,24 @@ class RestController
      */
     public function getAction(Request $request, Application $app, $id = null)
     {
+        $repository = $app['orm.em']->getRepository($this->getEntityName($request,$app));
 
         if(null !== $id) {
             return new JsonResponse(
                 $app['doctrine.extractor']->extractEntity(
-                    $app['doctrine.repository']->findEntityById(
-                        $this->getEntityName($request, $app),
-                        $id
+                    $repository->findOneBy(
+                        array('id' => $id)
                     ),
                     true
                 )
-
             );
         }
 
         return new JsonResponse(
             $app['doctrine.extractor']->extractEntities(
-                $app['doctrine.repository']->findEntitiesByCriteria(
-                    $this->getEntityName($request, $app),
-                    array(),
-                    array('id' => 'ASC'),
-                    (int) $this->getPaginatorParameter($request, 'limit', 25),
-                    (int) $this->getPaginatorParameter($request, 'start', 0)
+                $this->filterRepositoryByRequest(
+                    $repository,
+                    $request
                 )
             )
         );
@@ -148,5 +146,28 @@ class RestController
         }
 
         return $parameter;
+    }
+
+    /**
+     * @param FilterableRepositoryInterface $repository
+     * @param Request $request
+     * @return \Spray\PersistenceBundle\Repository\FilterableRepositoryInterface
+     */
+    public function filterRepositoryByRequest(FilterableRepositoryInterface $repository, Request $request)
+    {
+        $filterLoader = new FilterLoader();
+
+
+        foreach ($filterLoader->getPlugins() as $pluginName => $pluginNamespace)
+        {
+            $filterParams = $request->get($pluginName);
+
+            if (null !== $filterParams && is_array($filterParams)){
+
+                $repository->filter(new $pluginNamespace($filterParams));
+            }
+        }
+
+        return $repository;
     }
 }
