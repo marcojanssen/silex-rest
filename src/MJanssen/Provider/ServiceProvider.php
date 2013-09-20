@@ -1,6 +1,7 @@
 <?php
 namespace MJanssen\Provider;
 
+use MJanssen\Filters\PropertyFilter;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
@@ -8,7 +9,6 @@ use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use MJanssen\Doctrine\Service\ExtractorService;
 use MJanssen\Doctrine\Service\HydratorService;
 use MJanssen\Doctrine\Service\PrepareService;
-use MJanssen\Doctrine\Service\RepositoryService;
 use MJanssen\Doctrine\Service\ResolverService;
 use MJanssen\Service\ValidatorService;
 use MJanssen\Service\HmacService;
@@ -41,10 +41,6 @@ class ServiceProvider implements ServiceProviderInterface
 
         $app['doctrine.hydrator'] = $app->share(function($app) {
             return new HydratorService($app['hydrator'], $app['orm.em']);
-        });
-
-        $app['doctrine.repository'] = $app->share(function($app) {
-            return new RepositoryService($app['orm.em']);
         });
 
         $app['doctrine.resolver'] = $app->share(function($app) {
