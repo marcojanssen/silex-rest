@@ -25,6 +25,7 @@ doctrine.orm:
   class: Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider
   parameters:
       orm.proxies_dir: '%app_path%/app/cache/Doctrine/Proxies'
+      orm.default_cache: 'array' #should be set to apc/xcache on production
       orm.em.options:
         mappings:
            '%config.doctrine.orm.mappings%'
