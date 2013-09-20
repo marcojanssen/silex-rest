@@ -6,20 +6,21 @@ use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\WebProfilerServiceProvider;
 use Symfony\Component\Debug\Debug;
 
-$loader = require_once __DIR__.'/../vendor/autoload.php';
+chdir(dirname(__DIR__));
+
+$loader = require_once 'vendor/autoload.php';
 
 error_reporting(-1);
 Debug::enable();
 
 $app = new Application();
 $app['debug'] = true;
-$app['app_path'] = __DIR__.'/..';
+$app['app_path'] = getcwd();
 
 $app->register(
     new WiseServiceProvider(),
     array(
-        'wise.path' => __DIR__.'/../app/config',
-        'cache.path' => __DIR__.'/../app/cache',
+        'wise.path' => 'app/config',
         'wise.options' => array(
             'type' => 'yml',
             'config' => array (
@@ -44,11 +45,11 @@ $app['db.event_manager']->addEventSubscriber($softdeletableListener);
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 $app->register(new MonologServiceProvider(), array(
-    'monolog.logfile' => __DIR__.'/../app/logs/silex_dev.log',
+    'monolog.logfile' => $app['config']['monolog']['logfile'],
 ));
 
 $app->register($p = new WebProfilerServiceProvider(), array(
-    'profiler.cache_dir' => __DIR__.'/../app/cache/profiler',
+    'profiler.cache_dir' => $app['config']['profiler']['cache_dir'],
 ));
 
 $app->register(new Whoops\Provider\Silex\WhoopsServiceProvider());

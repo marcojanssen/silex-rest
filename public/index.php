@@ -4,16 +4,17 @@ use Herrera\Wise\WiseServiceProvider;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-$loader = require_once __DIR__.'/../vendor/autoload.php';
+chdir(dirname(__DIR__));
+
+$loader = require_once 'vendor/autoload.php';
 
 $app = new Application();
-$app['app_path'] = __DIR__.'/..';
+$app['app_path'] = getcwd();
 
 $app->register(
     new WiseServiceProvider(),
     array(
-        'wise.path' => __DIR__.'/../app/config',
-        'cache.path' => __DIR__.'/../app/cache',
+        'wise.path' => 'app/config',
         'wise.options' => array(
             'type' => 'yml',
             'config' => array (
