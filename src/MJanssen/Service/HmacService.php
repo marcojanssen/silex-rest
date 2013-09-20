@@ -5,7 +5,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator;
 use MJanssen\Validator\HmacValidator;
 use MJanssen\Traits\ErrorTrait;
-use Mardy\Hmac\Headers\Headers;
 
 class HmacService
 {
@@ -42,11 +41,10 @@ class HmacService
     public function validate($data)
     {
         $validator = new HmacValidator();
-        $headers = new Headers();
 
         $this->setErrors(
             $this->validator->validateValue(
-                $headers->get(),
+                $data,
                 $validator->getConstraints()
             )
         );

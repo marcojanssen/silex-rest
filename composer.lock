@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "563320e9950ddafb61840befd4a808cb",
+    "hash": "12243956adcf5f892cce02b7b78bb430",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -1091,47 +1091,6 @@
             "time": "2013-09-09 09:58:34"
         },
         {
-            "name": "mardy-git/hmac",
-            "version": "v0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mardy-git/hmac.git",
-                "reference": "3505b9c3d71523878bfada8d998be6b39e4669ae"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mardy-git/hmac/zipball/3505b9c3d71523878bfada8d998be6b39e4669ae",
-                "reference": "3505b9c3d71523878bfada8d998be6b39e4669ae",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Mardy\\Hmac": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "WTFPL"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Bardsley",
-                    "email": "me@mic-b.co.uk"
-                }
-            ],
-            "description": "A keyed-Hash Message Authentication Code (HMAC). Used for application to application authentication.",
-            "homepage": "http://github.com/mardy-git/hmac",
-            "keywords": [
-                "Authentication",
-                "hmac"
-            ],
-            "time": "2013-06-26 07:38:57"
-        },
-        {
             "name": "monolog/monolog",
             "version": "1.6.0",
             "source": {
@@ -1199,12 +1158,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Pimple.git",
-                "reference": "v1.0.2"
+                "reference": "ae11e57e8c2bb414b2ff93396dbbfc0eb92feb94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/v1.0.2",
-                "reference": "v1.0.2",
+                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/ae11e57e8c2bb414b2ff93396dbbfc0eb92feb94",
+                "reference": "ae11e57e8c2bb414b2ff93396dbbfc0eb92feb94",
                 "shasum": ""
             },
             "require": {
@@ -1244,13 +1203,13 @@
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-fig/log",
-                "reference": "1.0.0"
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/php-fig/log/archive/1.0.0.zip",
-                "reference": "1.0.0",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
                 "shasum": ""
             },
             "type": "library",
@@ -1283,12 +1242,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Silex.git",
-                "reference": "v1.1.0"
+                "reference": "a4d3f85ffbd6946b69f142f2965f56cb35ee95ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/v1.1.0",
-                "reference": "v1.1.0",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/a4d3f85ffbd6946b69f142f2965f56cb35ee95ea",
+                "reference": "a4d3f85ffbd6946b69f142f2965f56cb35ee95ea",
                 "shasum": ""
             },
             "require": {

@@ -25,7 +25,10 @@ class RestControllerProvider implements ControllerProviderInterface
         $controllers = $app['controllers_factory'];
 
         $validation = $this->getValidationMiddleware($app);
+
+        // Ensure that all controllers require a valid HMAC key
         $hmacValidation = $this->getHmacMiddleware($app);
+        $controllers->before($hmacValidation);
 
         $controllers->get('/{entity}', 'MJanssen\Controllers\RestController::getAction');
         $controllers->post('/{entity}', 'MJanssen\Controllers\RestController::postAction')
@@ -58,7 +61,7 @@ class RestControllerProvider implements ControllerProviderInterface
      */
     private function getValidationMiddleware(Application $app)
     {
-        $validation = function (Request $request, Application $app) {
+        $validation = function (Request $request, $app) {
             $app['service.validator']->validate(
                 $app['request']->attributes->get('entity'),
                 $app['request']->getContent()
@@ -79,9 +82,9 @@ class RestControllerProvider implements ControllerProviderInterface
      */
     private function getHmacMiddleware(Application $app)
     {
-        $hmacValidation = function (Request $request, Application $app) {
+        $hmacValidation = function (Request $request, $app) {
             $app['service.hmac']->validate(
-                $app['request']->attributes->get('entity'),
+                array('app' => $app),
                 $app['request']->getContent()
             );
 

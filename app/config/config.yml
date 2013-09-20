@@ -28,3 +28,5 @@ profiler:
   cache_dir: '/tmp/silexrest/cache/profiler'
 
 base.url: ''
+
+hmac_key: 'tempKey'
