@@ -1,17 +1,15 @@
 mysql:
   master:
     user: 'root'
-    password: 'root'
+    password: 'vagrant'
     host: 'localhost'
     dbname: 'silexrest'
   slaves:
     0:
       user: 'root'
-      password: 'root'
+      password: 'vagrant'
       host: 'localhost'
       dbname: 'silexrest'
-
-base.url: ''
 
 doctrine:
   orm:
@@ -22,3 +20,11 @@ doctrine:
         alias: 'core'
         path: '%app_path%/src/MJanssen/Doctrine/Entity'
         use_simple_annotation_reader: false
+
+monolog:
+  logfile: '/tmp/silexrest/logs/silex_dev.log'
+
+profiler:
+  cache_dir: '/tmp/silexrest/cache/profiler'
+
+base.url: ''
