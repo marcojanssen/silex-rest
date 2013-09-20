@@ -38,7 +38,7 @@ class RestController
 
         return new JsonResponse(
             $app['doctrine.extractor']->extractEntities(
-                $this->filterRepositoryByRequest(
+                $this->setFiltersForRepositoryByRequest(
                     $repository,
                     $request
                 )
@@ -132,39 +132,24 @@ class RestController
     }
 
     /**
+     * @param $repository
      * @param Request $request
-     * @param $type
-     * @param int $defaultValue
-     * @return int|mixed
+     * @return FilterableRepositoryInterface
      */
-    private function getPaginatorParameter(Request $request, $type, $defaultValue = 25)
-    {
-        $parameter = $request->query->get($type);
-
-        if(empty($parameter)) {
-            $parameter = $defaultValue;
-        }
-
-        return $parameter;
-    }
-
-    /**
-     * @param FilterableRepositoryInterface $repository
-     * @param Request $request
-     * @return \Spray\PersistenceBundle\Repository\FilterableRepositoryInterface
-     */
-    public function filterRepositoryByRequest(FilterableRepositoryInterface $repository, Request $request)
+    public function setFiltersForRepositoryByRequest($repository, Request $request)
     {
         $filterLoader = new FilterLoader();
 
+        if($repository instanceof FilterableRepositoryInterface) {
 
-        foreach ($filterLoader->getPlugins() as $pluginName => $pluginNamespace)
-        {
-            $filterParams = $request->get($pluginName);
+            foreach ($filterLoader->getPlugins() as $pluginName => $pluginNamespace)
+            {
+                $filterParams = $request->get($pluginName);
 
-            if (null !== $filterParams && is_array($filterParams)){
+                if (null !== $filterParams && is_array($filterParams)){
 
-                $repository->filter(new $pluginNamespace($filterParams));
+                    $repository->filter(new $pluginNamespace($filterParams));
+                }
             }
         }
 
