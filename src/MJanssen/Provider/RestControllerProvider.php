@@ -30,7 +30,7 @@ class RestControllerProvider implements ControllerProviderInterface
         $hmacValidation = $this->getHmacMiddleware($app);
         $controllers->before($hmacValidation);
 
-        $controllers->get('/{entity}', 'MJanssen\Controllers\RestController::getAction');
+        $controllers->get('/{entity}', 'MJanssen\Controllers\RestController::getCollectionAction');
         $controllers->post('/{entity}', 'MJanssen\Controllers\RestController::postAction')
                     ->before($validation);
 

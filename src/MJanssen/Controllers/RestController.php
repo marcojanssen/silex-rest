@@ -1,6 +1,7 @@
 <?php
 namespace MJanssen\Controllers;
 
+use Doctrine\Common\Persistence\ObjectRepository;
 use MJanssen\Filters\FilterLoader;
 use Silex\Application;
 use Spray\PersistenceBundle\Repository\FilterableRepositoryInterface;
@@ -23,24 +24,40 @@ class RestController
      */
     public function getAction(Request $request, Application $app, $id = null)
     {
-        $repository = $app['orm.em']->getRepository($this->getEntityName($request,$app));
+        $repository = $this->getEntityRepository($request, $app);
 
-        if(null !== $id) {
-            return new JsonResponse(
-                $app['doctrine.extractor']->extractEntity(
-                    $repository->findOneBy(
-                        array('id' => $id)
-                    ),
-                    true
-                )
+        return new JsonResponse(
+            $app['doctrine.extractor']->extractEntity(
+                $repository->findOneBy(
+                    array('id' => $id)
+                ),
+                true
+            )
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @param Application $app
+     * @param null $id
+     * @return JsonResponse
+     */
+    public function getCollectionAction(Request $request, Application $app)
+    {
+        $repository = $this->getEntityRepository($request, $app);
+
+        if($this->isFilterableRepository($repository)) {
+            $repository = $this->setFiltersForRepositoryByRequest(
+                $repository,
+                $request
             );
         }
 
         return new JsonResponse(
             $app['doctrine.extractor']->extractEntities(
-                $this->setFiltersForRepositoryByRequest(
-                    $repository,
-                    $request
+                $repository->findBy(
+                    array(),
+                    array('id' => 'ASC')
                 )
             )
         );
@@ -55,10 +72,11 @@ class RestController
      */
     public function deleteAction(Request $request, Application $app, $id)
     {
+        $repository = $this->getEntityRepository($request, $app);
+
         $app['orm.em']->remove(
-            $app['doctrine.repository']->findEntityById(
-                $this->getEntityName($request, $app),
-                $id
+            $repository->findOneBy(
+                array('id' => $id)
             )
         );
         $app['orm.em']->flush();
@@ -93,11 +111,12 @@ class RestController
      */
     public function putAction(Request $request, Application $app, $id)
     {
+        $repository = $this->getEntityRepository($request, $app);
+
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
-            $app['doctrine.repository']->findEntityById(
-                $this->getEntityName($request, $app),
-                $id
+            $repository->findOneBy(
+                array('id' => $id)
             )
         );
 
@@ -132,24 +151,46 @@ class RestController
     }
 
     /**
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
+    protected function getEntityRepository(Request $request, Application $app)
+    {
+        return $app['orm.em']->getRepository(
+            $this->getEntityName($request,$app)
+        );
+    }
+
+    /**
+     * @param ObjectRepository $repository
+     * @return bool
+     */
+    protected function isFilterableRepository(ObjectRepository $repository)
+    {
+        if($repository instanceof FilterableRepositoryInterface) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @param $repository
      * @param Request $request
      * @return FilterableRepositoryInterface
      */
-    public function setFiltersForRepositoryByRequest($repository, Request $request)
+    protected function setFiltersForRepositoryByRequest(FilterableRepositoryInterface $repository, Request $request)
     {
         $filterLoader = new FilterLoader();
 
-        if($repository instanceof FilterableRepositoryInterface) {
+        foreach ($filterLoader->getPlugins() as $pluginName => $pluginNamespace)
+        {
+            $filterParams = $request->get($pluginName);
 
-            foreach ($filterLoader->getPlugins() as $pluginName => $pluginNamespace)
-            {
-                $filterParams = $request->get($pluginName);
+            if (null !== $filterParams && is_array($filterParams)){
 
-                if (null !== $filterParams && is_array($filterParams)){
-
-                    $repository->filter(new $pluginNamespace($filterParams));
-                }
+                $repository->filter(new $pluginNamespace($filterParams));
             }
         }
 
