@@ -2,6 +2,7 @@
 namespace MJanssen\Doctrine\Service;
 
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManager;
 use MJanssen\DoctrineModule\Stdlib\Hydrator\Strategy\ExtractRecursiveByValue;
 
@@ -43,8 +44,15 @@ class ExtractorService
     {
         if(true === $extractAssociations) {
             $this->setStrategyAssociations($entity);
+            return $this->hydrator->extract($entity);
         }
-        return $this->hydrator->extract($entity);
+
+        if(false === $extractAssociations) {
+            return $this->convertAssociationsToEmptyArray(
+                $this->hydrator->extract($entity)
+            );
+        }
+
     }
 
     /**
@@ -57,5 +65,21 @@ class ExtractorService
         foreach ($associations as $association) {
             $this->hydrator->addStrategy($association, new ExtractRecursiveByValue($this->entityManager));
         }
+    }
+
+    /**
+     * Converts Doctrine Collection to empty array
+     * @param array $extractedResults
+     * @return array
+     */
+    protected function convertAssociationsToEmptyArray(array $extractedResults)
+    {
+        foreach($extractedResults AS $key => $value) {
+            if($value instanceof Collection) {
+                $extractedResults[$key] = array();
+            }
+        }
+
+        return $extractedResults;
     }
 }
