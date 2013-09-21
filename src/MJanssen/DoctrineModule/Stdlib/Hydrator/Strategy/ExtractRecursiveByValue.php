@@ -113,7 +113,7 @@ class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
     }
 
     /**
-     * Get a hydrator for the next level.
+     * Get a hydrator for the current level.
      *
      * @param mixed $object
      *
@@ -124,12 +124,6 @@ class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
         $metadata    = $this->getMetadata($object);
         $class       = $this->hydratorClass;
         $hydrator    = new $class($this->objectManager, get_class($object));
-
-        // Add a strategy to all association fields
-        $fallback = $this->getFallback();
-        foreach ($metadata->getAssociationNames() as $field) {
-            $hydrator->addStrategy($field, $fallback);
-        }
 
         return $hydrator;
     }
@@ -195,6 +189,43 @@ class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
             } else {
                 $this->saw($object);
                 $results[] = $hydrator->extract($object);
+            }
+        }
+
+        return $this->extractAssociations($results);
+    }
+
+    /**
+     * @param $results
+     * @return mixed
+     */
+    protected function extractAssociations($results)
+    {
+        foreach ($results as &$result) {
+            foreach ($result as $name => $value) {
+                if($value instanceof Collection) {
+                    $object      = $value->first();
+                    if(false === $object) {
+                        $result[$name] = array();
+                        break;
+                    }
+                    $hydrator    = $this->getHydrator($object);
+                    $metadata    = $this->getMetadata($object);
+                    if ($this->hasSeen($object)) {
+                        $result[$name] = $this->getIdentifier($object, $metadata);
+                    } else {
+                        $this->saw($object);
+
+                        $associations = $metadata->getAssociationNames();
+                        foreach ($associations as $association) {
+                            $hydrator->addStrategy($association, $this);
+                        }
+
+                        $result[$name] = $hydrator->extract($object);
+                    }
+                }
+
+
             }
         }
 
