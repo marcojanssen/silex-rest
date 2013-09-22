@@ -1,0 +1,2 @@
+orm.default_cache: 'array'
+logfile: '/tmp/silexrest/logs/silex_dev.log'

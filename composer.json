@@ -6,6 +6,7 @@
         "doctrine/doctrine-module": "dev-master",
         "doctrine/orm": "2.4.*",
         "gedmo/doctrine-extensions": "2.3.*",
+        "igorw/config-service-provider": "1.2.*",
         "herrera-io/silex-wise": "~2.2",
         "silex/silex": "1.1.*",
         "symfony/class-loader": "~2.3",

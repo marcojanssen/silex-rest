@@ -26,9 +26,10 @@ $app->register(
     )
 );
 
-$app['config'] = $app['wise']->load('config.yml');
 
 WiseServiceProvider::registerServices($app);
+
+$app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../app/config/config.yml"));
 
 $sluggableListener = new Gedmo\Sluggable\SluggableListener;
 $app['db.event_manager']->addEventSubscriber($sluggableListener);

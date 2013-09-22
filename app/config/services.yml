@@ -6,23 +6,9 @@ service.controller.service:
 
 doctrine.dbal:
   class: Silex\Provider\DoctrineServiceProvider
-  parameters:
-      db.options:
-        driver: 'pdo_mysql'
-        charset: 'UTF8'
-        master: '%config.mysql.master%'
-        slaves:
-          0: '%config.mysql.slaves.0%'
-        wrapperClass: 'Doctrine\DBAL\Connections\MasterSlaveConnection'
 
 doctrine.orm:
   class: Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider
-  parameters:
-      orm.proxies_dir: '%app_path%/app/cache/Doctrine/Proxies'
-      orm.default_cache: 'array' #should be set to apc/xcache on production
-      orm.em.options:
-        mappings:
-           '%config.doctrine.orm.mappings%'
 
 custom:
   class: MJanssen\Provider\ServiceProvider

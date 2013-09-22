@@ -1,30 +1,28 @@
-mysql:
+db.options:
+  driver: 'pdo_mysql'
+  charset: 'UTF8'
   master:
-    user: 'root'
-    password: 'vagrant'
-    host: 'localhost'
-    dbname: 'silexrest'
+      user: 'root'
+      password: 'root'
+      host: 'localhost'
+      dbname: 'achtkarspelen'
   slaves:
     0:
       user: 'root'
-      password: 'vagrant'
+      password: 'root'
       host: 'localhost'
-      dbname: 'silexrest'
+      dbname: 'achtkarspelen'
+  wrapperClass: 'Doctrine\DBAL\Connections\MasterSlaveConnection'
 
-doctrine:
-  orm:
-    mappings:
-      0:
-        type: 'annotation'
-        namespace: 'MJanssen\Doctrine\Entity'
-        alias: 'core'
-        path: '%app_path%/src/MJanssen/Doctrine/Entity'
-        use_simple_annotation_reader: false
+orm.proxies_dir: '../app/cache/Doctrine/Proxies'
+orm.default_cache: 'apc' #should be set to apc/xcache on production
+orm.em.options:
+  mappings:
+    0:
+      type: 'annotation'
+      namespace: 'MJanssen\Doctrine\Entity'
+      alias: 'core'
+      path: '../src/MJanssen/Doctrine/Entity'
+      use_simple_annotation_reader: false
 
-monolog:
-  logfile: '/tmp/silexrest/logs/silex_dev.log'
-
-profiler:
-  cache_dir: '/tmp/silexrest/cache/profiler'
-
-base.url: ''
+baseUrl: ''
