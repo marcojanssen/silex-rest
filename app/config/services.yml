@@ -4,12 +4,6 @@ validator:
 service.controller.service:
   class: Silex\Provider\ServiceControllerServiceProvider
 
-twig:
-  class: Silex\Provider\TwigServiceProvider
-  parameters:
-      twig.options:
-        - "%app_path%/app/cache/twig"
-
 doctrine.dbal:
   class: Silex\Provider\DoctrineServiceProvider
   parameters:
