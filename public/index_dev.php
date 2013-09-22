@@ -2,7 +2,6 @@
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Herrera\Wise\WiseServiceProvider;
 use Silex\Application;
-use Silex\Provider\MonologServiceProvider;
 use Symfony\Component\Debug\Debug;
 
 chdir(dirname(__DIR__));
@@ -31,9 +30,10 @@ $app->register(
     )
 );
 
-$app['config'] = $app['wise']->load('config.yml');
-
 WiseServiceProvider::registerServices($app);
+
+$app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../app/config/config.yml"));
+$app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../app/config/config_dev.yml"));
 
 $sluggableListener = new Gedmo\Sluggable\SluggableListener;
 $app['db.event_manager']->addEventSubscriber($sluggableListener);
@@ -47,12 +47,6 @@ $conn->getDatabasePlatform()->registerDoctrineTypeMapping('point', 'string');
 
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
-$app->register(new MonologServiceProvider(), array(
-    'monolog.logfile' => $app['config']['monolog']['logfile'],
-));
-
-$app->register(new Whoops\Provider\Silex\WhoopsServiceProvider());
-
-$app->mount($app['config']['base.url'].'/{namespace}', new MJanssen\Provider\RestControllerProvider());
+$app->mount($app['baseUrl'].'/{namespace}', new MJanssen\Provider\RestControllerProvider());
 
 $app->run();
