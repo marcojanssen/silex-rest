@@ -2,6 +2,7 @@
 namespace MJanssen\Controllers;
 
 use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityNotFoundException;
 use MJanssen\Filters\FilterLoader;
 use Silex\Application;
 use Spray\PersistenceBundle\Repository\FilterableRepositoryInterface;
@@ -24,13 +25,12 @@ class RestController
      */
     public function getAction(Request $request, Application $app, $id = null)
     {
-        $repository = $this->getEntityRepository($request, $app);
+        $entity = $this->getEntityFromRepository($request, $app, $id);
+        $this->isValidEntity($entity);
 
         return new JsonResponse(
             $app['doctrine.extractor']->extractEntity(
-                $repository->findOneBy(
-                    array('id' => $id)
-                ),
+                $entity,
                 true
             )
         );
@@ -72,13 +72,10 @@ class RestController
      */
     public function deleteAction(Request $request, Application $app, $id)
     {
-        $repository = $this->getEntityRepository($request, $app);
+        $entity = $this->getEntityFromRepository($request, $app, $id);
+        $this->isValidEntity($entity);
 
-        $app['orm.em']->remove(
-            $repository->findOneBy(
-                array('id' => $id)
-            )
-        );
+        $app['orm.em']->remove($entity);
         $app['orm.em']->flush();
 
         return new JsonResponse(array('item removed'));
@@ -111,19 +108,45 @@ class RestController
      */
     public function putAction(Request $request, Application $app, $id)
     {
-        $repository = $this->getEntityRepository($request, $app);
+        $entity = $this->getEntityFromRepository($request, $app, $id);
+        $this->isValidEntity($entity);
 
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
-            $repository->findOneBy(
-                array('id' => $id)
-            )
+            $entity
         );
 
         $app['orm.em']->persist($item);
         $app['orm.em']->flush();
 
         return new JsonResponse(array('item updated'));
+    }
+
+    /**
+     * @param $id
+     * @param string $field
+     * @return mixed
+     */
+    protected function getEntityFromRepository(Request $request, Application $app, $id, $field = 'id')
+    {
+        $repository = $this->getEntityRepository($request, $app);
+
+        $entity = $repository->findOneBy(
+            array($field => $id)
+        );
+
+        return $entity;
+    }
+
+    /**
+     * @param $entity
+     * @throws \Doctrine\ORM\EntityNotFoundException
+     */
+    protected function isValidEntity($entity)
+    {
+        if(null === $entity) {
+            throw new EntityNotFoundException();
+        }
     }
 
     /**
