@@ -1,6 +1,7 @@
 <?php
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Herrera\Wise\WiseServiceProvider;
+use Igorw\Silex\ConfigServiceProvider;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -9,7 +10,6 @@ chdir(dirname(__DIR__));
 $loader = require_once 'vendor/autoload.php';
 
 $app = new Application();
-$app['app_path'] = getcwd();
 
 $app->register(
     new WiseServiceProvider(),
@@ -29,7 +29,14 @@ $app->register(
 
 WiseServiceProvider::registerServices($app);
 
-$app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../app/config/config.yml"));
+$app->register(
+    new ConfigServiceProvider(
+        __DIR__."/../app/config/config.yml",
+        array(
+            'app_path' => getcwd(),
+        )
+    )
+);
 
 $sluggableListener = new Gedmo\Sluggable\SluggableListener;
 $app['db.event_manager']->addEventSubscriber($sluggableListener);
