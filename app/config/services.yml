@@ -1,14 +1,15 @@
-validator:
-  class: Silex\Provider\ValidatorServiceProvider
+providers:
+  validator:
+    class: Silex\Provider\ValidatorServiceProvider
 
-service.controller.service:
-  class: Silex\Provider\ServiceControllerServiceProvider
+  service.controller.service:
+    class: Silex\Provider\ServiceControllerServiceProvider
 
-doctrine.dbal:
-  class: Silex\Provider\DoctrineServiceProvider
+  doctrine.dbal:
+    class: Silex\Provider\DoctrineServiceProvider
 
-doctrine.orm:
-  class: Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider
+  doctrine.orm:
+    class: Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider
 
-custom:
-  class: MJanssen\Provider\ServiceProvider
+  custom:
+    class: MJanssen\Provider\ServiceProvider

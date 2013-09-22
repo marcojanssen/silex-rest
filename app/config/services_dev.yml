@@ -1,5 +1,6 @@
-monolog:
-  class: Silex\Provider\MonologServiceProvider
+providers:
+  monolog:
+    class: Silex\Provider\MonologServiceProvider
 
-whoops:
-  class: Whoops\Provider\Silex\WhoopsServiceProvider
+  whoops:
+    class: Whoops\Provider\Silex\WhoopsServiceProvider

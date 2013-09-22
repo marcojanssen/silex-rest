@@ -1,6 +1,6 @@
 <?php
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use Herrera\Wise\WiseServiceProvider;
+use Marcojanssen\Provider\ServiceRegisterProvider;
 use Igorw\Silex\ConfigServiceProvider;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,31 +11,19 @@ $loader = require_once 'vendor/autoload.php';
 
 $app = new Application();
 
+//Set all service providers
 $app->register(
-    new WiseServiceProvider(),
-    array(
-        'wise.path' => 'app/config',
-        'wise.options' => array(
-            'type' => 'yml',
-            'config' => array (
-                'services' => 'services'
-            ),
-            'mode' => 'prod',
-            'parameters' => $app
-        )
-    )
+    new ConfigServiceProvider(__DIR__."/../app/config/services.yml")
 );
 
-
-WiseServiceProvider::registerServices($app);
-
+//Register all providers
 $app->register(
-    new ConfigServiceProvider(
-        __DIR__."/../app/config/config.yml",
-        array(
-            'app_path' => getcwd(),
-        )
-    )
+    new ServiceRegisterProvider()
+);
+
+//Configure the service providers
+$app->register(
+    new ConfigServiceProvider(__DIR__."/../app/config/config.yml", array('app_path' => getcwd()))
 );
 
 $sluggableListener = new Gedmo\Sluggable\SluggableListener;
@@ -52,7 +40,7 @@ AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 //$app['controllers']->requireHttps();
 
-$app->mount($app['config']['base.url'].'/{namespace}', new MJanssen\Provider\RestControllerProvider());
+$app->mount($app['baseUrl'].'/{namespace}', new MJanssen\Provider\RestControllerProvider());
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if(404 === $code) {
