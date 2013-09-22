@@ -20,6 +20,7 @@
 namespace MJanssen\DoctrineModule\Stdlib\Hydrator\Strategy;
 
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Zend\Stdlib\Hydrator\Strategy\StrategyInterface;
 
 /**
@@ -121,11 +122,8 @@ class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
      */
     protected function getHydrator($object)
     {
-        $metadata    = $this->getMetadata($object);
-        $class       = $this->hydratorClass;
-        $hydrator    = new $class($this->objectManager, get_class($object));
-
-        return $hydrator;
+        $class = $this->getHydratorClass();
+        return new $class($this->objectManager, get_class($object));
     }
 
     /**
@@ -192,7 +190,26 @@ class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
             }
         }
 
-        return $this->extractAssociations($results);
+        if($this->hasAssociations($metadata)) {
+            return $this->extractAssociations($results);
+        }
+
+        return $results;
+    }
+
+    /**
+     * Check if the Entity has associations
+     *
+     * @param ClassMetadata $metadata
+     * @return bool
+     */
+    protected function hasAssociations(ClassMetadata $metadata)
+    {
+        if(count($metadata->getAssociationNames()) > 0) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -202,30 +219,10 @@ class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
     protected function extractAssociations($results)
     {
         foreach ($results as &$result) {
-            foreach ($result as $name => $value) {
-                if($value instanceof Collection) {
-                    $object      = $value->first();
-                    if(false === $object) {
-                        $result[$name] = array();
-                        break;
-                    }
-                    $hydrator    = $this->getHydrator($object);
-                    $metadata    = $this->getMetadata($object);
-                    if ($this->hasSeen($object)) {
-                        $result[$name] = $this->getIdentifier($object, $metadata);
-                    } else {
-                        $this->saw($object);
-
-                        $associations = $metadata->getAssociationNames();
-                        foreach ($associations as $association) {
-                            $hydrator->addStrategy($association, $this);
-                        }
-
-                        $result[$name] = $hydrator->extract($object);
-                    }
+            foreach ($result as $fieldName => $mixedValue) {
+                if($mixedValue instanceof Collection) {
+                    $result[$fieldName] = $this->extractCollection($mixedValue);
                 }
-
-
             }
         }
 
