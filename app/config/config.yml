@@ -14,7 +14,7 @@ db.options:
       dbname: 'achtkarspelen'
   wrapperClass: 'Doctrine\DBAL\Connections\MasterSlaveConnection'
 
-orm.proxies_dir: '../app/cache/Doctrine/Proxies'
+orm.proxies_dir: '%app_path%/app/cache/Doctrine/Proxies'
 orm.default_cache: 'apc' #should be set to apc/xcache on production
 orm.em.options:
   mappings:
@@ -22,7 +22,7 @@ orm.em.options:
       type: 'annotation'
       namespace: 'MJanssen\Doctrine\Entity'
       alias: 'core'
-      path: '../src/MJanssen/Doctrine/Entity'
+      path: '%app_path%/src/MJanssen/Doctrine/Entity'
       use_simple_annotation_reader: false
 
 baseUrl: ''
