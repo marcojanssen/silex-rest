@@ -220,9 +220,7 @@ class ExtractRecursiveByValue extends AbstractExtractObjectStrategy
     {
         foreach ($results as &$result) {
             foreach ($result as $fieldName => $mixedValue) {
-                if($mixedValue instanceof Collection) {
-                    $result[$fieldName] = $this->extractCollection($mixedValue);
-                }
+                $result[$fieldName] = $this->extract($mixedValue);
             }
         }
 
