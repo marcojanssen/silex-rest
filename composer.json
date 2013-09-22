@@ -1,5 +1,11 @@
 {
     "name": "marcojanssen/silex-rest",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/marcojanssen/silex-service-register-provider.git"
+        }
+    ],
     "require": {
         "php": ">=5.4.0",
         "dflydev/doctrine-orm-service-provider": "1.0.*",
@@ -7,7 +13,7 @@
         "doctrine/orm": "2.4.*",
         "gedmo/doctrine-extensions": "2.3.*",
         "igorw/config-service-provider": "1.2.*",
-        "herrera-io/silex-wise": "~2.2",
+        "marcojanssen/silex-service-register-provider": "dev-master",
         "silex/silex": "1.1.*",
         "symfony/class-loader": "~2.3",
         "symfony/config": "~2.3",
