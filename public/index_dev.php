@@ -1,6 +1,6 @@
 <?php
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use Herrera\Wise\WiseServiceProvider;
+use Marcojanssen\Provider\ServiceRegisterProvider;
 use Igorw\Silex\ConfigServiceProvider;
 use Silex\Application;
 use Symfony\Component\Debug\Debug;
@@ -15,39 +15,27 @@ Debug::enable();
 $app = new Application();
 $app['debug'] = true;
 
+//Set all service providers
 $app->register(
-    new WiseServiceProvider(),
-    array(
-        'wise.path' => 'app/config',
-        'wise.options' => array(
-            'type' => 'yml',
-            'config' => array (
-                'services' => 'services'
-            ),
-            'mode' => 'prod',
-            'parameters' => $app
-        )
-    )
-);
-
-WiseServiceProvider::registerServices($app);
-
-$app->register(
-    new ConfigServiceProvider(
-        __DIR__."/../app/config/config.yml",
-        array(
-            'app_path' => getcwd(),
-        )
-    )
+    new ConfigServiceProvider(__DIR__."/../app/config/services.yml")
 );
 
 $app->register(
-    new ConfigServiceProvider(
-        __DIR__."/../app/config/config_dev.yml",
-        array(
-            'app_path' => getcwd(),
-        )
-    )
+    new ConfigServiceProvider(__DIR__."/../app/config/services_dev.yml")
+);
+
+//Register all providers
+$app->register(
+    new ServiceRegisterProvider()
+);
+
+//Configure the service providers
+$app->register(
+    new ConfigServiceProvider(__DIR__."/../app/config/config.yml", array('app_path' => getcwd()))
+);
+
+$app->register(
+    new ConfigServiceProvider(__DIR__."/../app/config/config_dev.yml", array('app_path' => getcwd()))
 );
 
 $sluggableListener = new Gedmo\Sluggable\SluggableListener;
