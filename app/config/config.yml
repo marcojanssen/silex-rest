@@ -3,15 +3,15 @@ db.options:
   charset: 'UTF8'
   master:
       user: 'root'
-      password: 'root'
+      password: 'vagrant'
       host: 'localhost'
-      dbname: 'achtkarspelen'
+      dbname: 'silexrest'
   slaves:
     0:
       user: 'root'
-      password: 'root'
+      password: 'vagrant'
       host: 'localhost'
-      dbname: 'achtkarspelen'
+      dbname: 'silexrest'
   wrapperClass: 'Doctrine\DBAL\Connections\MasterSlaveConnection'
 
 orm.proxies_dir: '%app_path%/app/cache/Doctrine/Proxies'
