@@ -1,6 +1,7 @@
 <?php
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use Herrera\Wise\WiseServiceProvider;
+use Marcojanssen\Provider\ServiceRegisterProvider;
+use Igorw\Silex\ConfigServiceProvider;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -9,26 +10,21 @@ chdir(dirname(__DIR__));
 $loader = require_once 'vendor/autoload.php';
 
 $app = new Application();
-$app['app_path'] = getcwd();
 
+//Set all service providers
 $app->register(
-    new WiseServiceProvider(),
-    array(
-        'wise.path' => 'app/config',
-        'wise.options' => array(
-            'type' => 'yml',
-            'config' => array (
-                'services' => 'services'
-            ),
-            'mode' => 'prod',
-            'parameters' => $app
-        )
-    )
+    new ConfigServiceProvider(__DIR__."/../app/config/services.yml")
 );
 
-$app['config'] = $app['wise']->load('config.yml');
+//Register all providers
+$app->register(
+    new ServiceRegisterProvider()
+);
 
-WiseServiceProvider::registerServices($app);
+//Configure the service providers
+$app->register(
+    new ConfigServiceProvider(__DIR__."/../app/config/config.yml", array('app_path' => getcwd()))
+);
 
 $sluggableListener = new Gedmo\Sluggable\SluggableListener;
 $app['db.event_manager']->addEventSubscriber($sluggableListener);
@@ -36,11 +32,15 @@ $app['db.event_manager']->addEventSubscriber($sluggableListener);
 $softdeletableListener = new Gedmo\SoftDeleteable\SoftDeleteableListener();
 $app['db.event_manager']->addEventSubscriber($softdeletableListener);
 
+$conn = $app['orm.em']->getConnection();
+$conn->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
+$conn->getDatabasePlatform()->registerDoctrineTypeMapping('point', 'string');
+
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 //$app['controllers']->requireHttps();
 
-$app->mount($app['config']['base.url'].'/{namespace}', new MJanssen\Provider\RestControllerProvider());
+$app->mount($app['baseUrl'].'/{namespace}', new MJanssen\Provider\RestControllerProvider());
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if(404 === $code) {

@@ -1,33 +1,15 @@
-validator:
-  class: Silex\Provider\ValidatorServiceProvider
+providers:
+  validator:
+    class: Silex\Provider\ValidatorServiceProvider
 
-service.controller.service:
-  class: Silex\Provider\ServiceControllerServiceProvider
+  service.controller.service:
+    class: Silex\Provider\ServiceControllerServiceProvider
 
-twig:
-  class: Silex\Provider\TwigServiceProvider
-  parameters:
-      twig.options:
-        - "%app_path%/app/cache/twig"
+  doctrine.dbal:
+    class: Silex\Provider\DoctrineServiceProvider
 
-doctrine.dbal:
-  class: Silex\Provider\DoctrineServiceProvider
-  parameters:
-      db.options:
-        driver: 'pdo_mysql'
-        charset: 'UTF8'
-        master: '%config.mysql.master%'
-        slaves:
-          0: '%config.mysql.slaves.0%'
-        wrapperClass: 'Doctrine\DBAL\Connections\MasterSlaveConnection'
+  doctrine.orm:
+    class: Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider
 
-doctrine.orm:
-  class: Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider
-  parameters:
-      orm.proxies_dir: '%app_path%/app/cache/Doctrine/Proxies'
-      orm.em.options:
-        mappings:
-           '%config.doctrine.orm.mappings%'
-
-custom:
-  class: MJanssen\Provider\ServiceProvider
+  custom:
+    class: MJanssen\Provider\ServiceProvider

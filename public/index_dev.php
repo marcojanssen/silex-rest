@@ -1,9 +1,8 @@
 <?php
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use Herrera\Wise\WiseServiceProvider;
+use Marcojanssen\Provider\ServiceRegisterProvider;
+use Igorw\Silex\ConfigServiceProvider;
 use Silex\Application;
-use Silex\Provider\MonologServiceProvider;
-use Silex\Provider\WebProfilerServiceProvider;
 use Symfony\Component\Debug\Debug;
 
 chdir(dirname(__DIR__));
@@ -15,26 +14,29 @@ Debug::enable();
 
 $app = new Application();
 $app['debug'] = true;
-$app['app_path'] = getcwd();
 
+//Set all service providers
 $app->register(
-    new WiseServiceProvider(),
-    array(
-        'wise.path' => 'app/config',
-        'wise.options' => array(
-            'type' => 'yml',
-            'config' => array (
-                'services' => 'services'
-            ),
-            'mode' => 'prod',
-            'parameters' => $app
-        )
-    )
+    new ConfigServiceProvider(__DIR__."/../app/config/services.yml")
 );
 
-$app['config'] = $app['wise']->load('config.yml');
+$app->register(
+    new ConfigServiceProvider(__DIR__."/../app/config/services_dev.yml")
+);
 
-WiseServiceProvider::registerServices($app);
+//Register all providers
+$app->register(
+    new ServiceRegisterProvider()
+);
+
+//Configure the service providers
+$app->register(
+    new ConfigServiceProvider(__DIR__."/../app/config/config.yml", array('app_path' => getcwd()))
+);
+
+$app->register(
+    new ConfigServiceProvider(__DIR__."/../app/config/config_dev.yml", array('app_path' => getcwd()))
+);
 
 $sluggableListener = new Gedmo\Sluggable\SluggableListener;
 $app['db.event_manager']->addEventSubscriber($sluggableListener);
@@ -42,23 +44,12 @@ $app['db.event_manager']->addEventSubscriber($sluggableListener);
 $softdeletableListener = new Gedmo\SoftDeleteable\SoftDeleteableListener();
 $app['db.event_manager']->addEventSubscriber($softdeletableListener);
 
+$conn = $app['orm.em']->getConnection();
+$conn->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
+$conn->getDatabasePlatform()->registerDoctrineTypeMapping('point', 'string');
+
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
-$app->register(new MonologServiceProvider(), array(
-    'monolog.logfile' => $app['config']['monolog']['logfile'],
-));
-
-$app->register($p = new WebProfilerServiceProvider(), array(
-    'profiler.cache_dir' => $app['config']['profiler']['cache_dir'],
-));
-
-$app->register(new Whoops\Provider\Silex\WhoopsServiceProvider());
-
-$app->mount($app['config']['base.url'].'/_profiler', $p);
-$app->mount($app['config']['base.url'].'/{namespace}', new MJanssen\Provider\RestControllerProvider());
-
-$app->error(function (\Exception $e, $code) use ($app) {
-    return;
-});
+$app->mount($app['baseUrl'].'/{namespace}', new MJanssen\Provider\RestControllerProvider());
 
 $app->run();
