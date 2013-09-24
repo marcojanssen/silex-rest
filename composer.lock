@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "12243956adcf5f892cce02b7b78bb430",
+    "hash": "11cb000391fa70ec704062712deedd83",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -893,41 +893,39 @@
             "time": "2013-08-18 07:18:44"
         },
         {
-            "name": "herrera-io/silex-wise",
-            "version": "2.2.0",
+            "name": "igorw/config-service-provider",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/herrera-io/php-silex-wise.git",
-                "reference": "d1181e1dca2939eac8bb5687bcea548478b0db50"
+                "url": "https://github.com/igorw/ConfigServiceProvider.git",
+                "reference": "8e8f60b3ec86d63733db3bd6371117a758027ec6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/herrera-io/php-silex-wise/zipball/d1181e1dca2939eac8bb5687bcea548478b0db50",
-                "reference": "d1181e1dca2939eac8bb5687bcea548478b0db50",
+                "url": "https://api.github.com/repos/igorw/ConfigServiceProvider/zipball/8e8f60b3ec86d63733db3bd6371117a758027ec6",
+                "reference": "8e8f60b3ec86d63733db3bd6371117a758027ec6",
                 "shasum": ""
             },
             "require": {
-                "herrera-io/wise": "~1.0",
-                "php": ">=5.3.3"
+                "silex/silex": "~1.0"
             },
             "require-dev": {
-                "ext-dom": "*",
-                "herrera-io/json": "~1.0",
-                "herrera-io/phpunit-test-case": "1.*",
-                "monolog/monolog": "1.*",
-                "phpunit/phpunit": "3.7.*",
-                "silex/silex": "~1.0",
+                "jamesmoss/toml": "~0.1",
+                "symfony/yaml": "~2.1"
+            },
+            "suggest": {
+                "jamesmoss/toml": "~0.1",
                 "symfony/yaml": "~2.1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
                 "psr-0": {
-                    "Herrera\\Wise": "src/lib"
+                    "Igorw\\Silex": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -936,76 +934,20 @@
             ],
             "authors": [
                 {
-                    "name": "Kevin Herrera",
-                    "email": "kevin@herrera.io",
-                    "homepage": "http://kevin.herrera.io"
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch",
+                    "homepage": "http://wiedler.ch/igor/"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/igorw/ConfigServiceProvider/contributors"
                 }
             ],
-            "description": "A Silex service provider for Wise.",
-            "homepage": "http://github.com/herrera-io/php-silex-wise",
+            "description": "A config ServiceProvider for Silex with support for php, json and yaml.",
             "keywords": [
-                "config",
                 "silex"
             ],
-            "time": "2013-08-16 00:17:36"
-        },
-        {
-            "name": "herrera-io/wise",
-            "version": "1.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/herrera-io/php-wise.git",
-                "reference": "b2faabe54a4b7a21df6d6b6adc4eab2d4a0ea90e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/herrera-io/php-wise/zipball/b2faabe54a4b7a21df6d6b6adc4eab2d4a0ea90e",
-                "reference": "b2faabe54a4b7a21df6d6b6adc4eab2d4a0ea90e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/config": "~2.2"
-            },
-            "require-dev": {
-                "herrera-io/json": "~1.0",
-                "herrera-io/phpunit-test-case": "1.*",
-                "phpunit/phpunit": "3.7.*",
-                "symfony/yaml": "~2.2"
-            },
-            "suggest": {
-                "ext-dom": "For parsing XML files.",
-                "herrera-io/json": "For parsing JSON files.",
-                "symfony/yaml": "For parsing YAML files."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Herrera\\Wise": "src/lib"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kevin Herrera",
-                    "email": "kevin@herrera.io",
-                    "homepage": "http://kevin.herrera.io"
-                }
-            ],
-            "description": "Symfony Config for everyone else.",
-            "homepage": "http://github.com/herrera-io/php-wise",
-            "keywords": [
-                "config"
-            ],
-            "time": "2013-08-15 19:05:34"
+            "time": "2013-05-31 14:23:34"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1089,6 +1031,44 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "time": "2013-09-09 09:58:34"
+        },
+        {
+            "name": "marcojanssen/silex-service-register-provider",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marcojanssen/silex-service-register-provider.git",
+                "reference": "38accb3f398e01857b9e28df23da6b1d2cc3d28f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marcojanssen/silex-service-register-provider/zipball/38accb3f398e01857b9e28df23da6b1d2cc3d28f",
+                "reference": "38accb3f398e01857b9e28df23da6b1d2cc3d28f",
+                "shasum": ""
+            },
+            "require": {
+                "silex/silex": "1.*"
+            },
+            "suggest": {
+                "igorw/config-service-provider": "1.2.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Marcojanssen\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "keywords": [
+                "silex"
+            ],
+            "support": {
+                "source": "https://github.com/marcojanssen/silex-service-register-provider/tree/master",
+                "issues": "https://github.com/marcojanssen/silex-service-register-provider/issues"
+            },
+            "time": "2013-09-23 11:15:56"
         },
         {
             "name": "monolog/monolog",
@@ -1318,51 +1298,6 @@
                 "microframework"
             ],
             "time": "2013-07-04 07:15:36"
-        },
-        {
-            "name": "silex/web-profiler",
-            "version": "v1.0.1",
-            "target-dir": "Silex/Provider",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/silexphp/Silex-WebProfiler.git",
-                "reference": "3d875ac4f583e893a076ec51478e38eeaf0cb562"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Silex-WebProfiler/zipball/3d875ac4f583e893a076ec51478e38eeaf0cb562",
-                "reference": "3d875ac4f583e893a076ec51478e38eeaf0cb562",
-                "shasum": ""
-            },
-            "require": {
-                "silex/silex": "~1.0",
-                "symfony/stopwatch": "~2.2",
-                "symfony/web-profiler-bundle": "~2.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Silex\\Provider\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "A WebProfiler for Silex",
-            "homepage": "http://silex.sensiolabs.org/",
-            "time": "2013-05-03 17:04:41"
         },
         {
             "name": "symfony/class-loader",
@@ -2462,72 +2397,6 @@
             "time": "2013-08-26 05:49:51"
         },
         {
-            "name": "symfony/twig-bridge",
-            "version": "v2.3.4",
-            "target-dir": "Symfony/Bridge/Twig",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/TwigBridge.git",
-                "reference": "0d12c4c785db544c73ad5a87dcdd44b466d753a2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/TwigBridge/zipball/0d12c4c785db544c73ad5a87dcdd44b466d753a2",
-                "reference": "0d12c4c785db544c73ad5a87dcdd44b466d753a2",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "twig/twig": "~1.11"
-            },
-            "require-dev": {
-                "symfony/form": "~2.2",
-                "symfony/http-kernel": "~2.2",
-                "symfony/routing": "~2.2",
-                "symfony/security": "~2.0",
-                "symfony/templating": "~2.1",
-                "symfony/translation": "~2.2",
-                "symfony/yaml": "~2.0"
-            },
-            "suggest": {
-                "symfony/form": "",
-                "symfony/http-kernel": "",
-                "symfony/routing": "",
-                "symfony/security": "",
-                "symfony/templating": "",
-                "symfony/translation": "",
-                "symfony/yaml": ""
-            },
-            "type": "symfony-bridge",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Bridge\\Twig\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Twig Bridge",
-            "homepage": "http://symfony.com",
-            "time": "2013-08-13 20:18:00"
-        },
-        {
             "name": "symfony/validator",
             "version": "v2.3.4",
             "target-dir": "Symfony/Component/Validator",
@@ -2589,61 +2458,6 @@
             "time": "2013-08-24 15:26:22"
         },
         {
-            "name": "symfony/web-profiler-bundle",
-            "version": "v2.3.4",
-            "target-dir": "Symfony/Bundle/WebProfilerBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/WebProfilerBundle.git",
-                "reference": "2b939ac7801dff6b0197b6b6c2df81d85486d24e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/WebProfilerBundle/zipball/2b939ac7801dff6b0197b6b6c2df81d85486d24e",
-                "reference": "2b939ac7801dff6b0197b6b6c2df81d85486d24e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/http-kernel": "~2.2",
-                "symfony/routing": "~2.2",
-                "symfony/twig-bridge": "~2.2"
-            },
-            "require-dev": {
-                "symfony/config": "~2.2",
-                "symfony/dependency-injection": "~2.0",
-                "symfony/stopwatch": "~2.2"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Bundle\\WebProfilerBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony WebProfilerBundle",
-            "homepage": "http://symfony.com",
-            "time": "2013-07-21 12:12:18"
-        },
-        {
             "name": "symfony/yaml",
             "version": "v2.3.4",
             "target-dir": "Symfony/Component/Yaml",
@@ -2691,53 +2505,68 @@
             "time": "2013-08-24 15:26:22"
         },
         {
-            "name": "twig/twig",
-            "version": "v1.13.2",
+            "name": "wizkunde/silex-errors",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fabpot/Twig.git",
-                "reference": "6d6a1009427d1f398c9d40904147bf9f723d5755"
+                "url": "https://github.com/Wizkunde/silex-errors.git",
+                "reference": "9d77a3a67c11359d4815c59f3295fe2bcd83a933"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/6d6a1009427d1f398c9d40904147bf9f723d5755",
-                "reference": "6d6a1009427d1f398c9d40904147bf9f723d5755",
+                "url": "https://api.github.com/repos/Wizkunde/silex-errors/zipball/9d77a3a67c11359d4815c59f3295fe2bcd83a933",
+                "reference": "9d77a3a67c11359d4815c59f3295fe2bcd83a933",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.4"
+                "php": ">=5.4.0",
+                "silex/silex": "1.1.*"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.13-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
-                    "Twig_": "lib/"
+                    "Wizkunde\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Armin Ronacher",
-                    "email": "armin.ronacher@active-4.com"
+            "support": {
+                "source": "https://github.com/Wizkunde/silex-errors/tree/master",
+                "issues": "https://github.com/Wizkunde/silex-errors/issues"
+            },
+            "time": "2013-09-24 10:28:16"
+        },
+        {
+            "name": "wizkunde/silex-hmac",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Wizkunde/silex-hmac.git",
+                "reference": "f72fe359c60e997a108a855e20347c872cab7dad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Wizkunde/silex-hmac/zipball/f72fe359c60e997a108a855e20347c872cab7dad",
+                "reference": "f72fe359c60e997a108a855e20347c872cab7dad",
+                "shasum": ""
+            },
+            "require": {
+                "igorw/config-service-provider": "1.2.*",
+                "marcojanssen/silex-service-register-provider": "dev-master",
+                "php": ">=5.4.0",
+                "silex/silex": "1.1.*",
+                "symfony/validator": "~2.3",
+                "wizkunde/silex-errors": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Wizkunde\\": "src/"
                 }
-            ],
-            "description": "Twig, the flexible, fast, and secure template language for PHP",
-            "homepage": "http://twig.sensiolabs.org",
-            "keywords": [
-                "templating"
-            ],
-            "time": "2013-08-03 15:35:31"
+            },
+            "support": {
+                "source": "https://github.com/Wizkunde/silex-hmac/tree/master",
+                "issues": "https://github.com/Wizkunde/silex-hmac/issues"
+            },
+            "time": "2013-09-24 11:10:43"
         },
         {
             "name": "zendframework/zend-authentication",
@@ -3234,7 +3063,10 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "doctrine/doctrine-module": 20,
-        "jurjean/spray-persistence-bundle": 20
+        "marcojanssen/silex-service-register-provider": 20,
+        "jurjean/spray-persistence-bundle": 20,
+        "wizkunde/silex-hmac": 20,
+        "wizkunde/silex-errors": 20
     },
     "platform": {
         "php": ">=5.4.0"

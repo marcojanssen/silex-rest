@@ -5,7 +5,8 @@ use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use MJanssen\Traits\ErrorTrait;
+use Wizkunde\Traits\ErrorTrait;
+use Wizkunde\Dispatcher\Middleware\HmacMiddleware;
 
 /**
  * Class RestControllerProvider
@@ -25,10 +26,6 @@ class RestControllerProvider implements ControllerProviderInterface
         $controllers = $app['controllers_factory'];
 
         $validation = $this->getValidationMiddleware($app);
-
-        // Ensure that all controllers require a valid HMAC key
-        $hmacValidation = $this->getHmacMiddleware($app);
-        $controllers->before($hmacValidation);
 
         $controllers->get('/{entity}', 'MJanssen\Controllers\RestController::getCollectionAction');
         $controllers->post('/{entity}', 'MJanssen\Controllers\RestController::postAction')
@@ -74,26 +71,5 @@ class RestControllerProvider implements ControllerProviderInterface
         };
 
         return $validation;
-    }
-
-    /**
-     * Returns hmac middleware for post, put and delete requests
-     * @return callable
-     */
-    private function getHmacMiddleware(Application $app)
-    {
-        $hmacValidation = function (Request $request, $app) {
-            $app['service.hmac']->validate(
-                array('app' => $app),
-                $app['request']->getContent()
-            );
-
-            if($app['service.hmac']->hasErrors()) {
-                $this->setErrors($app['service.hmac']->getErrors());
-                return new JsonResponse(array('errors' => $this->getErrorResponse()));
-            }
-        };
-
-        return $hmacValidation;
     }
 }
