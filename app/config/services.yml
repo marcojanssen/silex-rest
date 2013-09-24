@@ -13,3 +13,6 @@ providers:
 
   custom:
     class: MJanssen\Provider\ServiceProvider
+
+  hmac:
+    class: Wizkunde\Provider\HmacServiceProvider

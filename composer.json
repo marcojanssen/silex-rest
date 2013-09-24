@@ -4,6 +4,14 @@
         {
             "type": "vcs",
             "url": "https://github.com/marcojanssen/silex-service-register-provider.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Wizkunde/silex-hmac.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Wizkunde/silex-errors.git"
         }
     ],
     "require": {
@@ -29,7 +37,9 @@
         "filp/whoops": "1.*",
         "zendframework/zend-filter": "2.*",
         "jurjean/spray-persistence-bundle": "dev-master",
-        "zendframework/zend-loader": "2.2.4"
+        "zendframework/zend-loader": "2.2.4",
+        "wizkunde/silex-hmac": "dev-master",
+        "wizkunde/silex-errors": "dev-master"
     },
     "autoload": {
         "psr-0": {
