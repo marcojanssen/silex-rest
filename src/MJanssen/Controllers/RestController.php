@@ -31,7 +31,7 @@ class RestController
         return new JsonResponse(
             $app['doctrine.extractor']->extractEntity(
                 $entity,
-                true
+                'detail'
             )
         );
     }
@@ -58,7 +58,8 @@ class RestController
                 $repository->findBy(
                     array(),
                     array('id' => 'ASC')
-                )
+                ),
+                'list'
             )
         );
     }
@@ -96,7 +97,7 @@ class RestController
 
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
-            $this->getEntity($request, $app)
+            $this->getEntityName($request, $app)
         );
 
         $app['orm.em']->persist($item);

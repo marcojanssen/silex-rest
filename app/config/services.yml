@@ -11,5 +11,8 @@ providers:
   doctrine.orm:
     class: Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider
 
+  doctrine.registry:
+    class: Dominikzogg\Silex\Provider\DoctrineOrmManagerRegistryProvider
+
   custom:
     class: MJanssen\Provider\ServiceProvider
