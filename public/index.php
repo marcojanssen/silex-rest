@@ -29,7 +29,7 @@ $app->register(
 
 //Set all available routes
 $app->register(
-    new ConfigServiceProvider(__DIR__."/../app/config/routes.yml")
+    new ConfigServiceProvider(__DIR__."/../app/config/routes.yml", array('baseUrl' => $app['baseUrl']))
 );
 
 //Register all routes
