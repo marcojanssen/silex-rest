@@ -1,19 +1,17 @@
 <?php
 namespace MJanssen\Provider;
 
-use MJanssen\Filters\PropertyFilter;
-use MJanssen\Service\RequestValidatorService;
+
 use Silex\Application;
 use Silex\ServiceProviderInterface;
-
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Construction\DoctrineObjectConstructor;
 use JMS\Serializer\Construction\UnserializeObjectConstructor;
-
 use MJanssen\Doctrine\Service\ExtractorService;
 use MJanssen\Doctrine\Service\HydratorService;
-use MJanssen\Doctrine\Service\PrepareService;
 use MJanssen\Doctrine\Service\ResolverService;
+use MJanssen\Filters\PropertyFilter;
+use MJanssen\Service\RequestValidatorService;
 use MJanssen\Service\ValidatorService;
 use MJanssen\Service\HmacService;
 
