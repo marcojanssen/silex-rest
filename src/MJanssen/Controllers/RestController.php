@@ -124,10 +124,10 @@ class RestController
 
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
-            $entity
+            $this->getEntityName($request, $app)
         );
 
-        $app['orm.em']->persist($item);
+        $app['orm.em']->merge($item);
         $app['orm.em']->flush();
 
         return new JsonResponse(array('item updated'));
