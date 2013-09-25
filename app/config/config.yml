@@ -27,3 +27,5 @@ orm.em.options:
 
 baseUrl: ''
 hmac_key: ''
+
+serializer.cache.dir: '%app_path%/app/cache/serializer'
