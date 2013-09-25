@@ -26,3 +26,5 @@ orm.em.options:
       use_simple_annotation_reader: false
 
 baseUrl: ''
+
+serializer.cache.dir: '%app_path%/app/cache/serializer'
