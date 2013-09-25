@@ -21,10 +21,11 @@
     "require": {
         "php": ">=5.4.0",
         "dflydev/doctrine-orm-service-provider": "1.0.*",
-        "doctrine/doctrine-module": "dev-master",
         "doctrine/orm": "2.4.*",
+        "dominikzogg/doctrine-orm-manager-registry-provider": "1.2.*",
         "gedmo/doctrine-extensions": "2.3.*",
         "igorw/config-service-provider": "1.2.*",
+        "jms/serializer": "0.13.0",
         "marcojanssen/silex-routing-service-provider": "1.0.*",
         "marcojanssen/silex-service-register-provider": "1.0.*",
         "silex/silex": "1.1.*",

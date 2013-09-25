@@ -1,10 +1,9 @@
 <?php
 namespace MJanssen\Doctrine\Service;
 
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
-use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializationContext;
 use Doctrine\ORM\EntityManager;
-use MJanssen\DoctrineModule\Stdlib\Hydrator\Strategy\ExtractRecursiveByValue;
 
 class ExtractorService
 {
@@ -12,11 +11,12 @@ class ExtractorService
     protected $entityManager;
 
     /**
-     * @param DoctrineHydrator $hydrator
+     * @param Serializer $serializer
+     * @param EntityManager $entityManager
      */
-    public function __construct(DoctrineHydrator $hydrator, EntityManager $entityManager)
+    public function __construct(Serializer $serializer, EntityManager $entityManager)
     {
-        $this->hydrator = $hydrator;
+        $this->serializer = $serializer;
         $this->entityManager = $entityManager;
     }
 
@@ -24,12 +24,12 @@ class ExtractorService
      * @param $entities
      * @return array
      */
-    public function extractEntities($entities, $extractAssociations = false)
+    public function extractEntities($entities, $group)
     {
         $extractedItems = array();
 
         foreach($entities AS $entity) {
-            $extractedItems[] = $this->extractEntity($entity, $extractAssociations);
+            $extractedItems[] = $this->extractEntity($entity, $group);
         }
 
         return $extractedItems;
@@ -40,46 +40,9 @@ class ExtractorService
      * @param $entity
      * @return array
      */
-    public function extractEntity($entity, $extractAssociations = false)
+    public function extractEntity($entity, $group)
     {
-        if(true === $extractAssociations) {
-            $this->setStrategyAssociations($entity);
-            return $this->hydrator->extract($entity);
-        }
-
-        if(false === $extractAssociations) {
-            return $this->convertAssociationsToEmptyArray(
-                $this->hydrator->extract($entity)
-            );
-        }
-
-    }
-
-    /**
-     * @param $entity
-     */
-    protected function setStrategyAssociations($entity)
-    {
-        $metadata = $this->entityManager->getClassMetadata(get_class($entity));
-        $associations = $metadata->getAssociationNames();
-        foreach ($associations as $association) {
-            $this->hydrator->addStrategy($association, new ExtractRecursiveByValue($this->entityManager));
-        }
-    }
-
-    /**
-     * Converts Doctrine Collection to empty array
-     * @param array $extractedResults
-     * @return array
-     */
-    protected function convertAssociationsToEmptyArray(array $extractedResults)
-    {
-        foreach($extractedResults AS $key => $value) {
-            if($value instanceof Collection) {
-                $extractedResults[$key] = array();
-            }
-        }
-
-        return $extractedResults;
+        $serializedContext = SerializationContext::create()->setGroups(array($group));
+        return json_decode($this->serializer->serialize($entity, 'json', $serializedContext));
     }
 }

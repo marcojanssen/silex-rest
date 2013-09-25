@@ -1,9 +1,8 @@
 <?php
 namespace MJanssen\Doctrine\Service;
 
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+use JMS\Serializer\Serializer;
 use Doctrine\ORM\EntityManager;
-use MJanssen\DoctrineModule\Stdlib\Hydrator\Strategy\HydrateRecursiveByValue;
 
 class HydratorService
 {
@@ -11,11 +10,12 @@ class HydratorService
     protected $entityManager;
 
     /**
-     * @param DoctrineHydrator $hydrator
+     * @param Serializer $serializer
+     * @param EntityManager $entityManager
      */
-    public function __construct(DoctrineHydrator $hydrator, EntityManager $entityManager)
+    public function __construct(Serializer $serializer, EntityManager $entityManager)
     {
-        $this->hydrator = $hydrator;
+        $this->serializer = $serializer;
         $this->entityManager = $entityManager;
     }
 
@@ -24,43 +24,8 @@ class HydratorService
      * @param $entity
      * @return object
      */
-    public function hydrateEntity($data, $entity, $hydrateAssociations = false)
+    public function hydrateEntity($data, $entityName)
     {
-        if($this->isJson($data)) {
-            $data = json_decode($data, true);
-        }
-
-        if(true === $hydrateAssociations) {
-            $this->setStrategyAssociations($entity);
-        }
-
-        return $this->hydrator->hydrate($data, $entity);
-    }
-
-    /**
-     * @param $entity
-     */
-    protected function setStrategyAssociations($entity)
-    {
-        $metadata = $this->entityManager->getClassMetadata(get_class($entity));
-        $associations = $metadata->getAssociationNames();
-        foreach ($associations as $association) {
-            $this->hydrator->addStrategy($association, new HydrateRecursiveByValue($this->entityManager));
-        }
-    }
-
-    /**
-     * Check if incoming data is JSON
-     * @param $string
-     * @return bool
-     */
-    protected function isJson($string)
-    {
-        if(!is_string($string)) {
-            return false;
-        }
-
-        json_decode($string);
-        return (json_last_error() == JSON_ERROR_NONE);
+        return $this->serializer->deserialize($data, $entityName, 'json');
     }
 }

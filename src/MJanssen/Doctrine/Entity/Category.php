@@ -4,6 +4,8 @@ namespace MJanssen\Doctrine\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Entity
@@ -12,78 +14,29 @@ use Doctrine\Common\Collections\Collection;
 class Category
 {
     /**
+     * @Type("integer")
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
+     * @Groups({"list", "detail"})
      */
     private $id;
 
     /**
+     * @Type("string")
      * @ORM\Column(type="string")
+     * @Groups({"list", "detail"})
      */
     private $name;
 
     /**
      * @ORM\OneToMany(targetEntity="Item", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @Groups({"list", "detail"})
      */
     protected $items;
 
     public function __construct()
     {
         $this->items = new ArrayCollection();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getItems()
-    {
-        return $this->items;
-    }
-
-    /**
-     * @param Collection $items
-     */
-    public function addItems(Collection $items)
-    {
-        foreach ($items as $item) {
-            $item->setCategory($this);
-            $this->items->add($item);
-        }
-    }
-
-    /**
-     * @param Collection $items
-     */
-    public function removeItems(Collection $items)
-    {
-        foreach ($items as $item) {
-            $item->setCategory(null);
-            $this->items->removeElement($item);
-        }
     }
 }
