@@ -11,6 +11,7 @@ use Wizkunde\Dispatcher\Middleware\HmacMiddleware;
 /**
  * Class RestControllerProvider
  * @package MJanssen\Provider
+ * @deprecated
  */
 class RestControllerProvider implements ControllerProviderInterface
 {

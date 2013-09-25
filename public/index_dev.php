@@ -1,6 +1,7 @@
 <?php
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Marcojanssen\Provider\ServiceRegisterProvider;
+use Marcojanssen\Provider\RoutingServiceProvider;
 use Igorw\Silex\ConfigServiceProvider;
 use Silex\Application;
 use Symfony\Component\Debug\Debug;
@@ -38,6 +39,17 @@ $app->register(
     new ConfigServiceProvider(__DIR__."/../app/config/config_dev.yml", array('app_path' => getcwd()))
 );
 
+//Set all available routes
+$app->register(
+    new ConfigServiceProvider(__DIR__."/../app/config/routes.yml")
+);
+
+//Register all routes
+$app->register(
+    new RoutingServiceProvider()
+);
+
+
 $sluggableListener = new Gedmo\Sluggable\SluggableListener;
 $app['db.event_manager']->addEventSubscriber($sluggableListener);
 
@@ -49,7 +61,5 @@ $conn->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
 $conn->getDatabasePlatform()->registerDoctrineTypeMapping('point', 'string');
 
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
-
-$app->mount($app['baseUrl'].'/{namespace}', new MJanssen\Provider\RestControllerProvider());
 
 $app->run();
