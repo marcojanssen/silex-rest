@@ -1,12 +1,12 @@
 config.routes:
-  - pattern: '/core/items'
+  - pattern: '%baseUrl%/core/items'
     controller: 'MJanssen\Controllers\RestController::resolveAction'
     method: ['get', 'post']
     value:
       - namespace: 'core'
       - entity: 'items'
 
-  - pattern: '/core/items/{id}'
+  - pattern: '%baseUrl%/core/items/{id}'
     controller: 'MJanssen\Controllers\RestController::resolveAction'
     method: ['put', 'delete', 'get']
     assert:
@@ -15,14 +15,14 @@ config.routes:
       - namespace: 'core'
       - entity: 'items'
 
-  - pattern: '/core/categories'
+  - pattern: '%baseUrl%/core/categories'
     controller: 'MJanssen\Controllers\RestController::resolveAction'
     method: ['get', 'post']
     value:
       - namespace: 'core'
       - entity: 'categories'
 
-  - pattern: '/core/categories/{id}'
+  - pattern: '%baseUrl%/core/categories/{id}'
     controller: 'MJanssen\Controllers\RestController::resolveAction'
     method: ['put', 'delete', 'get']
     assert:
