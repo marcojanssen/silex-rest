@@ -1,0 +1,32 @@
+config.routes:
+  - pattern: '/core/items'
+    controller: 'MJanssen\Controllers\RestController::resolveAction'
+    method: ['get', 'post']
+    value:
+      - namespace: 'core'
+      - entity: 'items'
+
+  - pattern: '/core/items/{id}'
+    controller: 'MJanssen\Controllers\RestController::resolveAction'
+    method: ['put', 'delete', 'get']
+    assert:
+      - id: '^[\d]+$'
+    value:
+      - namespace: 'core'
+      - entity: 'items'
+
+  - pattern: '/core/categories'
+    controller: 'MJanssen\Controllers\RestController::resolveAction'
+    method: ['get', 'post']
+    value:
+      - namespace: 'core'
+      - entity: 'categories'
+
+  - pattern: '/core/categories/{id}'
+    controller: 'MJanssen\Controllers\RestController::resolveAction'
+    method: ['put', 'delete', 'get']
+    assert:
+      - id: '^[\d]+$'
+    value:
+      - namespace: 'core'
+      - entity: 'categories'

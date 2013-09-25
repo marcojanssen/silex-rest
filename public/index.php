@@ -26,6 +26,16 @@ $app->register(
     new ConfigServiceProvider(__DIR__."/../app/config/config.yml", array('app_path' => getcwd()))
 );
 
+//Set all available routes
+$app->register(
+    new ConfigServiceProvider(__DIR__."/../app/config/routes.yml")
+);
+
+//Register all routes
+$app->register(
+    new RoutingServiceProvider()
+);
+
 $sluggableListener = new Gedmo\Sluggable\SluggableListener;
 $app['db.event_manager']->addEventSubscriber($sluggableListener);
 
@@ -37,10 +47,6 @@ $conn->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
 $conn->getDatabasePlatform()->registerDoctrineTypeMapping('point', 'string');
 
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
-
-//$app['controllers']->requireHttps();
-
-$app->mount($app['baseUrl'].'/{namespace}', new MJanssen\Provider\RestControllerProvider());
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if(404 === $code) {

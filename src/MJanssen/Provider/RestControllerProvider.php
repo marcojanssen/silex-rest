@@ -10,6 +10,7 @@ use MJanssen\Traits\ErrorTrait;
 /**
  * Class RestControllerProvider
  * @package MJanssen\Provider
+ * @deprecated
  */
 class RestControllerProvider implements ControllerProviderInterface
 {

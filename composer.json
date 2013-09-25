@@ -4,6 +4,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/marcojanssen/silex-service-register-provider.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/marcojanssen/silex-routing-service-provider.git"
         }
     ],
     "require": {
@@ -13,6 +17,7 @@
         "doctrine/orm": "2.4.*",
         "gedmo/doctrine-extensions": "2.3.*",
         "igorw/config-service-provider": "1.2.*",
+        "marcojanssen/silex-routing-service-provider": "dev-master",
         "marcojanssen/silex-service-register-provider": "dev-master",
         "silex/silex": "1.1.*",
         "symfony/class-loader": "~2.3",
