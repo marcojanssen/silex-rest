@@ -37,16 +37,6 @@ $app->register(
     new RoutingServiceProvider()
 );
 
-$sluggableListener = new Gedmo\Sluggable\SluggableListener;
-$app['db.event_manager']->addEventSubscriber($sluggableListener);
-
-$softdeletableListener = new Gedmo\SoftDeleteable\SoftDeleteableListener();
-$app['db.event_manager']->addEventSubscriber($softdeletableListener);
-
-$conn = $app['orm.em']->getConnection();
-$conn->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
-$conn->getDatabasePlatform()->registerDoctrineTypeMapping('point', 'string');
-
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 $app->error(function (\Exception $e, $code) use ($app) {
