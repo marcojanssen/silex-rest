@@ -27,4 +27,7 @@ orm.em.options:
 
 baseUrl: ''
 
+cache.path: '%app_path%/app/cache'
+log.path: '%app_path%/app/logs'
+
 serializer.cache.dir: '%app_path%/app/cache/serializer'
