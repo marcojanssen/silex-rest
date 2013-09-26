@@ -8,7 +8,7 @@ $loader = require_once 'vendor/autoload.php';
 set_time_limit(0);
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use Marcojanssen\Provider\ServiceRegisterProvider;
+use MJanssen\Provider\ServiceRegisterProvider;
 use Igorw\Silex\ConfigServiceProvider;
 use Silex\Application;
 use Symfony\Component\Console\Input\ArgvInput;
@@ -32,16 +32,6 @@ $app->register(
 $app->register(
     new ConfigServiceProvider(__DIR__."/../app/config/config.yml", array('app_path' => getcwd()))
 );
-
-$sluggableListener = new Gedmo\Sluggable\SluggableListener;
-$app['db.event_manager']->addEventSubscriber($sluggableListener);
-
-$softdeletableListener = new Gedmo\SoftDeleteable\SoftDeleteableListener();
-$app['db.event_manager']->addEventSubscriber($softdeletableListener);
-
-$conn = $app['orm.em']->getConnection();
-$conn->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
-$conn->getDatabasePlatform()->registerDoctrineTypeMapping('point', 'string');
 
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
