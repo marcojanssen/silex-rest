@@ -29,3 +29,5 @@ baseUrl: ''
 hmac_key: ''
 
 serializer.cache.dir: '%app_path%/app/cache/serializer'
+cache.path: '%app_path%/app/cache'
+log.path: '%app_path%/app/logs'
