@@ -7,9 +7,7 @@ $loader = require_once 'vendor/autoload.php';
 
 set_time_limit(0);
 
-use Doctrine\Common\Annotations\AnnotationRegistry;
-use MJanssen\Provider\ServiceRegisterProvider;
-use Igorw\Silex\ConfigServiceProvider;
+
 use Silex\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 
@@ -17,23 +15,9 @@ $input = new ArgvInput();
 $env = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
 
 $app = new Application();
+$cli = true;
 
-//Set all service providers
-$app->register(
-    new ConfigServiceProvider(__DIR__."/../app/config/services.yml")
-);
-
-//Register all providers
-$app->register(
-    new ServiceRegisterProvider()
-);
-
-//Configure the service providers
-$app->register(
-    new ConfigServiceProvider(__DIR__."/../app/config/config.yml", array('app_path' => getcwd()))
-);
-
-AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
+require_once('app/bootstrap.php');
 
 $console = require __DIR__.'/console.php';
 $console->run();
