@@ -1,8 +1,4 @@
 <?php
-use Doctrine\Common\Annotations\AnnotationRegistry;
-use MJanssen\Provider\ServiceRegisterProvider;
-use MJanssen\Provider\RoutingServiceProvider;
-use Igorw\Silex\ConfigServiceProvider;
 use Silex\Application;
 use Symfony\Component\Debug\Debug;
 
@@ -15,40 +11,8 @@ Debug::enable();
 
 $app = new Application();
 $app['debug'] = true;
+$cli = false;
 
-//Set all service providers
-$app->register(
-    new ConfigServiceProvider(__DIR__."/../app/config/services.yml")
-);
-
-$app->register(
-    new ConfigServiceProvider(__DIR__."/../app/config/services_dev.yml")
-);
-
-//Register all providers
-$app->register(
-    new ServiceRegisterProvider()
-);
-
-//Configure the service providers
-$app->register(
-    new ConfigServiceProvider(__DIR__."/../app/config/config.yml", array('app_path' => getcwd()))
-);
-
-$app->register(
-    new ConfigServiceProvider(__DIR__."/../app/config/config_dev.yml", array('app_path' => getcwd()))
-);
-
-//Set all available routes
-$app->register(
-    new ConfigServiceProvider(__DIR__."/../app/config/routes.yml", array('baseUrl' => $app['baseUrl']))
-);
-
-//Register all routes
-$app->register(
-    new RoutingServiceProvider()
-);
-
-AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
+require_once('app/bootstrap.php');
 
 $app->run();
