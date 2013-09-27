@@ -15,7 +15,7 @@ use Symfony\Component\Process\Exception\RuntimeException;
  * Class RestController
  * @package MJanssen\Controllers
  */
-class RestController
+abstract class RestController
 {
     /**
      * @param Request $request
@@ -23,7 +23,7 @@ class RestController
      * @param null $id
      * @return JsonResponse
      */
-    public function getAction(Request $request, Application $app, $id = null)
+    public function getAction(Request $request, Application $app, $id)
     {
         $entity = $this->getEntityFromRepository($request, $app, $id);
         $this->isValidEntity($entity);
