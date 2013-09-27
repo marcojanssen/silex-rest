@@ -1,11 +1,5 @@
 {
     "name": "marcojanssen/silex-rest",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/marcojanssen/silex-routing-service-provider.git"
-        }
-    ],
     "require": {
         "php": ">=5.4.0",
         "dflydev/doctrine-orm-service-provider": "1.0.*",
@@ -15,7 +9,7 @@
         "igorw/config-service-provider": "1.2.*",
         "jms/serializer": "0.13.0",
         "jurjean/spray-persistence-bundle": "1.0.*",
-        "marcojanssen/silex-routing-service-provider": "1.0.*",
+        "marcojanssen/silex-routing-service-provider": "1.1.*",
         "marcojanssen/silex-service-register-provider": "1.1.*",
         "silex/silex": "1.1.*",
         "symfony/class-loader": "~2.3",
