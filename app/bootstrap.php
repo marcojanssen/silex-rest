@@ -6,12 +6,12 @@ use Igorw\Silex\ConfigServiceProvider;
 
 //Set all service providers
 $app->register(
-    new ConfigServiceProvider(__DIR__."/../app/config/services.yml")
+    new ConfigServiceProvider(__DIR__."/../app/config/services.php")
 );
 
 if(true === $app['debug']) {
     $app->register(
-        new ConfigServiceProvider(__DIR__."/../app/config/services_dev.yml")
+        new ConfigServiceProvider(__DIR__."/../app/config/services_dev.php")
     );
 }
 
