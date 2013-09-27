@@ -9,6 +9,7 @@ use Spray\PersistenceBundle\Repository\FilterableRepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Process\Exception\RuntimeException;
 
 /**
  * Class RestController
@@ -16,7 +17,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class RestController
 {
-
     /**
      * @param Request $request
      * @param Application $app
@@ -31,7 +31,7 @@ class RestController
         return new JsonResponse(
             $app['doctrine.extractor']->extractEntity(
                 $entity,
-                true
+                'detail'
             )
         );
     }
@@ -58,7 +58,8 @@ class RestController
                 $repository->findBy(
                     array(),
                     array('id' => 'ASC')
-                )
+                ),
+                'list'
             )
         );
     }
@@ -89,9 +90,14 @@ class RestController
      */
     public function postAction(Request $request, Application $app)
     {
+        $response = $app['service.request.validator']->validateRequest();
+        if(null !== $response) {
+            return $response;
+        }
+
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
-            $this->getEntity($request, $app)
+            $this->getEntityName($request, $app)
         );
 
         $app['orm.em']->persist($item);
@@ -108,18 +114,56 @@ class RestController
      */
     public function putAction(Request $request, Application $app, $id)
     {
+        $response = $app['service.request.validator']->validateRequest();
+        if(null !== $response) {
+            return $response;
+        }
+
         $entity = $this->getEntityFromRepository($request, $app, $id);
         $this->isValidEntity($entity);
 
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
-            $entity
+            $this->getEntityName($request, $app)
         );
 
-        $app['orm.em']->persist($item);
+        $app['orm.em']->merge($item);
         $app['orm.em']->flush();
 
         return new JsonResponse(array('item updated'));
+    }
+
+    /**
+     * @param Request $request
+     * @param Application $app
+     * @internal param $id
+     * @return JsonResponse
+     */
+    public function resolveAction(Request $request, Application $app, $id = null)
+    {
+        $method = $request->getMethod();
+
+        if('GET' === $method) {
+            if(null === $id) {
+                return $this->getCollectionAction($request, $app);
+            }
+
+            return $this->getAction($request, $app, $id);
+        }
+
+        if('POST' === $method) {
+            return $this->postAction($request, $app, $id);
+        }
+
+        if('PUT' === $method) {
+            return $this->putAction($request, $app, $id);
+        }
+
+        if('DELETE' === $method) {
+            return $this->putAction($request, $app, $id);
+        }
+
+        throw new RuntimeException('Invalid method specified');
     }
 
     /**

@@ -11,6 +11,7 @@ class ItemsValidator implements ValidatorInterface
     public function getConstraints()
     {
         $constraint = new Assert\Collection(array(
+            'id' => new Assert\Type(array('type' => 'numeric')),
             'name' => new Assert\Length(array('min' => 5)),
             'phone' => new Assert\Length(array('min' => 5)),
             'email' => new Assert\Length(array('min' => 5))

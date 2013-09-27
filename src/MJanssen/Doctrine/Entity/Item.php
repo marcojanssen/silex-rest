@@ -2,6 +2,8 @@
 namespace MJanssen\Doctrine\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="Spray\PersistenceBundle\Repository\FilterableEntityRepository")
@@ -11,104 +13,38 @@ class Item
 {
 
     /**
+     * @Type("integer")
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
+     * @Groups({"list", "detail"})
      */
     private $id;
 
     /**
+     * @Type("string")
      * @ORM\Column(type="string")
+     * @Groups({"list", "detail"})
      */
     private $name;
 
     /**
+     * @Type("string")
      * @ORM\Column(type="string")
+     * @Groups({"list", "detail"})
      */
     private $email;
 
     /**
+     * @Type("string")
      * @ORM\Column(type="string")
+     * @Groups({"list", "detail"})
      */
     private $phone;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="items")
+     * @Groups({"detail"})
      */
-    private $category;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param mixed $phone
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param $category
-     * @return $this
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-        return $this;
-    }
-
+    protected $category;
 }
