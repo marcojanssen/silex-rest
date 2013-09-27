@@ -11,6 +11,7 @@ use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Process\Process;
 
 
 $console = new Application('Silex - Rest API Edition', '1.0');
@@ -47,6 +48,24 @@ if (isset($app['log.path'])) {
             $output->writeln(sprintf("%s <info>success</info>", 'log:clear'));
         });
 }
+
+$console
+    ->register('docs:create')
+    ->setDescription('Create API docs')
+    ->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
+
+        $docs = new Process(sprintf('cd %s && php vendor/bin/swagger ./ -o ./docs -e vendor/doctrine:vendor/zircote:vendor/symfony:vendor/zendframework:vendor/jms',$app['app_path']));
+        $docs->run();
+
+        if ($docs->isSuccessful()) {
+            $output->writeln(sprintf("%s <info>success</info>", 'docs:created'));
+            return true;
+        }
+
+        return $docs;
+
+
+    });
 
 /*
  * Doctrine CLI
