@@ -1,4 +1,4 @@
-providers:
+config.providers:
   validator:
     class: Silex\Provider\ValidatorServiceProvider
 
