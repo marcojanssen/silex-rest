@@ -35,7 +35,8 @@
         "symfony/yaml": "~2.3",
         "zendframework/zend-filter": "2.*",
         "mardy-git/hmac": "0.2.*",
-        "zendframework/zend-loader": "2.2.4"
+        "zendframework/zend-loader": "2.2.4",
+        "zircote/swagger-php": "0.7.*"
     },
     "autoload": {
         "psr-0": {
