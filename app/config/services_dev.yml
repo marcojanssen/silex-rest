@@ -1,4 +1,4 @@
-providers:
+config.providers:
   monolog:
     class: Silex\Provider\MonologServiceProvider
 
