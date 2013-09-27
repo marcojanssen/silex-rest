@@ -1,4 +1,23 @@
 config.routes:
+  - pattern: '%baseUrl%/api/api-docs'
+    controller: 'MJanssen\Controllers\ApiDocsController::getAction'
+    method: ['get']
+
+  - pattern: '%baseUrl%/api/api-docs/resources/{resource}.json'
+    controller: 'MJanssen\Controllers\ApiDocsController::getResourceAction'
+    method: ['get']
+    assert:
+      - resource: '^[a-z\-]+$'
+
+  - pattern: '%baseUrl%/core/items/{id}'
+    controller: 'MJanssen\Controllers\ItemsController::resolveAction'
+    method: ['put', 'delete', 'get']
+    assert:
+      - id: '^[\d]+$'
+    value:
+      - namespace: 'core'
+      - entity: 'items'
+
   - pattern: '%baseUrl%/core/items'
     controller: 'MJanssen\Controllers\ItemsController::resolveAction'
     method: ['get', 'post']
