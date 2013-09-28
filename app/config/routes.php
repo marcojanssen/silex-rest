@@ -19,7 +19,7 @@ return array(
                 'get'
             ),
             'assert' => array(
-                array('resource' => $regex['string'])
+                'resource' => $regex['string']
             )
         ),
         array(
@@ -29,11 +29,11 @@ return array(
                 'get', 'put', 'delete'
             ),
             'assert' => array(
-                array('id' => $regex['id'])
+                'id' => $regex['id']
             ),
             'value' => array(
-                array('namespace' => 'core'),
-                array('entity'    => 'items')
+                'namespace' => 'core',
+                'entity'    => 'items'
             )
         ),
         array(
@@ -43,8 +43,8 @@ return array(
                 'get', 'post'
             ),
             'value' => array(
-                array('namespace' => 'core'),
-                array('entity'    => 'items')
+                'namespace' => 'core',
+                'entity'    => 'items'
             )
         ),
         array(
@@ -54,11 +54,11 @@ return array(
                 'get', 'put', 'delete'
             ),
             'assert' => array(
-                array('id' => $regex['id'])
+                'id' => $regex['id']
             ),
             'value' => array(
-                array('namespace' => 'core'),
-                array('entity'    => 'categories')
+                'namespace' => 'core',
+                'entity'    => 'categories'
             )
         ),
         array(
@@ -68,8 +68,8 @@ return array(
                 'get', 'post'
             ),
             'value' => array(
-                array('namespace' => 'core'),
-                array('entity'    => 'categories')
+                'namespace' => 'core',
+                'entity'    => 'categories'
             )
         )
     )
