@@ -43,5 +43,5 @@ return array(
     'cache.path' => '%app.path%/app/cache',
     'log.path'   => '%app.path%/app/logs',
 
-    'serializer.cache.dir' => '%app.path%/app/cache/serializer'
+    'serializer.cache.path' => '%app.path%/app/cache/serializer'
 );
