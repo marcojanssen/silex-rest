@@ -24,7 +24,7 @@ class ItemsController extends RestController implements ControllerInterface
      * @SWG\Api(
      *     path="/{itemId}.{format}",
      *     @SWG\Operations(
-     *         @SWG\Operation(httpMethod="GET", responseClass="FooModel")
+     *         @SWG\Operation(httpMethod="GET", responseClass="Item")
      *     )
      * )
      * @SWG\ErrorResponse(code="404", reason="Item not found")
@@ -38,7 +38,7 @@ class ItemsController extends RestController implements ControllerInterface
      * @SWG\Api(
      *     path=".{format}",
      *     @SWG\Operations(
-     *         @SWG\Operation(httpMethod="GET", responseClass="FooModel")
+     *         @SWG\Operation(httpMethod="GET", responseClass="Item")
      *     )
      * )
      */
@@ -51,7 +51,7 @@ class ItemsController extends RestController implements ControllerInterface
      * @SWG\Api(
      *     path="/{itemId}",
      *     @SWG\Operations(
-     *         @SWG\Operation(httpMethod="DELETE", responseClass="FooModel")
+     *         @SWG\Operation(httpMethod="DELETE", responseClass="Item")
      *     )
      * )
      * @SWG\ErrorResponse(code="404", reason="Item not found")
@@ -65,7 +65,7 @@ class ItemsController extends RestController implements ControllerInterface
      * @SWG\Api(
      *     path="",
      *     @SWG\Operations(
-     *         @SWG\Operation(httpMethod="POST", responseClass="FooModel")
+     *         @SWG\Operation(httpMethod="POST", responseClass="Item")
      *     )
      * )
      */
@@ -78,7 +78,7 @@ class ItemsController extends RestController implements ControllerInterface
      * @SWG\Api(
      *     path="/{itemId}.{format}",
      *     @SWG\Operations(
-     *         @SWG\Operation(httpMethod="PUT", responseClass="FooModel")
+     *         @SWG\Operation(httpMethod="PUT", responseClass="Item")
      *     )
      * )
      * @SWG\ErrorResponse(code="404", reason="Item not found")

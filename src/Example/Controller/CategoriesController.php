@@ -22,9 +22,9 @@ class CategoriesController extends RestController implements ControllerInterface
 {
     /**
      * @SWG\Api(
-     *     path="/{categoriesId}.{format}",
+     *     path="/{categoryId}.{format}",
      *     @SWG\Operations(
-     *         @SWG\Operation(httpMethod="GET", responseClass="FooModel")
+     *         @SWG\Operation(httpMethod="GET", responseClass="Category")
      *     )
      * )
      * @SWG\ErrorResponse(code="404", reason="Category not found")
@@ -38,7 +38,7 @@ class CategoriesController extends RestController implements ControllerInterface
      * @SWG\Api(
      *     path=".{format}",
      *     @SWG\Operations(
-     *         @SWG\Operation(httpMethod="GET", responseClass="FooModel")
+     *         @SWG\Operation(httpMethod="GET", responseClass="Category")
      *     )
      * )
      */
@@ -49,9 +49,9 @@ class CategoriesController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path="/{categoriesId}",
+     *     path="/{categoryId}",
      *     @SWG\Operations(
-     *         @SWG\Operation(httpMethod="DELETE", responseClass="FooModel")
+     *         @SWG\Operation(httpMethod="DELETE", responseClass="Category")
      *     )
      * )
      * @SWG\ErrorResponse(code="404", reason="Category not found")
@@ -65,7 +65,7 @@ class CategoriesController extends RestController implements ControllerInterface
      * @SWG\Api(
      *     path="",
      *     @SWG\Operations(
-     *         @SWG\Operation(httpMethod="POST", responseClass="FooModel")
+     *         @SWG\Operation(httpMethod="POST", responseClass="Category")
      *     )
      * )
      */
@@ -76,9 +76,9 @@ class CategoriesController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path="/{categoriesId}.{format}",
+     *     path="/{categoryId}.{format}",
      *     @SWG\Operations(
-     *         @SWG\Operation(httpMethod="PUT", responseClass="FooModel")
+     *         @SWG\Operation(httpMethod="PUT", responseClass="Category")
      *     )
      * )
      * @SWG\ErrorResponse(code="404", reason="Category not found")
