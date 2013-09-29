@@ -3,21 +3,17 @@ namespace MJanssen\Service;
 
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializationContext;
-use Doctrine\ORM\EntityManager;
 
 class ExtractorService
 {
     protected $serializer;
-    protected $entityManager;
 
     /**
      * @param Serializer $serializer
-     * @param EntityManager $entityManager
      */
-    public function __construct(Serializer $serializer, EntityManager $entityManager)
+    public function __construct(Serializer $serializer)
     {
         $this->serializer = $serializer;
-        $this->entityManager = $entityManager;
     }
 
     /**
