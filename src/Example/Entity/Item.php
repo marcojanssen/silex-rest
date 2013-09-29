@@ -4,6 +4,7 @@ namespace Example\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\Groups;
+use Swagger\Annotations as SWG;
 
 
 /**
@@ -20,7 +21,7 @@ class Item
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
      * @Groups({"list", "detail"})
-     * @SWG\Property(name="id",type="Integer")
+     * @SWG\Property(name="id",type="int")
      */
     private $id;
 
@@ -28,7 +29,7 @@ class Item
      * @Type("string")
      * @ORM\Column(type="string")
      * @Groups({"list", "detail"})
-     * @SWG\Property(name="name",type="String")
+     * @SWG\Property(name="name",type="string")
      */
     private $name;
 
@@ -36,7 +37,7 @@ class Item
      * @Type("string")
      * @ORM\Column(type="string")
      * @Groups({"list", "detail"})
-     * @SWG\Property(name="email",type="String")
+     * @SWG\Property(name="email",type="string")
      */
     private $email;
 
@@ -44,7 +45,7 @@ class Item
      * @Type("string")
      * @ORM\Column(type="string")
      * @Groups({"list", "detail"})
-     * @SWG\Property(name="phone", type="String")
+     * @SWG\Property(name="phone", type="string")
      */
     private $phone;
 
