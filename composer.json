@@ -42,7 +42,8 @@
     },
     "autoload": {
         "psr-0": {
-            "MJanssen\\": "src/"
+            "MJanssen\\": "src/",
+            "Example\\": "src/"
         }
     }
 }
