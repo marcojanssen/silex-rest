@@ -25,23 +25,17 @@ require_once('app/bootstrap.php');
 $console = new ConsoleApplication('Silex - Rest API Edition', '1.0');
 $console->getDefinition()->addOption(new InputOption('--env', '-e', InputOption::VALUE_REQUIRED, 'The Environment name.', 'dev'));
 
-if (isset($app['cache.path'])) {
-    $command = new CacheClearCommand;
-    $command->setCachePath($app['cache.path']);
-    $console->add($command);
-}
+$command = new CacheClearCommand;
+$command->setCachePath($app['cache.path']);
+$console->add($command);
 
-if (isset($app['log.path'])) {
-    $command = new LogClearCommand;
-    $command->setLogPath($app['log.path']);
-    $console->add($command);
-}
+$command = new LogClearCommand;
+$command->setLogPath($app['log.path']);
+$console->add($command);
 
-if (isset($app['log.path'])) {
-    $command = new DocsCreateCommand;
-    $command->setApplicationPath($app['app.path']);
-    $console->add($command);
-}
+$command = new DocsCreateCommand;
+$command->setApplicationPath($app['app.path']);
+$console->add($command);
 
 /*
  * Doctrine CLI
