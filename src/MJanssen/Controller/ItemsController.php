@@ -1,5 +1,5 @@
 <?php
-namespace MJanssen\Controllers;
+namespace MJanssen\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -7,7 +7,7 @@ use Swagger\Annotations as SWG;
 
 /**
  * Class RestController
- * @package MJanssen\Controllers
+ * @package MJanssen\Controller
  *
  * @SWG\Resource(
  *     apiVersion="1.0",

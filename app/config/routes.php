@@ -7,14 +7,14 @@ return array(
     'config.routes' => array(
         array(
             'pattern' => '%baseUrl%/api/api-docs',
-            'controller' => 'MJanssen\Controllers\ApiDocsController::getAction',
+            'controller' => 'MJanssen\Controller\ApiDocsController::getAction',
             'method' => array(
                 'get'
             )
         ),
         array(
             'pattern' => '%baseUrl%/api/api-docs/resources/{resource}.json',
-            'controller' => 'MJanssen\Controllers\ApiDocsController::getResourceAction',
+            'controller' => 'MJanssen\Controller\ApiDocsController::getResourceAction',
             'method' => array(
                 'get'
             ),
@@ -24,7 +24,7 @@ return array(
         ),
         array(
             'pattern' => '%baseUrl%/core/items/{id}',
-            'controller' => 'MJanssen\Controllers\ItemsController::resolveAction',
+            'controller' => 'MJanssen\Controller\ItemsController::resolveAction',
             'method' => array(
                 'get', 'put', 'delete'
             ),
@@ -38,7 +38,7 @@ return array(
         ),
         array(
             'pattern' => '%baseUrl%/core/items',
-            'controller' => 'MJanssen\Controllers\ItemsController::resolveAction',
+            'controller' => 'MJanssen\Controller\ItemsController::resolveAction',
             'method' => array(
                 'get', 'post'
             ),
@@ -49,7 +49,7 @@ return array(
         ),
         array(
             'pattern' => '%baseUrl%/core/categories/{id}',
-            'controller' => 'MJanssen\Controllers\CategoriesController::resolveAction',
+            'controller' => 'MJanssen\Controller\CategoriesController::resolveAction',
             'method' => array(
                 'get', 'put', 'delete'
             ),
@@ -63,7 +63,7 @@ return array(
         ),
         array(
             'pattern' => '%baseUrl%/core/categories',
-            'controller' => 'MJanssen\Controllers\CategoriesController::resolveAction',
+            'controller' => 'MJanssen\Controller\CategoriesController::resolveAction',
             'method' => array(
                 'get', 'post'
             ),
