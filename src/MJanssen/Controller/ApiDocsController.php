@@ -59,7 +59,7 @@ class ApiDocsController
     protected function findFile($fileName, $appPath)
     {
         $finder = new Finder();
-        $finder->files()->in($appPath.'/docs')->name($fileName);
+        $finder->files()->in($appPath.'/api-docs')->name($fileName);
 
         if(1 === count($finder)) {
 
