@@ -47,7 +47,7 @@ class ServiceProvider implements ServiceProviderInterface
         });
 
         $app['doctrine.hydrator'] = $app->share(function($app) {
-            return new HydratorService($app['serializer'], $app['orm.em']);
+            return new HydratorService($app['serializer']);
         });
 
         $app['doctrine.resolver'] = $app->share(function($app) {

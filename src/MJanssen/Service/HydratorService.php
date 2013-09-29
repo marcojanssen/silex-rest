@@ -2,21 +2,17 @@
 namespace MJanssen\Service;
 
 use JMS\Serializer\Serializer;
-use Doctrine\ORM\EntityManager;
 
 class HydratorService
 {
     protected $serializer;
-    protected $entityManager;
 
     /**
      * @param Serializer $serializer
-     * @param EntityManager $entityManager
      */
-    public function __construct(Serializer $serializer, EntityManager $entityManager)
+    public function __construct(Serializer $serializer)
     {
         $this->serializer = $serializer;
-        $this->entityManager = $entityManager;
     }
 
     /**
