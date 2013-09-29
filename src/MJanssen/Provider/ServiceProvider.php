@@ -36,7 +36,7 @@ class ServiceProvider implements ServiceProviderInterface
         $app['serializer'] = $app->share(function($app) {
             $fallbackConstructer = new UnserializeObjectConstructor();
             $doctrineObjectConstructor = new DoctrineObjectConstructor($app['doctrine'], $fallbackConstructer);
-            return SerializerBuilder::create()->setCacheDir($app['serializer.cache.dir'])
+            return SerializerBuilder::create()->setCacheDir($app['serializer.cache.path'])
                                               ->setDebug($app['debug'])
                                               ->setObjectConstructor($doctrineObjectConstructor)
                                               ->build();

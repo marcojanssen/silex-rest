@@ -43,8 +43,7 @@ return array(
     'cache.path' => '%app.path%/app/cache',
     'log.path'   => '%app.path%/app/logs',
 
-    'baseUrl'	 => '',
     'hmac_key'	 => '',
 
-    'serializer.cache.dir' => '%app_path%/app/cache/serializer'
+    'serializer.cache.path' => '%app.path%/app/cache/serializer'
 );
