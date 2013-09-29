@@ -1,5 +1,5 @@
 <?php
-namespace MJanssen\Controllers;
+namespace MJanssen\Controller;
 
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityNotFoundException;
@@ -13,7 +13,7 @@ use Symfony\Component\Process\Exception\RuntimeException;
 
 /**
  * Class RestController
- * @package MJanssen\Controllers
+ * @package MJanssen\Controller
  */
 abstract class RestController
 {

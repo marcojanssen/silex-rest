@@ -1,5 +1,5 @@
 <?php
-namespace MJanssen\Controllers;
+namespace MJanssen\Controller;
 
 use InvalidArgumentException;
 use Silex\Application;
@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ApiDocsController
- * @package MJanssen\Controllers
+ * @package MJanssen\Controller
  */
 class ApiDocsController
 {
