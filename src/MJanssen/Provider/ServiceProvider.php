@@ -43,7 +43,7 @@ class ServiceProvider implements ServiceProviderInterface
         });
 
         $app['doctrine.extractor'] = $app->share(function($app) {
-            return new ExtractorService($app['serializer'], $app['orm.em']);
+            return new ExtractorService($app['serializer']);
         });
 
         $app['doctrine.hydrator'] = $app->share(function($app) {
