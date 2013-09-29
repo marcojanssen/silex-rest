@@ -39,7 +39,7 @@ if (isset($app['log.path'])) {
 
 if (isset($app['log.path'])) {
     $command = new DocsCreateCommand;
-    $command->setApplicationPath($app['app_path']);
+    $command->setApplicationPath($app['app.path']);
     $console->add($command);
 }
 
