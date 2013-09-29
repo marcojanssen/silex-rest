@@ -1,5 +1,5 @@
 <?php
-namespace MJanssen\Doctrine\Service;
+namespace MJanssen\Service;
 
 use JMS\Serializer\Serializer;
 use Doctrine\ORM\EntityManager;

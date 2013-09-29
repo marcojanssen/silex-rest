@@ -1,5 +1,5 @@
 <?php
-namespace MJanssen\Doctrine\Service;
+namespace MJanssen\Service;
 
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializationContext;
