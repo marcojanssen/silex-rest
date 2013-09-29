@@ -22,7 +22,7 @@ class CategoriesController extends RestController implements ControllerInterface
 {
     /**
      * @SWG\Api(
-     *     path="/{categoryId}.{format}",
+     *     path="/categories/{categoryId}.{format}",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="GET", responseClass="Category")
      *     )
@@ -36,7 +36,7 @@ class CategoriesController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path=".{format}",
+     *     path="/categories.{format}",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="GET", responseClass="Category")
      *     )
@@ -49,7 +49,7 @@ class CategoriesController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path="/{categoryId}",
+     *     path="/categories/{categoryId}",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="DELETE", responseClass="Category")
      *     )
@@ -63,7 +63,7 @@ class CategoriesController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path="",
+     *     path="/categories",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="POST", responseClass="Category")
      *     )
@@ -76,7 +76,7 @@ class CategoriesController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path="/{categoryId}.{format}",
+     *     path="/categories/{categoryId}.{format}",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="PUT", responseClass="Category")
      *     )

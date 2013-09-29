@@ -22,7 +22,7 @@ class ItemsController extends RestController implements ControllerInterface
 {
     /**
      * @SWG\Api(
-     *     path="/{itemId}.{format}",
+     *     path="/items/{itemId}.{format}",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="GET", responseClass="Item")
      *     )
@@ -36,7 +36,7 @@ class ItemsController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path=".{format}",
+     *     path="/items.{format}",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="GET", responseClass="Item")
      *     )
@@ -49,7 +49,7 @@ class ItemsController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path="/{itemId}",
+     *     path="/items/{itemId}",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="DELETE", responseClass="Item")
      *     )
@@ -63,7 +63,7 @@ class ItemsController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path="",
+     *     path="/items",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="POST", responseClass="Item")
      *     )
@@ -76,7 +76,7 @@ class ItemsController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path="/{itemId}.{format}",
+     *     path="/items/{itemId}.{format}",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="PUT", responseClass="Item")
      *     )
