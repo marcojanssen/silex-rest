@@ -21,7 +21,7 @@ class Category
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
      * @Groups({"list", "detail"})
-     * @SWG\Property(name="id", type="Integer")
+     * @SWG\Property(name="id", type="int")
      */
     private $id;
 
@@ -29,7 +29,7 @@ class Category
      * @Type("string")
      * @ORM\Column(type="string")
      * @Groups({"list", "detail"})
-     * @SWG\Property(name="name", type="String")
+     * @SWG\Property(name="name", type="string")
      */
     private $name;
 
