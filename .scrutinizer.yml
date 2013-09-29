@@ -2,7 +2,7 @@ filter:
     paths:
         - src
     excluded_paths:
-        - vendor
+        - vendor/*
 before_commands:
     - 'composer install --dev --prefer-source'
 tools:
