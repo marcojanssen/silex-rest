@@ -24,7 +24,7 @@ return array(
         ),
         array(
             'pattern' => '%baseUrl%/core/items/{id}',
-            'controller' => 'MJanssen\Controller\ItemsController::resolveAction',
+            'controller' => 'Example\Controller\ItemsController::resolveAction',
             'method' => array(
                 'get', 'put', 'delete'
             ),
@@ -38,7 +38,7 @@ return array(
         ),
         array(
             'pattern' => '%baseUrl%/core/items',
-            'controller' => 'MJanssen\Controller\ItemsController::resolveAction',
+            'controller' => 'Example\Controller\ItemsController::resolveAction',
             'method' => array(
                 'get', 'post'
             ),
@@ -49,7 +49,7 @@ return array(
         ),
         array(
             'pattern' => '%baseUrl%/core/categories/{id}',
-            'controller' => 'MJanssen\Controller\CategoriesController::resolveAction',
+            'controller' => 'Example\Controller\CategoriesController::resolveAction',
             'method' => array(
                 'get', 'put', 'delete'
             ),
@@ -63,7 +63,7 @@ return array(
         ),
         array(
             'pattern' => '%baseUrl%/core/categories',
-            'controller' => 'MJanssen\Controller\CategoriesController::resolveAction',
+            'controller' => 'Example\Controller\CategoriesController::resolveAction',
             'method' => array(
                 'get', 'post'
             ),
