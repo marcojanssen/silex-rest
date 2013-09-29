@@ -26,7 +26,7 @@ abstract class RestController
     public function getAction(Request $request, Application $app, $id)
     {
         $entity = $this->getEntityFromRepository($request, $app, $id);
-        $this->isValidEntity($entity);
+        $this->isValidEntity($entity, $app, $id);
 
         return new JsonResponse(
             $app['doctrine.extractor']->extractEntity(
@@ -74,7 +74,7 @@ abstract class RestController
     public function deleteAction(Request $request, Application $app, $id)
     {
         $entity = $this->getEntityFromRepository($request, $app, $id);
-        $this->isValidEntity($entity);
+        $this->isValidEntity($entity, $app, $id);
 
         $app['orm.em']->remove($entity);
         $app['orm.em']->flush();
@@ -120,7 +120,7 @@ abstract class RestController
         }
 
         $entity = $this->getEntityFromRepository($request, $app, $id);
-        $this->isValidEntity($entity);
+        $this->isValidEntity($entity, $app, $id);
 
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
@@ -184,12 +184,13 @@ abstract class RestController
 
     /**
      * @param $entity
-     * @throws \Doctrine\ORM\EntityNotFoundException
+     * @param $app
+     * @param $id
      */
-    protected function isValidEntity($entity)
+    protected function isValidEntity($entity, $app, $id)
     {
         if(null === $entity) {
-            throw new EntityNotFoundException();
+            $app->abort(404, "$id does not exist.");
         }
     }
 
