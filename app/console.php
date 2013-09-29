@@ -38,7 +38,9 @@ if (isset($app['log.path'])) {
 }
 
 if (isset($app['log.path'])) {
-    $console->add(new DocsCreateCommand);
+    $command = new DocsCreateCommand;
+    $command->setApplicationPath($app['app_path']);
+    $console->add($command);
 }
 
 /*
