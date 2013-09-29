@@ -14,14 +14,15 @@ use Swagger\Annotations as SWG;
  * @SWG\Resource(
  *     apiVersion="1.0",
  *     swaggerVersion="1.1",
- *     resourcePath="/categories"
+ *     resourcePath="/categories",
+ *     basePath="http://example/api"
  * )
  */
 class CategoriesController extends RestController implements ControllerInterface
 {
     /**
      * @SWG\Api(
-     *     path="/{id}",
+     *     path="/{categoriesId}.{format}",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="GET", responseClass="FooModel")
      *     )
@@ -47,7 +48,7 @@ class CategoriesController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path=".{format}",
+     *     path="/{categoriesId}",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="DELETE", responseClass="FooModel")
      *     )
@@ -60,7 +61,7 @@ class CategoriesController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path=".{format}",
+     *     path="",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="POST", responseClass="FooModel")
      *     )
@@ -73,7 +74,7 @@ class CategoriesController extends RestController implements ControllerInterface
 
     /**
      * @SWG\Api(
-     *     path="/{id}.{format}",
+     *     path="/{categoriesId}.{format}",
      *     @SWG\Operations(
      *         @SWG\Operation(httpMethod="PUT", responseClass="FooModel")
      *     )
