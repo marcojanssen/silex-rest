@@ -30,7 +30,7 @@ class ResolverService
         $entityClassName = $this->getEntityClassName($namespaceAlias, $name);
 
         try {
-            $entity = new $entityClassName;
+            new $entityClassName;
         } catch (Exception $e) {}
 
         return $entityClassName;
