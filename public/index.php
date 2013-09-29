@@ -1,8 +1,5 @@
 <?php
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use MJanssen\Provider\ServiceRegisterProvider;
-use MJanssen\Provider\RoutingServiceProvider;
-use Igorw\Silex\ConfigServiceProvider;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
