@@ -22,7 +22,7 @@ class ApiDocsController
     public function getAction(Request $request, Application $app)
     {
         return new Response(
-            $this->findFile('api-docs.json', $app['app_path']),
+            $this->findFile('api-docs.json', $app['app.path']),
             200,
             array(
                 "Content-Type" => "application/json",
@@ -40,7 +40,7 @@ class ApiDocsController
     public function getResourceAction(Request $request, Application $app)
     {
         return new Response(
-            $this->findFile($request->attributes->get('resource').'.json', $app['app_path']),
+            $this->findFile($request->attributes->get('resource').'.json', $app['app.path']),
             200,
             array(
                 "Content-Type" => "application/json",
