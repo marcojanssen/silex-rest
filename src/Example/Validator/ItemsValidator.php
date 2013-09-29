@@ -1,6 +1,7 @@
 <?php
 namespace Example\Validator;
 
+use MJanssen\Validator\ValidatorInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ItemsValidator implements ValidatorInterface
