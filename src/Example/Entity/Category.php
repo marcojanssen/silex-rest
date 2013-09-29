@@ -23,7 +23,7 @@ class Category
      * @Groups({"list", "detail"})
      * @SWG\Property(name="id", type="int")
      */
-    private $id;
+    protected $id;
 
     /**
      * @Type("string")
@@ -31,7 +31,7 @@ class Category
      * @Groups({"list", "detail"})
      * @SWG\Property(name="name", type="string")
      */
-    private $name;
+    protected $name;
 
     /**
      * @ORM\OneToMany(targetEntity="Item", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)

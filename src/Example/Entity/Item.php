@@ -23,7 +23,7 @@ class Item
      * @Groups({"list", "detail"})
      * @SWG\Property(name="id",type="int")
      */
-    private $id;
+    protected $id;
 
     /**
      * @Type("string")
@@ -31,7 +31,7 @@ class Item
      * @Groups({"list", "detail"})
      * @SWG\Property(name="name",type="string")
      */
-    private $name;
+    protected $name;
 
     /**
      * @Type("string")
@@ -39,7 +39,7 @@ class Item
      * @Groups({"list", "detail"})
      * @SWG\Property(name="email",type="string")
      */
-    private $email;
+    protected $email;
 
     /**
      * @Type("string")
@@ -47,7 +47,7 @@ class Item
      * @Groups({"list", "detail"})
      * @SWG\Property(name="phone", type="string")
      */
-    private $phone;
+    protected $phone;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="items")
