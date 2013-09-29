@@ -30,9 +30,9 @@ return array(
         'mappings' => array(
             array(
                 'type'      => 'annotation',
-                'namespace' => 'MJanssen\Doctrine\Entity',
+                'namespace' => 'Example\Entity',
                 'alias'     => 'core',
-                'path'      => '%app_path%/src/MJanssen/Doctrine/Entity',
+                'path'      => '%app_path%/src/Example/Entity',
                 'use_simple_annotation_reader' => false
             )
         )

@@ -1,5 +1,5 @@
 <?php
-namespace MJanssen\Validator;
+namespace Example\Validator;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
