@@ -14,7 +14,7 @@ class LogClearCommand extends ContainerAwareCommand
     protected $logPath;
 
     /**
-     * @param $cachePath
+     * @param $logPath
      */
     public function setLogPath($logPath)
     {

@@ -10,10 +10,28 @@ use Symfony\Component\Process\Process;
 
 class DocsCreateCommand extends ContainerAwareCommand
 {
+    protected $applicationPath;
+
+    /**
+     * @param $applicationPath
+     */
+    public function setApplicationPath($applicationPath)
+    {
+        $this->applicationPath = $applicationPath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getApplicationPath()
+    {
+        return $this->applicationPath;
+    }
+
     protected function configure()
     {
         $this->setName('docs:create')
-            ->setDescription('Create API docs');
+             ->setDescription('Create API docs');
     }
 
     /**
@@ -23,7 +41,7 @@ class DocsCreateCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $docs = new Process(sprintf('cd %s && php vendor/bin/swagger ./ -o ./docs -e vendor/doctrine:vendor/zircote:vendor/symfony:vendor/zendframework:vendor/jms',$app['app_path']));
+        $docs = new Process(sprintf('cd %s && php vendor/bin/swagger ./ -o ./api-docs -e vendor/doctrine:vendor/zircote:vendor/symfony:vendor/zendframework:vendor/jms',$this->getApplicationPath()));
         $docs->run();
 
         if ($docs->isSuccessful()) {
