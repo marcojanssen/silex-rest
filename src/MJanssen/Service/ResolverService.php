@@ -1,5 +1,5 @@
 <?php
-namespace MJanssen\Doctrine\Service;
+namespace MJanssen\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
