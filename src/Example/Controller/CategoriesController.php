@@ -1,10 +1,11 @@
 <?php
 namespace Example\Controller;
 
+use MJanssen\Controller\RestController;
+use MJanssen\Controller\ControllerInterface;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Swagger\Annotations as SWG;
-use MJanssen\Controller\RestController;
 
 /**
  * Class RestController
@@ -16,7 +17,7 @@ use MJanssen\Controller\RestController;
  *     resourcePath="/categories"
  * )
  */
-class CategoriesController extends RestController
+class CategoriesController extends RestController implements ControllerInterface
 {
     /**
      * @SWG\Api(
