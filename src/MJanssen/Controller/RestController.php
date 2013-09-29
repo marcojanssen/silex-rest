@@ -2,7 +2,6 @@
 namespace MJanssen\Controller;
 
 use Doctrine\Common\Persistence\ObjectRepository;
-use Doctrine\ORM\EntityNotFoundException;
 use MJanssen\Filters\FilterLoader;
 use Silex\Application;
 use Spray\PersistenceBundle\Repository\FilterableRepositoryInterface;
@@ -192,17 +191,6 @@ abstract class RestController
         if(null === $entity) {
             $app->abort(404, "$id does not exist.");
         }
-    }
-
-    /**
-     * @param Request $request
-     * @param Application $app
-     * @return mixed
-     */
-    protected function getEntity(Request $request, Application $app)
-    {
-        $entityName = $this->getEntityName($request, $app);
-        return new $entityName;
     }
 
     /**
