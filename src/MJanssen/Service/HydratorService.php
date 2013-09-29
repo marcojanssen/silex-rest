@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManager;
 
 class HydratorService
 {
-    protected $hydrator;
+    protected $serializer;
     protected $entityManager;
 
     /**

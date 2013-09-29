@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManager;
 
 class ExtractorService
 {
-    protected $hydrator;
+    protected $serializer;
     protected $entityManager;
 
     /**
