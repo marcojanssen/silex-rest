@@ -1,5 +1,15 @@
 {
     "name": "marcojanssen/silex-rest",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Wizkunde/silex-hmac.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Wizkunde/silex-errors.git"
+	}
+    ],
     "require": {
         "php": ">=5.4.0",
         "dflydev/doctrine-orm-service-provider": "1.0.*",
@@ -24,7 +34,9 @@
         "symfony/validator": "~2.3",
         "symfony/yaml": "~2.3",
         "zendframework/zend-filter": "2.*",
-        "mardy-git/hmac": "0.2.*",
+        "zendframework/zend-loader": "2.2.4",
+        "wizkunde/silex-hmac": "dev-master",
+        "wizkunde/silex-errors": "dev-master",
         "zendframework/zend-loader": "2.2.4",
         "zircote/swagger-php": "0.7.*"
     },

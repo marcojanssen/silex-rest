@@ -3,7 +3,7 @@ namespace MJanssen\Service;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator;
-use MJanssen\Traits\ErrorTrait;
+use Wizkunde\Traits\ErrorTrait;
 
 class ValidatorService
 {
