@@ -34,7 +34,6 @@
         "symfony/validator": "~2.3",
         "symfony/yaml": "~2.3",
         "zendframework/zend-filter": "2.*",
-        "jurjean/spray-persistence-bundle": "1.0.*",
         "zendframework/zend-loader": "2.2.4",
         "wizkunde/silex-hmac": "dev-master",
         "wizkunde/silex-errors": "dev-master"
