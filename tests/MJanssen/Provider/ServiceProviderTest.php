@@ -3,6 +3,7 @@ namespace MJanssen\Provider;
 
 use Silex\Application;
 use JMS\Serializer\SerializerBuilder;
+use Silex\Provider\ValidatorServiceProvider;
 
 class ServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,6 +21,16 @@ class ServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(isset($app['service.validator']));
         $this->assertTrue(isset($app['service.request.validator']));
         $this->assertFalse(isset($app['foo']));
+    }
+
+    /**
+     * Test if extractor service can be instantiated
+     */
+    public function testSerializerService()
+    {
+        $app = $this->getMockApplication();
+
+        $this->assertInstanceOf('JMS\Serializer\Serializer', $app['serializer']);
     }
 
     /**
@@ -61,6 +72,38 @@ class ServiceProviderTest extends \PHPUnit_Framework_TestCase
             array('getRepository', 'getClassMetadata', 'persist', 'flush'), array(), '', false);
 
         $this->assertInstanceOf('MJanssen\Service\ResolverService', $app['doctrine.resolver']);
+    }
+
+    /**
+     * Test if validator service can be instantiated
+     */
+    public function testValidatorServiceService()
+    {
+        $app = $this->getMockApplication();
+
+        $app->register(
+            new ValidatorServiceProvider
+        );
+
+        $app['request'] = $this->getMock('Symfony\Component\HttpFoundation\Request');
+
+        $this->assertInstanceOf('MJanssen\Service\ValidatorService', $app['service.validator']);
+    }
+
+    /**
+     * Test if validator request service can be instantiated
+     */
+    public function testRequestValidatorService()
+    {
+        $app = $this->getMockApplication();
+
+        $app->register(
+            new ValidatorServiceProvider
+        );
+
+        $app['request'] = $this->getMock('Symfony\Component\HttpFoundation\Request');
+
+        $this->assertInstanceOf('MJanssen\Service\RequestValidatorService', $app['service.request.validator']);
     }
 
     /**
