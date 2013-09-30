@@ -1,23 +1,19 @@
 <?php
-namespace MJanssen\Doctrine\Service;
+namespace MJanssen\Service;
 
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializationContext;
-use Doctrine\ORM\EntityManager;
 
 class ExtractorService
 {
-    protected $hydrator;
-    protected $entityManager;
+    protected $serializer;
 
     /**
      * @param Serializer $serializer
-     * @param EntityManager $entityManager
      */
-    public function __construct(Serializer $serializer, EntityManager $entityManager)
+    public function __construct(Serializer $serializer)
     {
         $this->serializer = $serializer;
-        $this->entityManager = $entityManager;
     }
 
     /**
@@ -43,6 +39,6 @@ class ExtractorService
     public function extractEntity($entity, $group)
     {
         $serializedContext = SerializationContext::create()->setGroups(array($group));
-        return json_decode($this->serializer->serialize($entity, 'json', $serializedContext));
+        return json_decode($this->serializer->serialize($entity, 'json', $serializedContext), true);
     }
 }

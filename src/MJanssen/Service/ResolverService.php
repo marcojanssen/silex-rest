@@ -1,5 +1,5 @@
 <?php
-namespace MJanssen\Doctrine\Service;
+namespace MJanssen\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
@@ -30,7 +30,7 @@ class ResolverService
         $entityClassName = $this->getEntityClassName($namespaceAlias, $name);
 
         try {
-            $entity = new $entityClassName;
+            new $entityClassName;
         } catch (Exception $e) {}
 
         return $entityClassName;

@@ -1,6 +1,7 @@
 <?php
-namespace MJanssen\Validator;
+namespace Example\Validator;
 
+use MJanssen\Validator\ValidatorInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CategoriesValidator implements ValidatorInterface

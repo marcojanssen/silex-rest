@@ -1,8 +1,7 @@
 <?php
-namespace MJanssen\Controllers;
+namespace MJanssen\Controller;
 
 use Doctrine\Common\Persistence\ObjectRepository;
-use Doctrine\ORM\EntityNotFoundException;
 use MJanssen\Filters\FilterLoader;
 use Silex\Application;
 use Spray\PersistenceBundle\Repository\FilterableRepositoryInterface;
@@ -13,9 +12,9 @@ use Symfony\Component\Process\Exception\RuntimeException;
 
 /**
  * Class RestController
- * @package MJanssen\Controllers
+ * @package MJanssen\Controller
  */
-class RestController
+abstract class RestController
 {
     /**
      * @param Request $request
@@ -23,10 +22,10 @@ class RestController
      * @param null $id
      * @return JsonResponse
      */
-    public function getAction(Request $request, Application $app, $id = null)
+    public function getAction(Request $request, Application $app, $id)
     {
         $entity = $this->getEntityFromRepository($request, $app, $id);
-        $this->isValidEntity($entity);
+        $this->isValidEntity($entity, $app, $id);
 
         return new JsonResponse(
             $app['doctrine.extractor']->extractEntity(
@@ -74,7 +73,7 @@ class RestController
     public function deleteAction(Request $request, Application $app, $id)
     {
         $entity = $this->getEntityFromRepository($request, $app, $id);
-        $this->isValidEntity($entity);
+        $this->isValidEntity($entity, $app, $id);
 
         $app['orm.em']->remove($entity);
         $app['orm.em']->flush();
@@ -120,7 +119,7 @@ class RestController
         }
 
         $entity = $this->getEntityFromRepository($request, $app, $id);
-        $this->isValidEntity($entity);
+        $this->isValidEntity($entity, $app, $id);
 
         $item = $app['doctrine.hydrator']->hydrateEntity(
             $request->getContent(),
@@ -184,24 +183,14 @@ class RestController
 
     /**
      * @param $entity
-     * @throws \Doctrine\ORM\EntityNotFoundException
+     * @param $app
+     * @param $id
      */
-    protected function isValidEntity($entity)
+    protected function isValidEntity($entity, $app, $id)
     {
         if(null === $entity) {
-            throw new EntityNotFoundException();
+            $app->abort(404, "$id does not exist.");
         }
-    }
-
-    /**
-     * @param Request $request
-     * @param Application $app
-     * @return mixed
-     */
-    protected function getEntity(Request $request, Application $app)
-    {
-        $entityName = $this->getEntityName($request, $app);
-        return new $entityName;
     }
 
     /**

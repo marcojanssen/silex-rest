@@ -1,15 +1,17 @@
 <?php
-namespace MJanssen\Doctrine\Entity;
+namespace Example\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\Type;
+use Swagger\Annotations as SWG;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="categories")
+ * @SWG\Model(id="Category")
  */
 class Category
 {
@@ -19,15 +21,17 @@ class Category
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
      * @Groups({"list", "detail"})
+     * @SWG\Property(name="id", type="int")
      */
-    private $id;
+    protected $id;
 
     /**
      * @Type("string")
      * @ORM\Column(type="string")
      * @Groups({"list", "detail"})
+     * @SWG\Property(name="name", type="string")
      */
-    private $name;
+    protected $name;
 
     /**
      * @ORM\OneToMany(targetEntity="Item", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)

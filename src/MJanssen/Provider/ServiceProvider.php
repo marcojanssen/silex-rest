@@ -7,9 +7,9 @@ use Silex\ServiceProviderInterface;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Construction\DoctrineObjectConstructor;
 use JMS\Serializer\Construction\UnserializeObjectConstructor;
-use MJanssen\Doctrine\Service\ExtractorService;
-use MJanssen\Doctrine\Service\HydratorService;
-use MJanssen\Doctrine\Service\ResolverService;
+use MJanssen\Service\ExtractorService;
+use MJanssen\Service\HydratorService;
+use MJanssen\Service\ResolverService;
 use MJanssen\Filters\PropertyFilter;
 use MJanssen\Service\RequestValidatorService;
 use MJanssen\Service\ValidatorService;
@@ -36,18 +36,18 @@ class ServiceProvider implements ServiceProviderInterface
         $app['serializer'] = $app->share(function($app) {
             $fallbackConstructer = new UnserializeObjectConstructor();
             $doctrineObjectConstructor = new DoctrineObjectConstructor($app['doctrine'], $fallbackConstructer);
-            return SerializerBuilder::create()->setCacheDir($app['serializer.cache.dir'])
+            return SerializerBuilder::create()->setCacheDir($app['serializer.cache.path'])
                                               ->setDebug($app['debug'])
                                               ->setObjectConstructor($doctrineObjectConstructor)
                                               ->build();
         });
 
         $app['doctrine.extractor'] = $app->share(function($app) {
-            return new ExtractorService($app['serializer'], $app['orm.em']);
+            return new ExtractorService($app['serializer']);
         });
 
         $app['doctrine.hydrator'] = $app->share(function($app) {
-            return new HydratorService($app['serializer'], $app['orm.em']);
+            return new HydratorService($app['serializer']);
         });
 
         $app['doctrine.resolver'] = $app->share(function($app) {

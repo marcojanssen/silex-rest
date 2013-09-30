@@ -6,12 +6,12 @@ use Igorw\Silex\ConfigServiceProvider;
 
 //Set all service providers
 $app->register(
-    new ConfigServiceProvider(__DIR__."/../app/config/services.yml")
+    new ConfigServiceProvider(__DIR__."/../app/config/services.php")
 );
 
 if(true === $app['debug']) {
     $app->register(
-        new ConfigServiceProvider(__DIR__."/../app/config/services_dev.yml")
+        new ConfigServiceProvider(__DIR__."/../app/config/services_dev.php")
     );
 }
 
@@ -22,19 +22,19 @@ $app->register(
 
 //Configure the service providers
 $app->register(
-    new ConfigServiceProvider(__DIR__."/../app/config/config.yml", array('app_path' => getcwd()))
+    new ConfigServiceProvider(__DIR__."/../app/config/config.php", array('app.path' => getcwd()))
 );
 
 if(true === $app['debug']) {
     $app->register(
-        new ConfigServiceProvider(__DIR__."/../app/config/config_dev.yml", array('app_path' => getcwd()))
+        new ConfigServiceProvider(__DIR__."/../app/config/config_dev.php", array('app.path' => getcwd()))
     );
 }
 
 if(true !== $cli) {
     //Set all available routes
     $app->register(
-        new ConfigServiceProvider(__DIR__."/../app/config/routes.yml", array('baseUrl' => $app['baseUrl']))
+        new ConfigServiceProvider(__DIR__."/../app/config/routes.php", array('baseUrl' => $app['baseUrl']))
     );
 
     //Register all routes

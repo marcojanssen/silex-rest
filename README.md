@@ -1,6 +1,10 @@
 silex-rest
 ==========
 
+[![Build Status](https://travis-ci.org/marcojanssen/silex-rest.png?branch=master)](https://travis-ci.org/marcojanssen/silex-rest)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/marcojanssen/silex-rest/badges/quality-score.png?s=82920a9fad928479e615daee7ae5146f1ea09b1c)](https://scrutinizer-ci.com/g/marcojanssen/silex-rest/)
+[![Code Coverage](https://scrutinizer-ci.com/g/marcojanssen/silex-rest/badges/coverage.png?s=9a2932344ecb42af4adcf0360f09bf78ee10eed9)](https://scrutinizer-ci.com/g/marcojanssen/silex-rest/)
+
 Silex-rest is a REST implementation based on [Silex](http://silex.sensiolabs.org/),
 [Doctrine](http://doctrine-project.org) and many other components. It allows you
 to create a restful service in no-time.
