@@ -66,7 +66,7 @@ class ServiceProvider implements ServiceProviderInterface
         });
 
         $app['service.validator'] = $app->share(function($app) {
-            return new ValidatorService($app['validator'], $app['request']);
+            return new ValidatorService($app['validator']);
         });
 
         $app['service.request.validator'] = $app->share(function($app) {

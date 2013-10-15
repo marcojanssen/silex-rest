@@ -1,7 +1,6 @@
 <?php
 namespace MJanssen\Service;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator;
 use Wizkunde\Traits\ErrorTrait;
 
@@ -10,21 +9,15 @@ class ValidatorService
     use ErrorTrait;
 
     /**
-     * @var \Symfony\Component\HttpFoundation\Request
-     */
-    protected $request;
-
-    /**
      * @var \Symfony\Component\Validator\Validator
      */
     protected $validator;
 
     /**
-     * @param Request $request
+     * @param Validator $validator
      */
-    public function __construct(Validator $validator, Request $request)
+    public function __construct(Validator $validator)
     {
-        $this->request = $request;
         $this->validator = $validator;
     }
 

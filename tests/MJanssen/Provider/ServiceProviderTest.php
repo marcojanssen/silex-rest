@@ -85,8 +85,6 @@ class ServiceProviderTest extends \PHPUnit_Framework_TestCase
             new ValidatorServiceProvider
         );
 
-        $app['request'] = $this->getMock('Symfony\Component\HttpFoundation\Request');
-
         $this->assertInstanceOf('MJanssen\Service\ValidatorService', $app['service.validator']);
     }
 
