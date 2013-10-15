@@ -19,7 +19,18 @@ class ValidatorServiceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if a validation is triggered
+     * Test if validator class accepts json data
+     */
+    public function testJsonData()
+    {
+        $service = $this->getMockService();
+        $service->validate(json_encode(array('id' => 1, 'name' => '12345')));
+
+        $this->assertFalse($service->hasErrors());
+    }
+
+    /**
+     * Test if a assertion is triggered
      */
     public function testNumericValidation()
     {
@@ -47,6 +58,22 @@ class ValidatorServiceTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals('[foo]', $error->getPropertyPath());
         }
     }
+
+    /**
+     * Test if validator class should be set
+     * @expectedException RuntimeException
+     */
+    public function testIfValidatorClassIsset()
+    {
+        $app = new Application();
+        $app->register(new ValidatorServiceProvider);
+
+        $service = new ValidatorService($app['validator']);
+
+        $service->validate(array('id' => 1, 'name' => '12345'));
+    }
+
+
 
     /**
      * Get a validator service
