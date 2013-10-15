@@ -13,6 +13,8 @@ class ValidatorService
      */
     protected $validator;
 
+    protected $validatorClass;
+
     /**
      * @param Validator $validator
      */
@@ -22,28 +24,45 @@ class ValidatorService
     }
 
     /**
+     * @param $validatorClassName
+     */
+    public function setValidatorConstrainClass($validatorClassName)
+    {
+        try {
+            $this->validatorClass = new $validatorClassName;
+        } catch (Exception $e) {
+
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValidatorConstrainClass()
+    {
+        return $this->validatorClass;
+    }
+
+    /**
      * Validates incoming data
      *
      * @param $validatorName
      * @param $data
      */
-    public function validate($validatorName, $data)
+    public function validate($data)
     {
-        $validatorClass = sprintf('MJanssen\Validator\%sValidator', ucfirst($validatorName));
-        try {
-            $validator = new $validatorClass;
-        } catch (Exception $e) {
-
-        }
-
         if($this->isJson($data)) {
             $data = json_decode($data, true);
+        }
+
+        if(!is_object($this->getValidatorConstrainClass())) {
+            throw new \RuntimeException('No valid validator class set');
         }
 
         $this->setErrors(
             $this->validator->validateValue(
                 $data,
-                $validator->getConstraints()
+                $this->getValidatorConstrainClass()->getConstraints()
             )
         );
     }

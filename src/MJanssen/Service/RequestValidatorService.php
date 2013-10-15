@@ -32,8 +32,9 @@ class RequestValidatorService
      */
     public function validateRequest()
     {
+        $this->validator->setValidatorConstrainClass($this->request->attributes->get('validator'));
+
         $this->validator->validate(
-            $this->request->attributes->get('entity'),
             $this->request->getContent()
         );
 
