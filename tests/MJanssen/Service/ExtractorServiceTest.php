@@ -2,7 +2,7 @@
 namespace MJanssen\Service;
 
 use JMS\Serializer\SerializerBuilder;
-use MJanssen\Fixtures\Entity\Foo;
+use MJanssen\Fixtures\Entity\Test;
 
 class ExtractorServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -51,7 +51,7 @@ class ExtractorServiceTest extends \PHPUnit_Framework_TestCase
      */
     protected function createEntity($args)
     {
-        $entity = new Foo;
+        $entity = new Test;
         $entity->id = $args['id'];
         $entity->name = $args['name'];
         return $entity;

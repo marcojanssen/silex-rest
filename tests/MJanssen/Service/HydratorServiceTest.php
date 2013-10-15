@@ -2,7 +2,7 @@
 namespace MJanssen\Service;
 
 use JMS\Serializer\SerializerBuilder;
-use MJanssen\Fixtures\Entity\Foo;
+use MJanssen\Fixtures\Entity\Test;
 
 class HydratorServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +16,7 @@ class HydratorServiceTest extends \PHPUnit_Framework_TestCase
 
         $data = array('id' => 1, 'name' => 'foo');
 
-        $result = $service->hydrateEntity(json_encode($data), 'MJanssen\Fixtures\Entity\Foo');
+        $result = $service->hydrateEntity(json_encode($data), 'MJanssen\Fixtures\Entity\Test');
 
         $this->assertEquals($this->createEntity($data), $result);
     }
@@ -28,7 +28,7 @@ class HydratorServiceTest extends \PHPUnit_Framework_TestCase
      */
     protected function createEntity($args)
     {
-        $entity = new Foo;
+        $entity = new Test;
         $entity->id = $args['id'];
         $entity->name = $args['name'];
         return $entity;

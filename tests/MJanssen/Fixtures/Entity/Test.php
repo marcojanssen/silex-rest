@@ -7,9 +7,9 @@ use JMS\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="foo")
+ * @ORM\Table(name="test")
  */
-class Foo
+class Test
 {
     /**
      * @Type("integer")
