@@ -11,6 +11,7 @@ use Symfony\Component\Process\Process;
 class DocsCreateCommand extends ContainerAwareCommand
 {
     protected $applicationPath;
+    protected $process;
 
     /**
      * @param $applicationPath
@@ -28,6 +29,34 @@ class DocsCreateCommand extends ContainerAwareCommand
         return $this->applicationPath;
     }
 
+
+    /**
+     * @param Process $process
+     */
+    public function setProcess(Process $process)
+    {
+        $this->process = $process;
+    }
+
+    /**
+     * @return Filesystem
+     */
+    public function getProcess()
+    {
+        if(null === $this->process) {
+            $this->setProcess(
+                new Process(
+                    sprintf('cd %s && php vendor/bin/swagger ./ -o ./api-docs -e vendor/doctrine:vendor/zircote:vendor/symfony:vendor/zendframework:vendor/jms',$this->getApplicationPath())
+                )
+            );
+        }
+
+        return $this->process;
+    }
+
+    /**
+     * Configure the command
+     */
     protected function configure()
     {
         $this->setName('docs:create')
@@ -41,14 +70,9 @@ class DocsCreateCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $docs = new Process(sprintf('cd %s && php vendor/bin/swagger ./ -o ./api-docs -e vendor/doctrine:vendor/zircote:vendor/symfony:vendor/zendframework:vendor/jms',$this->getApplicationPath()));
+        $docs = $this->getProcess();
         $docs->run();
 
-        if ($docs->isSuccessful()) {
-            $output->writeln(sprintf("%s <info>success</info>", 'docs:created'));
-            return true;
-        }
-
-        return $docs;
+        $output->writeln(sprintf("%s <info>success</info>", 'docs:created'));
     }
 }
