@@ -1,9 +1,11 @@
 <?php
 namespace MJanssen\Command;
 
+use MJanssen\Command\CacheClearCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
-use MJanssen\Command\CacheClearCommand;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 class CacheClearCommandTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,7 +22,6 @@ class CacheClearCommandTest extends \PHPUnit_Framework_TestCase
 
         $cacheClear->setFilesystem($filesystem);
         $cacheClear->setFinder($finder);
-
         $cacheClear->setCachePath('/tmp');
 
         $application->add($cacheClear);
@@ -31,14 +32,20 @@ class CacheClearCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Check if cache clear path is set
+     * Check if default Finder is Symfony Finder component
      */
-    public function testCachePath()
+    public function testFinder()
     {
         $cacheClear = new CacheClearCommand();
-        $cachePath  = '/tmp';
+        $this->assertTrue(($cacheClear->getFinder() instanceof Finder));
+    }
 
-        $cacheClear->setCachePath($cachePath);
-        $this->assertEquals($cachePath, $cacheClear->getCachePath());
+    /**
+     * Check if default Finder is Symfony Filesystem component
+     */
+    public function testFilesystem()
+    {
+        $cacheClear = new CacheClearCommand();
+        $this->assertTrue(($cacheClear->getFilesystem() instanceof Filesystem));
     }
 }
