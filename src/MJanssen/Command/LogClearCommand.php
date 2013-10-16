@@ -12,6 +12,8 @@ use Symfony\Component\Finder\Finder;
 class LogClearCommand extends ContainerAwareCommand
 {
     protected $logPath;
+    protected $finder;
+    protected $filesystem;
 
     /**
      * @param $logPath
@@ -29,10 +31,57 @@ class LogClearCommand extends ContainerAwareCommand
         return $this->logPath;
     }
 
+    /**
+     * @param Filesystem $filesystem
+     */
+    public function setFilesystem(Filesystem $filesystem)
+    {
+        $this->filesystem = $filesystem;
+    }
+
+    /**
+     * @return Filesystem
+     */
+    public function getFilesystem()
+    {
+        if(null === $this->filesystem) {
+            $this->setFilesystem(
+                new Filesystem()
+            );
+        }
+
+        return $this->filesystem;
+    }
+
+    /**
+     * @param Finder $finder
+     */
+    public function setFinder(Finder $finder)
+    {
+        $this->finder = $finder;
+    }
+
+    /**
+     * @return Finder
+     */
+    public function getFinder()
+    {
+        if(null === $this->finder) {
+            $this->setFinder(
+                Finder::create()
+            );
+        }
+
+        return $this->finder;
+    }
+
+    /**
+     * Configures the command
+     */
     protected function configure()
     {
         $this->setName('log:clear')
-            ->setDescription('Clears the logs');
+             ->setDescription('Clears the logs');
     }
 
     /**
@@ -42,9 +91,11 @@ class LogClearCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $finder = Finder::create()->in($this->getLogPath())->notName('.gitkeep');
+        $finder = $this->getFinder();
+        $finder->in($this->getLogPath());
+        $finder->ignoreDotFiles(true);
 
-        $filesystem = new Filesystem();
+        $filesystem = $this->getFilesystem();
         $filesystem->remove($finder);
 
         $output->writeln(sprintf("%s <info>success</info>", 'log:clear'));

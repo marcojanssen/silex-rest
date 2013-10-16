@@ -7,7 +7,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
-class CacheClearCommandTest extends \PHPUnit_Framework_TestCase
+class LogClearCommandTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Check if command can be run
@@ -15,18 +15,18 @@ class CacheClearCommandTest extends \PHPUnit_Framework_TestCase
     public function testExecute()
     {
         $application = new Application();
-        $cacheClear  = new CacheClearCommand();
+        $logClear    = new LogClearCommand();
 
         $filesystem = $this->getMock('Symfony\Component\Filesystem\Filesystem');
         $finder     = $this->getMock('Symfony\Component\Finder\Finder', array('in', 'ignoreDotFiles'));
 
-        $cacheClear->setFilesystem($filesystem);
-        $cacheClear->setFinder($finder);
-        $cacheClear->setCachePath('/tmp');
+        $logClear->setFilesystem($filesystem);
+        $logClear->setFinder($finder);
+        $logClear->setLogPath('/tmp');
 
-        $application->add($cacheClear);
+        $application->add($logClear);
 
-        $command = $application->find('cache:clear');
+        $command = $application->find('log:clear');
         $commandTester = new CommandTester($command);
         $commandTester->execute(array('command' => $command->getName()));
     }
@@ -34,14 +34,12 @@ class CacheClearCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * Check if log path can be set
      */
-    public function testCachePath()
+    public function testLogPath()
     {
-        $cacheClear = new CacheClearCommand();
-
-        $cachePath  = '/tmp';
-        $cacheClear->setCachePath($cachePath);
-
-        $this->assertEquals($cachePath, $cacheClear->getCachePath());
+        $logClear = new LogClearCommand();
+        $logPath  = '/tmp';
+        $logClear->setLogPath($logPath);
+        $this->assertEquals($logPath, $logClear->getLogPath());
     }
 
     /**
@@ -49,8 +47,8 @@ class CacheClearCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function testFinder()
     {
-        $cacheClear = new CacheClearCommand();
-        $this->assertTrue(($cacheClear->getFinder() instanceof Finder));
+        $logClear = new LogClearCommand();
+        $this->assertTrue(($logClear->getFinder() instanceof Finder));
     }
 
     /**
@@ -58,7 +56,7 @@ class CacheClearCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function testFilesystem()
     {
-        $cacheClear = new CacheClearCommand();
-        $this->assertTrue(($cacheClear->getFilesystem() instanceof Filesystem));
+        $logClear = new LogClearCommand();
+        $this->assertTrue(($logClear->getFilesystem() instanceof Filesystem));
     }
 }
