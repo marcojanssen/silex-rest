@@ -7,12 +7,14 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+
 /**
  * Class ApiDocsController
  * @package MJanssen\Controller
  */
 class ApiDocsController
 {
+    protected $finder;
 
     /**
      * @param Request $request
@@ -51,6 +53,28 @@ class ApiDocsController
     }
 
     /**
+     * @param Finder $finder
+     */
+    public function setFinder(Finder $finder)
+    {
+        $this->finder = $finder;
+    }
+
+    /**
+     * @return Finder
+     */
+    public function getFinder()
+    {
+        if(null === $this->finder) {
+            $this->setFinder(
+                new Finder()
+            );
+        }
+
+        return $this->finder;
+    }
+
+    /**
      * @param $fileName
      * @param $appPath
      * @return mixed
@@ -58,7 +82,7 @@ class ApiDocsController
      */
     protected function findFile($fileName, $appPath)
     {
-        $finder = new Finder();
+        $finder = $this->getFinder();
         $finder->files()->in($appPath.'/api-docs')->name($fileName);
 
         if(1 === count($finder)) {
