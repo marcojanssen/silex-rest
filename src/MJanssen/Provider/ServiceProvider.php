@@ -11,6 +11,7 @@ use MJanssen\Service\HydratorService;
 use MJanssen\Service\ResolverService;
 use MJanssen\Filters\PropertyFilter;
 use MJanssen\Service\RequestValidatorService;
+use MJanssen\Service\RestEntityService;
 use MJanssen\Service\ValidatorService;
 
 /**
@@ -71,6 +72,10 @@ class ServiceProvider implements ServiceProviderInterface
 
         $app['service.request.validator'] = $app->share(function($app) {
             return new RequestValidatorService($app['service.validator'], $app['request']);
+        });
+
+        $app['service.rest.entity'] = $app->share(function($app) {
+            return new RestEntityService($app['request'], $app);
         });
     }
 }
