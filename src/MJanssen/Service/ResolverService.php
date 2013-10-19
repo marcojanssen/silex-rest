@@ -48,7 +48,6 @@ class ResolverService
         $configuration = $this->entityManager->getConfiguration();
         $namespace = $configuration->getEntityNamespace($namespaceAlias);
 
-
         $nameResults = StringUtil::singularify($name);
 
         if(is_string($nameResults)) {
