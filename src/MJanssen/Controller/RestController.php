@@ -99,7 +99,7 @@ abstract class RestController
         }
 
         if('DELETE' === $method) {
-            return $this->putAction($request, $app, $id);
+            return $this->deleteAction($request, $app, $id);
         }
 
         throw new RuntimeException('Invalid method specified');

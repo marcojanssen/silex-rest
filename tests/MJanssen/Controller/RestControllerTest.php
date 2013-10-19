@@ -78,6 +78,36 @@ class RestControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test if the resolve action works
+     * @expectedException RuntimeException
+     */
+    public function testResolveAction()
+    {
+        $this->assertEquals($this->executeResolveActionController('FOO'), 'fooAction');
+    }
+
+    /**
+     * Test if a invalid method triggers an exception
+     */
+    public function testInvalidResolveAction()
+    {
+        $this->assertEquals($this->executeResolveActionController('GET'), 'getCollectionAction');
+        $this->assertEquals($this->executeResolveActionController('GET', 1), 'getAction');
+        $this->assertEquals($this->executeResolveActionController('POST'), 'postAction');
+        $this->assertEquals($this->executeResolveActionController('DELETE', 1), 'deleteAction');
+        $this->assertEquals($this->executeResolveActionController('PUT', 1), 'putAction');
+    }
+
+    protected function executeResolveActionController($method, $identifier = null)
+    {
+        return $this->getTestController()->resolveAction(
+            $this->getMockRequest($method),
+            $this->getMockApplication(),
+            $identifier
+        );
+    }
+
+    /**
      * @return TestController
      */
     protected function getTestController()
@@ -88,9 +118,15 @@ class RestControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @return Request
      */
-    protected function getMockRequest()
+    protected function getMockRequest($method = '')
     {
-        return new Request;
+        $request = new Request;
+
+        if(!empty($method)) {
+            $request->setMethod($method);
+        }
+
+        return $request;
     }
 
     /**
