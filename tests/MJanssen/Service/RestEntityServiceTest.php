@@ -53,6 +53,34 @@ class RestEntityServiceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test post action
+     */
+    public function testPostAction()
+    {
+        $service = $this->getService();
+        $response = $service->postAction();
+
+        $this->assertEquals(
+            $response->getContent(),
+            json_encode(array('item posted'))
+        );
+    }
+
+    /**
+     * Test put action
+     */
+    public function testPutAction()
+    {
+        $service = $this->getService();
+        $response = $service->putAction(1);
+
+        $this->assertEquals(
+            $response->getContent(),
+            json_encode(array('item updated'))
+        );
+    }
+
+    /**
      * @return RestEntityService
      */
     protected function getService()
@@ -80,7 +108,7 @@ class RestEntityServiceTest extends \PHPUnit_Framework_TestCase
     {
         $app = new Application();
 
-        $em = $this->getMock('\Doctrine\ORM\EntityManager', array('getRepository', 'persist', 'flush', 'remove'), array(), '', false);
+        $em = $this->getMock('\Doctrine\ORM\EntityManager', array('getRepository', 'persist', 'flush', 'remove', 'merge'), array(), '', false);
 
         $em->expects($this->any())
            ->method('getRepository')
@@ -90,6 +118,8 @@ class RestEntityServiceTest extends \PHPUnit_Framework_TestCase
 
         $app['doctrine.resolver'] = $this->getResolverServiceMock();
         $app['doctrine.extractor'] = $this->getExtractorServiceMock();
+        $app['doctrine.hydrator'] = $this->getHydratorServiceMock();
+        $app['service.request.validator'] = $this->getRequestValidatorServiceMock();
 
         return $app;
     }
@@ -155,6 +185,34 @@ class RestEntityServiceTest extends \PHPUnit_Framework_TestCase
         $service->expects($this->any())
                 ->method('extractEntities')
                 ->will($this->returnValue(array($this->getOutput, $this->getOutput)));
+
+        return $service;
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getRequestValidatorServiceMock()
+    {
+        $service = $this->getMock('MJanssen\Service\RequestValidatorService', array('validateRequest'), array(), '', false);
+
+        $service->expects($this->any())
+                ->method('validateRequest')
+                ->will($this->returnValue(null));
+
+        return $service;
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getHydratorServiceMock()
+    {
+        $service = $this->getMock('MJanssen\Service\HydratorService', array('hydrateEntity'), array(), '', false);
+
+        $service->expects($this->any())
+                ->method('hydrateEntity')
+                ->will($this->returnValue(new \stdClass()));
 
         return $service;
     }
