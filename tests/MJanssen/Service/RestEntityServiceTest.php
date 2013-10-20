@@ -28,13 +28,27 @@ class RestEntityServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetCollectionAction()
     {
         $service = $this->getService();
-        $response = $service->getCollectionAction(1);
+        $response = $service->getCollectionAction();
 
         $this->assertEquals(
             $response->getContent(),
             json_encode(
                 array($this->getOutput, $this->getOutput)
             )
+        );
+    }
+
+    /**
+     * Test delete action
+     */
+    public function testDeleteAction()
+    {
+        $service = $this->getService();
+        $response = $service->deleteAction(1);
+
+        $this->assertEquals(
+            $response->getContent(),
+            json_encode(array('item removed'))
         );
     }
 
@@ -66,7 +80,7 @@ class RestEntityServiceTest extends \PHPUnit_Framework_TestCase
     {
         $app = new Application();
 
-        $em = $this->getMock('\Doctrine\ORM\EntityManager', array('getRepository'), array(), '', false);
+        $em = $this->getMock('\Doctrine\ORM\EntityManager', array('getRepository', 'persist', 'flush', 'remove'), array(), '', false);
 
         $em->expects($this->any())
            ->method('getRepository')
