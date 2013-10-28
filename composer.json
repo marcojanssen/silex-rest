@@ -36,7 +36,7 @@
         "zendframework/zend-filter": "2.*",
         "zendframework/zend-loader": "2.2.4",
         "wizkunde/silex-hmac": "dev-master",
-        "wizkunde/silex-errors": "dev-master"
+        "wizkunde/silex-errors": "dev-master",
         "zircote/swagger-php": "0.7.*"
     },
     "autoload": {

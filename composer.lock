@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "4f2b4b93629c754d91985d4dbc2f11bd",
+    "hash": "e8787cc589a39d8f5ad33cf66f66cee7",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -1051,16 +1051,16 @@
         },
         {
             "name": "jurjean/spray-persistence-bundle",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JurJean/SprayPersistenceBundle.git",
-                "reference": "a37ed24dd51a762e91e1004ec329d46ddadea056"
+                "reference": "725f57e7b00fc91a2ffc4d5e8cc848c6623612f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JurJean/SprayPersistenceBundle/zipball/a37ed24dd51a762e91e1004ec329d46ddadea056",
-                "reference": "a37ed24dd51a762e91e1004ec329d46ddadea056",
+                "url": "https://api.github.com/repos/JurJean/SprayPersistenceBundle/zipball/725f57e7b00fc91a2ffc4d5e8cc848c6623612f9",
+                "reference": "725f57e7b00fc91a2ffc4d5e8cc848c6623612f9",
                 "shasum": ""
             },
             "require": {
@@ -1080,27 +1080,27 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "time": "2013-10-22 09:14:54"
+            "time": "2013-09-09 09:58:34"
         },
         {
             "name": "marcojanssen/silex-routing-service-provider",
-            "version": "1.0.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/marcojanssen/silex-routing-service-provider.git",
-                "reference": "800971dc977fc3760d56bb3d11fd69f9b1d268b6"
+                "reference": "e62ae713092bfc397e6f1c45398a1a5a5df56272"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marcojanssen/silex-routing-service-provider/zipball/800971dc977fc3760d56bb3d11fd69f9b1d268b6",
-                "reference": "800971dc977fc3760d56bb3d11fd69f9b1d268b6",
+                "url": "https://api.github.com/repos/marcojanssen/silex-routing-service-provider/zipball/e62ae713092bfc397e6f1c45398a1a5a5df56272",
+                "reference": "e62ae713092bfc397e6f1c45398a1a5a5df56272",
                 "shasum": ""
             },
             "require": {
                 "silex/silex": "1.*"
             },
             "suggest": {
-                "igorw/config-service-provider": "1.2.*"
+                "igorw/config-service-provider": "Allows registering providers with configuration"
             },
             "type": "library",
             "autoload": {
@@ -1108,17 +1108,24 @@
                     "MJanssen\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
+            "authors": [
+                {
+                    "name": "Marco Janssen",
+                    "email": "dev@marcojanssen.net"
+                }
+            ],
+            "description": "Silex provider for adding routes",
             "keywords": [
+                "provider",
+                "route",
+                "routing",
                 "silex"
             ],
-            "support": {
-                "source": "https://github.com/marcojanssen/silex-routing-service-provider/tree/1.0.0",
-                "issues": "https://github.com/marcojanssen/silex-routing-service-provider/issues"
-            },
-            "time": "2013-09-25 19:16:26"
+            "time": "2013-09-28 09:05:32"
         },
         {
             "name": "marcojanssen/silex-service-register-provider",
@@ -2897,6 +2904,62 @@
                 "zf2"
             ],
             "time": "2013-08-21 17:08:07"
+        },
+        {
+            "name": "zircote/swagger-php",
+            "version": "0.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zircote/swagger-php.git",
+                "reference": "c3f3d1c0eb4381719a09c9664c244b2df1b3687e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zircote/swagger-php/zipball/c3f3d1c0eb4381719a09c9664c244b2df1b3687e",
+                "reference": "c3f3d1c0eb4381719a09c9664c244b2df1b3687e",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/finder": "*",
+                "symfony/process": "*"
+            },
+            "bin": [
+                "bin/swagger"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Swagger": "library"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Robert Allen",
+                    "email": "zircote@gmail.com",
+                    "homepage": "http://www.zircote.com"
+                },
+                {
+                    "name": "Bob Fanger",
+                    "email": "bfanger@gmail.com",
+                    "homepage": "http://bfanger.nl"
+                }
+            ],
+            "description": "Swagger-PHP library implementing the swagger.wordnik.com specification to describe web services, operations/actions and models enabling a uniform means of producing, consuming, and visualizing RESTful web services.",
+            "homepage": "https://github.com/zircote/swagger-php/",
+            "keywords": [
+                "api",
+                "json",
+                "service discovery"
+            ],
+            "time": "2013-10-08 20:10:27"
         }
     ],
     "packages-dev": [
@@ -2907,7 +2970,6 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "jurjean/spray-persistence-bundle": 20,
         "wizkunde/silex-hmac": 20,
         "wizkunde/silex-errors": 20
     },
