@@ -2740,12 +2740,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Wizkunde/silex-hmac.git",
-                "reference": "5eab2f3f6837a5401bd1f3c3096297de9ba88b90"
+                "reference": "4708ef1c375b60f633d44a7b04c115b207ddb572"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Wizkunde/silex-hmac/zipball/5eab2f3f6837a5401bd1f3c3096297de9ba88b90",
-                "reference": "5eab2f3f6837a5401bd1f3c3096297de9ba88b90",
+                "url": "https://api.github.com/repos/Wizkunde/silex-hmac/zipball/4708ef1c375b60f633d44a7b04c115b207ddb572",
+                "reference": "4708ef1c375b60f633d44a7b04c115b207ddb572",
                 "shasum": ""
             },
             "require": {
@@ -2764,7 +2764,7 @@
                 "source": "https://github.com/Wizkunde/silex-hmac/tree/master",
                 "issues": "https://github.com/Wizkunde/silex-hmac/issues"
             },
-            "time": "2013-10-28 12:52:21"
+            "time": "2013-10-28 15:31:01"
         },
         {
             "name": "zendframework/zend-filter",
