@@ -17,8 +17,8 @@ class RestEntityServiceTest extends \PHPUnit_Framework_TestCase
         $response = $service->getAction(1);
 
         $this->assertEquals(
-            $response->getContent(),
-            json_encode($this->getOutput)
+            $response,
+            $this->getOutput
         );
     }
 
@@ -31,10 +31,8 @@ class RestEntityServiceTest extends \PHPUnit_Framework_TestCase
         $response = $service->getCollectionAction();
 
         $this->assertEquals(
-            $response->getContent(),
-            json_encode(
-                array($this->getOutput, $this->getOutput)
-            )
+            $response,
+            array($this->getOutput, $this->getOutput)
         );
     }
 
@@ -47,8 +45,8 @@ class RestEntityServiceTest extends \PHPUnit_Framework_TestCase
         $response = $service->deleteAction(1);
 
         $this->assertEquals(
-            $response->getContent(),
-            json_encode(array('item removed'))
+            $response,
+            array('item removed')
         );
     }
 
@@ -61,8 +59,8 @@ class RestEntityServiceTest extends \PHPUnit_Framework_TestCase
         $response = $service->postAction();
 
         $this->assertEquals(
-            $response->getContent(),
-            json_encode(array('item posted'))
+            $response,
+            array('item posted')
         );
     }
 
@@ -75,8 +73,8 @@ class RestEntityServiceTest extends \PHPUnit_Framework_TestCase
         $response = $service->putAction(1);
 
         $this->assertEquals(
-            $response->getContent(),
-            json_encode(array('item updated'))
+            $response,
+            array('item updated')
         );
     }
 

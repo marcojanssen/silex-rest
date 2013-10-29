@@ -19,7 +19,7 @@ class RestControllerTest extends \PHPUnit_Framework_TestCase
             1
         );
 
-        $this->assertEquals($response, 'getAction');
+        $this->assertEquals($response->getContent(), json_encode(array('getAction')));
 
     }
 
@@ -33,7 +33,7 @@ class RestControllerTest extends \PHPUnit_Framework_TestCase
             $this->getMockApplication()
         );
 
-        $this->assertEquals($response, 'getCollectionAction');
+        $this->assertEquals($response->getContent(), json_encode(array('getCollectionAction')));
     }
 
     /**
@@ -47,7 +47,7 @@ class RestControllerTest extends \PHPUnit_Framework_TestCase
             1
         );
 
-        $this->assertEquals($response, 'deleteAction');
+        $this->assertEquals($response->getContent(), json_encode(array('deleteAction')));
     }
 
     /**
@@ -61,7 +61,7 @@ class RestControllerTest extends \PHPUnit_Framework_TestCase
             1
         );
 
-        $this->assertEquals($response, 'putAction');
+        $this->assertEquals($response->getContent(), json_encode(array('putAction')));
     }
 
     /**
@@ -74,7 +74,7 @@ class RestControllerTest extends \PHPUnit_Framework_TestCase
             $this->getMockApplication()
         );
 
-        $this->assertEquals($response, 'postAction');
+        $this->assertEquals($response->getContent(), json_encode(array('postAction')));
     }
 
     /**
@@ -91,11 +91,11 @@ class RestControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidResolveAction()
     {
-        $this->assertEquals($this->executeResolveActionController('GET'), 'getCollectionAction');
-        $this->assertEquals($this->executeResolveActionController('GET', 1), 'getAction');
-        $this->assertEquals($this->executeResolveActionController('POST'), 'postAction');
-        $this->assertEquals($this->executeResolveActionController('DELETE', 1), 'deleteAction');
-        $this->assertEquals($this->executeResolveActionController('PUT', 1), 'putAction');
+        $this->assertEquals($this->executeResolveActionController('GET'), json_encode(array('getCollectionAction')));
+        $this->assertEquals($this->executeResolveActionController('GET', 1), json_encode(array('getAction')));
+        $this->assertEquals($this->executeResolveActionController('POST'), json_encode(array('postAction')));
+        $this->assertEquals($this->executeResolveActionController('DELETE', 1), json_encode(array('deleteAction')));
+        $this->assertEquals($this->executeResolveActionController('PUT', 1), json_encode(array('putAction')));
     }
 
     protected function executeResolveActionController($method, $identifier = null)
@@ -104,7 +104,7 @@ class RestControllerTest extends \PHPUnit_Framework_TestCase
             $this->getMockRequest($method),
             $this->getMockApplication(),
             $identifier
-        );
+        )->getContent();
     }
 
     /**
@@ -140,23 +140,23 @@ class RestControllerTest extends \PHPUnit_Framework_TestCase
 
         $serviceRestEntity->expects($this->any())
                           ->method('getAction')
-                          ->will($this->returnValue('getAction'));
+                          ->will($this->returnValue(array('getAction')));
 
         $serviceRestEntity->expects($this->any())
                           ->method('getCollectionAction')
-                          ->will($this->returnValue('getCollectionAction'));
+                          ->will($this->returnValue(array('getCollectionAction')));
 
         $serviceRestEntity->expects($this->any())
                           ->method('deleteAction')
-                          ->will($this->returnValue('deleteAction'));
+                          ->will($this->returnValue(array('deleteAction')));
 
         $serviceRestEntity->expects($this->any())
                           ->method('putAction')
-                          ->will($this->returnValue('putAction'));
+                          ->will($this->returnValue(array('putAction')));
 
         $serviceRestEntity->expects($this->any())
                           ->method('postAction')
-                          ->will($this->returnValue('postAction'));
+                          ->will($this->returnValue(array('postAction')));
 
         $app['service.rest.entity'] = $serviceRestEntity;
 

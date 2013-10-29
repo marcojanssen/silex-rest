@@ -22,7 +22,9 @@ abstract class RestController
      */
     public function getAction(Request $request, Application $app, $id)
     {
-        return $app['service.rest.entity']->getAction($id);
+        return new JsonResponse(
+            $app['service.rest.entity']->getAction($id)
+        );
     }
 
     /**
@@ -33,7 +35,9 @@ abstract class RestController
      */
     public function getCollectionAction(Request $request, Application $app)
     {
-        return $app['service.rest.entity']->getCollectionAction();
+        return new JsonResponse(
+            $app['service.rest.entity']->getCollectionAction()
+        );
     }
 
 
@@ -45,7 +49,9 @@ abstract class RestController
      */
     public function deleteAction(Request $request, Application $app, $id)
     {
-        return $app['service.rest.entity']->deleteAction($id);
+        return new JsonResponse(
+            $app['service.rest.entity']->deleteAction($id)
+        );
 
     }
 
@@ -57,7 +63,9 @@ abstract class RestController
      */
     public function postAction(Request $request, Application $app)
     {
-        return $app['service.rest.entity']->postAction();
+        return new JsonResponse(
+            $app['service.rest.entity']->postAction()
+        );
 
     }
 
@@ -69,7 +77,9 @@ abstract class RestController
      */
     public function putAction(Request $request, Application $app, $id)
     {
-        return $app['service.rest.entity']->putAction($id);
+        return new JsonResponse(
+            $app['service.rest.entity']->putAction($id)
+        );
     }
 
     /**
