@@ -18,6 +18,9 @@ return array(
         ),
         'applicationServices' => array(
             'class' => 'MJanssen\Provider\ServiceProvider'
+        ),
+       	'hmac' => array(
+            'class' => 'Wizkunde\Provider\HmacServiceProvider'
         )
     )
 );
