@@ -14,7 +14,7 @@ use Zend\Loader\PluginClassLoader;
 class FilterLoader extends PluginClassLoader
 {
     protected $plugins = array(
-        'like'  => 'MJanssen\Filters\LikeFilter'
+        'like'  => 'Spray\PersistenceBundle\EntityFilter\Common\Like'
     );
 
     /**

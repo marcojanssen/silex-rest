@@ -2,9 +2,10 @@
 namespace MJanssen\Service;
 
 use MJanssen\Filters\FilterLoader;
-use Spray\PersistenceBundle\Repository\FilterableRepositoryInterface;
-use Doctrine\Common\Persistence\ObjectRepository;
 use Silex\Application;
+use Spray\PersistenceBundle\EntityFilter\Common\Ascending;
+use Spray\PersistenceBundle\Repository\RepositoryFilter;
+use Spray\PersistenceBundle\Repository\RepositoryFilterInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -46,20 +47,15 @@ class RestEntityService
      */
     public function getCollectionAction()
     {
-        $repository = $this->getEntityRepository();
-
-        if($this->isFilterableRepository($repository)) {
-            $repository = $this->setFiltersForRepositoryByRequest(
-                $repository,
-                $this->request
-            );
-        }
+        $collection = new RepositoryFilter($this->getEntityRepository());
+        $collection->filter(new Ascending('id'));
+        $this->filterRepositoryByRequest(
+            $collection,
+            $this->request
+        );
 
         return $this->app['doctrine.extractor']->extractEntities(
-            $repository->findBy(
-                array(),
-                array('id' => 'ASC')
-            ),
+            $collection,
             'list'
         );
     }
@@ -176,33 +172,18 @@ class RestEntityService
     }
 
     /**
-     * @param ObjectRepository $repository
-     * @return bool
-     */
-    public function isFilterableRepository(ObjectRepository $repository)
-    {
-        if($repository instanceof FilterableRepositoryInterface) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
      * @param $repository
      * @param Request $request
-     * @return FilterableRepositoryInterface
+     * @return RepositoryFilterInterface
      */
-    public function setFiltersForRepositoryByRequest(FilterableRepositoryInterface $repository)
+    public function filterRepositoryByRequest(RepositoryFilterInterface $repository)
     {
         $filterLoader = new FilterLoader();
 
-        foreach ($filterLoader->getPlugins() as $pluginName => $pluginNamespace)
-        {
+        foreach ($filterLoader->getPlugins() as $pluginName => $pluginNamespace) {
             $filterParams = $this->request->get($pluginName);
 
-            if (null !== $filterParams && is_array($filterParams)){
-
+            if (null !== $filterParams && is_array($filterParams)) {
                 $repository->filter(new $pluginNamespace($filterParams));
             }
         }
