@@ -18,7 +18,7 @@
         "filp/whoops": "1.*",
         "igorw/config-service-provider": "1.2.*",
         "jms/serializer": "0.13.0",
-        "jurjean/spray-persistence-bundle": "1.0.*",
+        "jurjean/spray-persistence-bundle": "2.*",
         "marcojanssen/silex-routing-service-provider": "1.1.*",
         "marcojanssen/silex-service-register-provider": "1.1.*",
         "silex/silex": "1.1.*",
