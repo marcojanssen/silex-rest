@@ -1,11 +1,5 @@
 {
     "name": "marcojanssen/silex-rest",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Wizkunde/silex-errors.git"
-	}
-    ],
     "require": {
         "php": ">=5.4.0",
         "dflydev/doctrine-orm-service-provider": "1.0.*",
@@ -18,11 +12,13 @@
         "marcojanssen/silex-routing-service-provider": "1.1.*",
         "marcojanssen/silex-service-register-provider": "1.1.*",
         "silex/silex": "1.1.*",
+        "symfony/finder": "~2.3",
         "symfony/monolog-bridge": "~2.3",
+        "symfony/process": "~2.3",
         "symfony/property-access": "~2.3",
+        "symfony/validator": "~2.3",
         "zendframework/zend-filter": "2.*",
         "zendframework/zend-loader": "2.2.4",
-        "wizkunde/silex-errors": "dev-master",
         "zircote/swagger-php": "0.7.*"
     },
     "autoload": {
