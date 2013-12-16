@@ -2,7 +2,7 @@
 namespace Example\Controller;
 
 use MJanssen\Controller\RestController;
-use MJanssen\Controller\ControllerInterface;
+use MJanssen\Controller\RestControllerInterface;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Swagger\Annotations as SWG;
@@ -18,7 +18,7 @@ use Swagger\Annotations as SWG;
  *     basePath="http://example/api"
  * )
  */
-class ItemsController extends RestController implements ControllerInterface
+class ItemsController extends RestController implements RestControllerInterface
 {
     /**
      * @SWG\Api(

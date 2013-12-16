@@ -4,7 +4,7 @@ namespace MJanssen\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-interface ControllerInterface
+interface RestControllerInterface
 {
     public function getAction(Request $request, Application $app, $id);
 
