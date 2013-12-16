@@ -1,6 +1,6 @@
 filter:
-    paths: [src/*, tests/*]
-    excluded_paths: [vendor/*, app/*, public/*, src/Example/*]
+    paths: [src/*, test/*]
+    excluded_paths: [vendor/*, app/*, web/*, src/Example/*]
 before_commands:
     - 'composer install --dev --prefer-source'
 tools:

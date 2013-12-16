@@ -1,7 +1,7 @@
 {
     "name": "marcojanssen/silex-rest",
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.3.0",
         "dflydev/doctrine-orm-service-provider": "1.0.*",
         "doctrine/orm": "2.4.*",
         "dominikzogg/doctrine-orm-manager-registry-provider": "1.2.*",
