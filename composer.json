@@ -3,10 +3,6 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/Wizkunde/silex-hmac.git"
-        },
-        {
-            "type": "vcs",
             "url": "https://github.com/Wizkunde/silex-errors.git"
 	}
     ],
@@ -22,20 +18,10 @@
         "marcojanssen/silex-routing-service-provider": "1.1.*",
         "marcojanssen/silex-service-register-provider": "1.1.*",
         "silex/silex": "1.1.*",
-        "symfony/class-loader": "~2.3",
-        "symfony/config": "~2.3",
-        "symfony/console": "~2.3",
-        "symfony/finder": "~2.3",
         "symfony/monolog-bridge": "~2.3",
-        "symfony/process": "~2.3",
         "symfony/property-access": "~2.3",
-        "symfony/security": "~2.3",
-        "symfony/translation": "~2.3",
-        "symfony/validator": "~2.3",
-        "symfony/yaml": "~2.3",
         "zendframework/zend-filter": "2.*",
         "zendframework/zend-loader": "2.2.4",
-        "wizkunde/silex-hmac": "dev-master",
         "wizkunde/silex-errors": "dev-master",
         "zircote/swagger-php": "0.7.*"
     },

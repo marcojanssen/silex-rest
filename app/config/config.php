@@ -43,8 +43,5 @@ return array(
     'cache.path' => '%app.path%/app/cache',
     'log.path'   => '%app.path%/app/logs',
 
-    'hmac_key'	 => '',
-    'hmac_validate' => false,
-
     'serializer.cache.path' => '%app.path%/app/cache/serializer'
 );

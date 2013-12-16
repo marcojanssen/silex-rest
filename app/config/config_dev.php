@@ -1,6 +1,5 @@
 <?php
 return array(
     'orm.default_cache' => 'array',
-    'monolog.logfile' => '%app.path%/app/logs/log.log',
-    'hmac_validate' => false
+    'monolog.logfile' => '%app.path%/app/logs/log.log'
 );
