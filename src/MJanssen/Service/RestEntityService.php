@@ -96,6 +96,10 @@ class RestEntityService
         return array('item posted');
     }
 
+    /**
+     * @param $identifier
+     * @return array
+     */
     public function putAction($identifier)
     {
         $response = $this->app['service.request.validator']->validateRequest();
