@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "ed0c9a2e90741c502cb6a608cb8c6352",
+    "hash": "0bd8f191cbc2da5d67de6bfa8cce26be",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -111,7 +111,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -250,9 +251,10 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -324,7 +326,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -524,7 +527,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -542,7 +546,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -2360,48 +2364,35 @@
             "time": "2013-11-22 17:42:00"
         },
         {
-            "name": "symfony/security",
+            "name": "symfony/security-core",
             "version": "v2.4.0",
-            "target-dir": "Symfony/Component/Security",
+            "target-dir": "Symfony/Component/Security/Core",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Security.git",
-                "reference": "b2f2ebcf877061a3e9cbc568cad0f4f97ce63c93"
+                "url": "https://github.com/symfony/security-core.git",
+                "reference": "89abc0c8c8b91721962c6ec6a60b79c7fc983a22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Security/zipball/b2f2ebcf877061a3e9cbc568cad0f4f97ce63c93",
-                "reference": "b2f2ebcf877061a3e9cbc568cad0f4f97ce63c93",
+                "url": "https://api.github.com/repos/symfony/security-core/zipball/89abc0c8c8b91721962c6ec6a60b79c7fc983a22",
+                "reference": "89abc0c8c8b91721962c6ec6a60b79c7fc983a22",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3",
-                "symfony/event-dispatcher": "~2.1",
-                "symfony/http-foundation": "~2.1",
-                "symfony/http-kernel": "~2.4"
-            },
-            "replace": {
-                "symfony/security-acl": "self.version",
-                "symfony/security-core": "self.version",
-                "symfony/security-csrf": "self.version",
-                "symfony/security-http": "self.version"
+                "php": ">=5.3.3"
             },
             "require-dev": {
-                "doctrine/common": "~2.2",
-                "doctrine/dbal": "~2.2",
                 "ircmaxell/password-compat": "1.0.*",
                 "psr/log": "~1.0",
-                "symfony/expression-language": "~2.4",
-                "symfony/routing": "~2.2",
+                "symfony/event-dispatcher": "~2.1",
+                "symfony/http-foundation": "~2.4",
                 "symfony/validator": "~2.2"
             },
             "suggest": {
-                "doctrine/dbal": "For using the built-in ACL implementation",
                 "ircmaxell/password-compat": "For using the BCrypt password encoder in PHP <5.5",
-                "symfony/class-loader": "For using the ACL generateSql script",
+                "symfony/event-dispatcher": "",
                 "symfony/expression-language": "For using the expression voter",
-                "symfony/finder": "For using the ACL generateSql script",
-                "symfony/routing": "For using the HttpUtils class to create sub-requests, redirect the user, and match URLs",
+                "symfony/http-foundation": "",
                 "symfony/validator": "For using the user password constraint"
             },
             "type": "library",
@@ -2412,7 +2403,7 @@
             },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\Security\\": ""
+                    "Symfony\\Component\\Security\\Core\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2429,9 +2420,63 @@
                     "homepage": "http://symfony.com/contributors"
                 }
             ],
-            "description": "Symfony Security Component",
+            "description": "Symfony Security Component - Core Library",
             "homepage": "http://symfony.com",
             "time": "2013-11-26 16:40:27"
+        },
+        {
+            "name": "symfony/security-csrf",
+            "version": "v2.4.0",
+            "target-dir": "Symfony/Component/Security/Csrf",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/security-csrf.git",
+                "reference": "67c366a65a5bbcbcb2db7d4d4e45a16b85f24797"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/security-csrf/zipball/67c366a65a5bbcbcb2db7d4d4e45a16b85f24797",
+                "reference": "67c366a65a5bbcbcb2db7d4d4e45a16b85f24797",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/security-core": "~2.4"
+            },
+            "require-dev": {
+                "symfony/http-foundation": "~2.1"
+            },
+            "suggest": {
+                "symfony/http-foundation": "For using the class SessionTokenStorage."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Security\\Csrf\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Security Component - CSRF Library",
+            "homepage": "http://symfony.com",
+            "time": "2013-11-21 06:37:18"
         },
         {
             "name": "symfony/stopwatch",
@@ -2860,7 +2905,7 @@
 
     ],
     "platform": {
-        "php": ">=5.4.0"
+        "php": ">=5.3.0"
     },
     "platform-dev": [
 
