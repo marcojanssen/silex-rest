@@ -13,7 +13,7 @@ use Swagger\Annotations as SWG;
  *
  * @SWG\Resource(
  *     apiVersion="1.0",
- *     swaggerVersion="1.1",
+ *     swaggerVersion="1.2",
  *     resourcePath="/items",
  *     basePath="http://example/api"
  * )

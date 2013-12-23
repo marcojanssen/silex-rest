@@ -21,7 +21,7 @@ class Item
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
      * @Groups({"list", "detail"})
-     * @SWG\Property(name="id",type="int")
+     * @SWG\Property(name="id",type="integer")
      */
     protected $id;
 
