@@ -10,6 +10,6 @@ class ItemsControllerTest extends \MJanssen\Controller\RestControllerTest
 {
     protected function getTestController()
     {
-        return new CategoriesController();
+        return new ItemsController();
     }
 } 
