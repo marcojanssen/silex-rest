@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "0bd8f191cbc2da5d67de6bfa8cce26be",
+    "hash": "c12deef40186087b4ac6e37b4757696a",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -184,7 +184,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -251,7 +251,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -270,7 +270,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes Schmitt",
+                    "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -397,7 +397,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -544,7 +544,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes Schmitt",
+                    "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -746,16 +746,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "1.0.9",
+            "version": "1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "6de5a6fbb675c091ee4ee40fd01b2e3df4f200af"
+                "reference": "91e3fd4b0812017ffbeb24add55330664e1ea32a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/6de5a6fbb675c091ee4ee40fd01b2e3df4f200af",
-                "reference": "6de5a6fbb675c091ee4ee40fd01b2e3df4f200af",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/91e3fd4b0812017ffbeb24add55330664e1ea32a",
+                "reference": "91e3fd4b0812017ffbeb24add55330664e1ea32a",
                 "shasum": ""
             },
             "require": {
@@ -793,7 +793,7 @@
                 "whoops",
                 "zf2"
             ],
-            "time": "2013-10-28 22:06:33"
+            "time": "2013-12-04 14:19:30"
         },
         {
             "name": "igorw/config-service-provider",
@@ -991,16 +991,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "0.13.0",
+            "version": "0.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "9e0fcd00a374e9ad484687628c6c25ab1083ea5a"
+                "reference": "22daa254e54f4b69292bd8679d7a6f3a78dc85d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/9e0fcd00a374e9ad484687628c6c25ab1083ea5a",
-                "reference": "9e0fcd00a374e9ad484687628c6c25ab1083ea5a",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/22daa254e54f4b69292bd8679d7a6f3a78dc85d4",
+                "reference": "22daa254e54f4b69292bd8679d7a6f3a78dc85d4",
                 "shasum": ""
             },
             "require": {
@@ -1012,6 +1012,9 @@
             },
             "require-dev": {
                 "doctrine/orm": ">=2.1,<2.4-dev",
+                "doctrine/phpcr-odm": "~1.0.1",
+                "jackalope/jackalope-doctrine-dbal": "1.0.*",
+                "propel/propel1": "~1.7",
                 "symfony/filesystem": "2.*",
                 "symfony/form": ">=2.1,<2.2-dev",
                 "symfony/translation": ">=2.0,<2.2-dev",
@@ -1025,7 +1028,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.13-dev"
+                    "dev-master": "0.14-dev"
                 }
             },
             "autoload": {
@@ -1054,7 +1057,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2013-07-29 13:39:49"
+            "time": "2013-12-04 16:46:05"
         },
         {
             "name": "jurjean/spray-persistence-bundle",
@@ -1090,21 +1093,82 @@
             "time": "2013-10-22 09:14:54"
         },
         {
-            "name": "marcojanssen/silex-routing-service-provider",
-            "version": "1.1.1",
+            "name": "marcojanssen/silex-rest-service-providers",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/marcojanssen/silex-routing-service-provider.git",
-                "reference": "e62ae713092bfc397e6f1c45398a1a5a5df56272"
+                "url": "https://github.com/marcojanssen/silex-rest-service-providers.git",
+                "reference": "fdb864ec99ec6ac4c627d9bc2b575eaeca23b1e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marcojanssen/silex-routing-service-provider/zipball/e62ae713092bfc397e6f1c45398a1a5a5df56272",
-                "reference": "e62ae713092bfc397e6f1c45398a1a5a5df56272",
+                "url": "https://api.github.com/repos/marcojanssen/silex-rest-service-providers/zipball/fdb864ec99ec6ac4c627d9bc2b575eaeca23b1e8",
+                "reference": "fdb864ec99ec6ac4c627d9bc2b575eaeca23b1e8",
+                "shasum": ""
+            },
+            "require": {
+                "dflydev/doctrine-orm-service-provider": "1.0.*",
+                "doctrine/orm": "2.4.*",
+                "dominikzogg/doctrine-orm-manager-registry-provider": "1.2.*",
+                "jms/serializer": "0.14.0",
+                "jurjean/spray-persistence-bundle": "2.*",
+                "php": ">=5.3.0",
+                "silex/silex": "1.1.*",
+                "symfony/finder": "~2.3",
+                "symfony/process": "~2.3",
+                "symfony/property-access": "~2.3",
+                "symfony/validator": "~2.3",
+                "zendframework/zend-filter": "2.*",
+                "zendframework/zend-loader": "2.2.4",
+                "zircote/swagger-php": "0.8.*"
+            },
+            "suggest": {
+                "silex/rest": "This package is implemented by silex/rest"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "MJanssen\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Janssen",
+                    "email": "dev@marcojanssen.net"
+                }
+            ],
+            "description": "Package containing several services for silex/rest skeleton",
+            "keywords": [
+                "api",
+                "provider",
+                "rest",
+                "silex"
+            ],
+            "time": "2013-12-23 09:32:12"
+        },
+        {
+            "name": "marcojanssen/silex-routing-service-provider",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marcojanssen/silex-routing-service-provider.git",
+                "reference": "5690c0f692facbad0d32b4088f3bcf78d5bdb39d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marcojanssen/silex-routing-service-provider/zipball/5690c0f692facbad0d32b4088f3bcf78d5bdb39d",
+                "reference": "5690c0f692facbad0d32b4088f3bcf78d5bdb39d",
                 "shasum": ""
             },
             "require": {
                 "silex/silex": "1.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
             },
             "suggest": {
                 "igorw/config-service-provider": "Allows registering providers with configuration"
@@ -1132,7 +1196,7 @@
                 "routing",
                 "silex"
             ],
-            "time": "2013-09-28 09:05:32"
+            "time": "2013-12-21 13:25:20"
         },
         {
             "name": "marcojanssen/silex-service-register-provider",
@@ -2839,16 +2903,16 @@
         },
         {
             "name": "zircote/swagger-php",
-            "version": "0.7.3",
+            "version": "0.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zircote/swagger-php.git",
-                "reference": "c3f3d1c0eb4381719a09c9664c244b2df1b3687e"
+                "reference": "1c8a31d9653afb994d6db177d91c0e3e86ccfb53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zircote/swagger-php/zipball/c3f3d1c0eb4381719a09c9664c244b2df1b3687e",
-                "reference": "c3f3d1c0eb4381719a09c9664c244b2df1b3687e",
+                "url": "https://api.github.com/repos/zircote/swagger-php/zipball/1c8a31d9653afb994d6db177d91c0e3e86ccfb53",
+                "reference": "1c8a31d9653afb994d6db177d91c0e3e86ccfb53",
                 "shasum": ""
             },
             "require": {
@@ -2891,7 +2955,7 @@
                 "json",
                 "service discovery"
             ],
-            "time": "2013-10-08 20:10:27"
+            "time": "2013-12-15 13:20:51"
         }
     ],
     "packages-dev": [
@@ -2901,9 +2965,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "marcojanssen/silex-rest-service-providers": 20
+    },
     "platform": {
         "php": ">=5.3.0"
     },
