@@ -25,8 +25,7 @@ class ItemsValidatorTest extends AbstractValidatorTest
         return array(
             array('name'),
             array('email'),
-            array('phone'),
-            array('category')
+            array('phone')
         );
     }
 } 

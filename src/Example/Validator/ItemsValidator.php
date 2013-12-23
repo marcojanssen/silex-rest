@@ -12,11 +12,15 @@ class ItemsValidator implements ValidatorInterface
     public function getConstraints()
     {
         $constraint = new Assert\Collection(array(
-            'id' => new Assert\Type(array('type' => 'numeric')),
+            'id' => new Assert\Optional(
+                new Assert\Regex(array('pattern' => "/\d+/"))
+            ),
             'name' => new Assert\Length(array('min' => 5)),
             'phone' => new Assert\Length(array('min' => 5)),
             'email' => new Assert\Length(array('min' => 5)),
-            'category' => new Assert\Regex(array('pattern' => "/\d+/"))
+            'category' => new Assert\Optional(
+                new Assert\Regex(array('pattern' => "/\d+/"))
+            )
         ));
 
         return $constraint;
