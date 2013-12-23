@@ -3,9 +3,9 @@ namespace Example\Validator;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class CategoriesValidatorTest extends AbstractValidatorTest
+class ItemsValidatorTest extends AbstractValidatorTest
 {
-    protected $validator = 'Example\Validator\CategoriesValidator';
+    protected $validator = 'Example\Validator\ItemsValidator';
 
     public function testAssertions()
     {
@@ -23,8 +23,10 @@ class CategoriesValidatorTest extends AbstractValidatorTest
     public function getRequiredFields()
     {
         return array(
-            array('name')
+            array('name'),
+            array('email'),
+            array('phone'),
+            array('category')
         );
     }
-
 } 

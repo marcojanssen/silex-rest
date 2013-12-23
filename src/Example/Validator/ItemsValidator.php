@@ -15,7 +15,8 @@ class ItemsValidator implements ValidatorInterface
             'id' => new Assert\Type(array('type' => 'numeric')),
             'name' => new Assert\Length(array('min' => 5)),
             'phone' => new Assert\Length(array('min' => 5)),
-            'email' => new Assert\Length(array('min' => 5))
+            'email' => new Assert\Length(array('min' => 5)),
+            'category' => new Assert\Regex(array('pattern' => "/\d+/"))
         ));
 
         return $constraint;
