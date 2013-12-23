@@ -2,16 +2,13 @@
 
 <phpunit bootstrap="test/bootstrap.php" colors="true">
     <testsuites>
-        <testsuite name="Routing Service Provider">
+        <testsuite name="Silex Rest">
             <directory>./test</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
             <directory suffix=".php">./src</directory>
-            <exclude>
-                <directory suffix=".php">./src/Example</directory>
-            </exclude>
         </whitelist>
     </filter>
 </phpunit>
