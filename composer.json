@@ -1,7 +1,7 @@
 {
     "name": "marcojanssen/silex-rest",
     "description": "Package containing several services for silex/rest skeleton",
-    "keywords": ["silex", "rest", "api", "provider"],
+    "keywords": ["silex", "rest", "api"],
     "license": "MIT",
     "authors": [
         {
@@ -21,12 +21,12 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "chmod 775 app/cache",
-            "chmod 775 app/logs"
+            "chmod 777 app/cache",
+            "chmod 777 app/logs"
         ],
         "post-update-cmd": [
-            "chmod 775 app/cache",
-            "chmod 775 app/logs"
+            "chmod 777 app/cache",
+            "chmod 777 app/logs"
         ]
     },
     "require-dev": {
