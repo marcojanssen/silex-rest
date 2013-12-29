@@ -19,6 +19,16 @@
         "silex/silex": "1.1.*",
         "symfony/monolog-bridge": "~2.3"
     },
+    "scripts": {
+        "post-install-cmd": [
+            "chmod 775 app/cache",
+            "chmod 775 app/logs"
+        ],
+        "post-update-cmd": [
+            "chmod 775 app/cache",
+            "chmod 775 app/logs"
+        ]
+    },
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
     },
