@@ -6,7 +6,7 @@ namespace Example\Controller;
  * Class CategoriesControllerTest
  * @package Example\Controller
  */
-class CategoriesControllerTest extends \MJanssen\Controller\RestControllerTest
+class CategoriesControllerTest extends \MJanssen\Controller\ControllerTest
 {
     protected function getTestController()
     {

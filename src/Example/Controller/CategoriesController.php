@@ -5,6 +5,8 @@ use MJanssen\Controller\RestController;
 use MJanssen\Controller\RestControllerInterface;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Swagger\Annotations as SWG;
 
 /**
@@ -31,7 +33,9 @@ class CategoriesController extends RestController implements RestControllerInter
      */
     public function getAction(Request $request, Application $app, $id)
     {
-        return parent::getAction($request, $app, $id);
+        return new JsonResponse(
+            $this->get($app, $id)
+        );
     }
 
     /**
@@ -44,7 +48,9 @@ class CategoriesController extends RestController implements RestControllerInter
      */
     public function getCollectionAction(Request $request, Application $app)
     {
-        return parent::getCollectionAction($request, $app);
+        return new JsonResponse(
+            $this->getCollection($app)
+        );
     }
 
     /**
@@ -58,7 +64,9 @@ class CategoriesController extends RestController implements RestControllerInter
      */
     public function deleteAction(Request $request, Application $app, $id)
     {
-        return parent::deleteAction($request, $app, $id);
+        if($this->delete($app, $id)) {
+            return new Response('',204);
+        }
     }
 
     /**
@@ -71,7 +79,9 @@ class CategoriesController extends RestController implements RestControllerInter
      */
     public function postAction(Request $request, Application $app)
     {
-        return parent::postAction($request, $app);
+        return new JsonResponse(
+            $this->post($app)
+        );
     }
 
     /**
@@ -85,6 +95,8 @@ class CategoriesController extends RestController implements RestControllerInter
      */
     public function putAction(Request $request, Application $app, $id)
     {
-        return parent::putAction($request, $app, $id);
+        return new JsonResponse(
+            $this->put($app, $id)
+        );
     }
 }

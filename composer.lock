@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "117370d90c5eeac1d52845541ba1b50c",
+    "hash": "41e99b1384eac493221996ba8b8f8955",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -109,7 +109,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -270,7 +270,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -362,16 +362,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.4.1",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "328357bd9eea9d671fe5fff0737f01953bfe66a0"
+                "reference": "fec965d330c958e175c39e61c3f6751955af32d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/328357bd9eea9d671fe5fff0737f01953bfe66a0",
-                "reference": "328357bd9eea9d671fe5fff0737f01953bfe66a0",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/fec965d330c958e175c39e61c3f6751955af32d0",
+                "reference": "fec965d330c958e175c39e61c3f6751955af32d0",
                 "shasum": ""
             },
             "require": {
@@ -397,7 +397,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -424,7 +424,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-11-12 12:38:28"
+            "time": "2014-01-01 16:43:57"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -544,7 +544,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -1098,12 +1098,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/marcojanssen/silex-rest-service-providers.git",
-                "reference": "fdb864ec99ec6ac4c627d9bc2b575eaeca23b1e8"
+                "reference": "30d21199cfbed5b9ff1cb89de17da8f6dcfa4c95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marcojanssen/silex-rest-service-providers/zipball/fdb864ec99ec6ac4c627d9bc2b575eaeca23b1e8",
-                "reference": "fdb864ec99ec6ac4c627d9bc2b575eaeca23b1e8",
+                "url": "https://api.github.com/repos/marcojanssen/silex-rest-service-providers/zipball/30d21199cfbed5b9ff1cb89de17da8f6dcfa4c95",
+                "reference": "30d21199cfbed5b9ff1cb89de17da8f6dcfa4c95",
                 "shasum": ""
             },
             "require": {
@@ -1121,6 +1121,9 @@
                 "zendframework/zend-filter": "2.*",
                 "zendframework/zend-loader": "2.2.4",
                 "zircote/swagger-php": "0.8.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
             },
             "suggest": {
                 "silex/rest": "This package is implemented by silex/rest"
@@ -1148,20 +1151,20 @@
                 "rest",
                 "silex"
             ],
-            "time": "2013-12-23 09:32:12"
+            "time": "2014-01-02 15:32:37"
         },
         {
             "name": "marcojanssen/silex-routing-service-provider",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/marcojanssen/silex-routing-service-provider.git",
-                "reference": "5690c0f692facbad0d32b4088f3bcf78d5bdb39d"
+                "reference": "c84bcadf6c4eeda7cd915b4ce9189a3fad45cbf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marcojanssen/silex-routing-service-provider/zipball/5690c0f692facbad0d32b4088f3bcf78d5bdb39d",
-                "reference": "5690c0f692facbad0d32b4088f3bcf78d5bdb39d",
+                "url": "https://api.github.com/repos/marcojanssen/silex-routing-service-provider/zipball/c84bcadf6c4eeda7cd915b4ce9189a3fad45cbf4",
+                "reference": "c84bcadf6c4eeda7cd915b4ce9189a3fad45cbf4",
                 "shasum": ""
             },
             "require": {
@@ -1196,7 +1199,7 @@
                 "routing",
                 "silex"
             ],
-            "time": "2013-12-21 13:25:20"
+            "time": "2013-12-30 14:39:42"
         },
         {
             "name": "marcojanssen/silex-service-register-provider",
