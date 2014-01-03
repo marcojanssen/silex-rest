@@ -1098,12 +1098,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/marcojanssen/silex-rest-service-providers.git",
-                "reference": "565ee8638c13a8c4a98c97ac7e8eb8b48c84437a"
+                "reference": "cee9364a32e791747a8759a53d6e87f9ce848fc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marcojanssen/silex-rest-service-providers/zipball/565ee8638c13a8c4a98c97ac7e8eb8b48c84437a",
-                "reference": "565ee8638c13a8c4a98c97ac7e8eb8b48c84437a",
+                "url": "https://api.github.com/repos/marcojanssen/silex-rest-service-providers/zipball/cee9364a32e791747a8759a53d6e87f9ce848fc6",
+                "reference": "cee9364a32e791747a8759a53d6e87f9ce848fc6",
                 "shasum": ""
             },
             "require": {
@@ -1154,7 +1154,7 @@
                 "source": "https://github.com/marcojanssen/silex-rest-service-providers/tree/master",
                 "issues": "https://github.com/marcojanssen/silex-rest-service-providers/issues"
             },
-            "time": "2014-01-03 08:44:32"
+            "time": "2014-01-03 09:49:51"
         },
         {
             "name": "marcojanssen/silex-routing-service-provider",
