@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "41e99b1384eac493221996ba8b8f8955",
+    "hash": "7c8b913074bd600d40955be826c907fe",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -1098,12 +1098,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/marcojanssen/silex-rest-service-providers.git",
-                "reference": "30d21199cfbed5b9ff1cb89de17da8f6dcfa4c95"
+                "reference": "565ee8638c13a8c4a98c97ac7e8eb8b48c84437a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marcojanssen/silex-rest-service-providers/zipball/30d21199cfbed5b9ff1cb89de17da8f6dcfa4c95",
-                "reference": "30d21199cfbed5b9ff1cb89de17da8f6dcfa4c95",
+                "url": "https://api.github.com/repos/marcojanssen/silex-rest-service-providers/zipball/565ee8638c13a8c4a98c97ac7e8eb8b48c84437a",
+                "reference": "565ee8638c13a8c4a98c97ac7e8eb8b48c84437a",
                 "shasum": ""
             },
             "require": {
@@ -1134,7 +1134,6 @@
                     "MJanssen\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1151,7 +1150,11 @@
                 "rest",
                 "silex"
             ],
-            "time": "2014-01-02 15:32:37"
+            "support": {
+                "source": "https://github.com/marcojanssen/silex-rest-service-providers/tree/master",
+                "issues": "https://github.com/marcojanssen/silex-rest-service-providers/issues"
+            },
+            "time": "2014-01-03 08:44:32"
         },
         {
             "name": "marcojanssen/silex-routing-service-provider",

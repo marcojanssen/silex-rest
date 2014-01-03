@@ -19,6 +19,13 @@
         "silex/silex": "1.1.*",
         "symfony/monolog-bridge": "~2.3"
     },
+    "repositories": [
+        {
+            "name": "marcojanssen/silex-rest-service-providers",
+            "type": "vcs",
+            "url": "https://github.com/marcojanssen/silex-rest-service-providers.git"
+        }
+    ],
     "scripts": {
         "post-install-cmd": [
             "chmod 777 app/cache",
