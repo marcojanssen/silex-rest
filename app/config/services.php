@@ -14,7 +14,7 @@ return array(
             'class' => 'Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider'
         ),
         'doctrineRegistry' => array(
-            'class' => 'Dominikzogg\Silex\Provider\DoctrineOrmManagerRegistryProvider'
+            'class' => 'Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider'
         ),
         'applicationServices' => array(
             'class' => 'MJanssen\Provider\ServiceProvider'

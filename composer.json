@@ -13,7 +13,7 @@
         "php": ">=5.3.0",
         "filp/whoops": "1.*",
         "igorw/config-service-provider": "1.2.*",
-        "marcojanssen/silex-rest-service-providers": "dev-master",
+        "marcojanssen/silex-rest-service-providers": "0.*",
         "marcojanssen/silex-routing-service-provider": "1.2.*",
         "marcojanssen/silex-service-register-provider": "1.1.*",
         "silex/silex": "1.1.*",
