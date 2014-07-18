@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "filp/whoops": "1.*",
+        "filp/whoops": "~1.1",
         "igorw/config-service-provider": "1.2.*",
         "marcojanssen/silex-rest-service-providers": "0.*",
         "marcojanssen/silex-routing-service-provider": "1.2.*",
@@ -19,13 +19,6 @@
         "silex/silex": "1.1.*",
         "symfony/monolog-bridge": "~2.3"
     },
-    "repositories": [
-        {
-            "name": "marcojanssen/silex-rest-service-providers",
-            "type": "vcs",
-            "url": "https://github.com/marcojanssen/silex-rest-service-providers.git"
-        }
-    ],
     "scripts": {
         "post-install-cmd": [
             "chmod 777 app/cache",
