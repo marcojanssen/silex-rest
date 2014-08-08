@@ -1,0 +1,11 @@
+Example\Entity\Item:
+  properties:
+    name:
+      - NotNull: ~
+      - NotBlank: ~
+
+Category:
+  properties:
+    name:
+      - NotNull: ~
+      - NotBlank: ~

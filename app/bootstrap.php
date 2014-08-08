@@ -43,4 +43,8 @@ if(true !== $cli) {
     );
 }
 
+$app['validator.mapping.class_metadata_factory'] = new Symfony\Component\Validator\Mapping\Factory\LazyLoadingMetadataFactory(
+    new Symfony\Component\Validator\Mapping\Loader\YamlFileLoader(__DIR__.'/../app/config/validation.yml')
+);
+
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));

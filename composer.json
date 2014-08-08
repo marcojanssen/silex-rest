@@ -1,6 +1,6 @@
 {
     "name": "marcojanssen/silex-rest",
-    "description": "Package containing several services for silex/rest skeleton",
+    "description": "Silex REST skeleton",
     "keywords": ["silex", "rest", "api"],
     "license": "MIT",
     "authors": [
@@ -13,10 +13,10 @@
         "php": ">=5.3.0",
         "filp/whoops": "~1.1",
         "igorw/config-service-provider": "1.2.*",
-        "marcojanssen/silex-rest-service-providers": "0.*",
+        "marcojanssen/silex-rest-service-providers": "dev-master",
         "marcojanssen/silex-routing-service-provider": "1.2.*",
         "marcojanssen/silex-service-register-provider": "1.1.*",
-        "silex/silex": "1.1.*",
+        "silex/silex": "~1.2",
         "symfony/monolog-bridge": "~2.3"
     },
     "scripts": {
