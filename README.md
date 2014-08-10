@@ -33,5 +33,6 @@ php app/console orm:schema-tool:create
 ## Todo
 
 - Usage documentation
+- Implement caching
 - Implement hypermedia
 - Implement multiple formats (only supports JSON)
