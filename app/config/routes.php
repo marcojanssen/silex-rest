@@ -33,8 +33,7 @@ return array(
             ),
             'value' => array(
                 'namespace' => 'core',
-                'entity'    => 'items',
-                'validator' => 'Example\Validator\ItemsValidator'
+                'entity'    => 'items'
             )
         ),
         array(
@@ -45,8 +44,7 @@ return array(
             ),
             'value' => array(
                 'namespace' => 'core',
-                'entity'    => 'items',
-                'validator' => 'Example\Validator\ItemsValidator'
+                'entity'    => 'items'
             )
         ),
         array(
@@ -60,8 +58,7 @@ return array(
             ),
             'value' => array(
                 'namespace' => 'core',
-                'entity'    => 'categories',
-                'validator' => 'Example\Validator\CategoriesValidator'
+                'entity'    => 'categories'
             )
         ),
         array(
@@ -72,8 +69,7 @@ return array(
             ),
             'value' => array(
                 'namespace' => 'core',
-                'entity'    => 'categories',
-                'validator' => 'Example\Validator\CategoriesValidator'
+                'entity'    => 'categories'
             )
         )
     )

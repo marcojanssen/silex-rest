@@ -9,6 +9,8 @@ silex-rest
 - Easy setup for a RESTful API
 - Uses [Doctrine](http://doctrine-project.org) and [JMS Serializer](http://jmsyst.com/libs/serializer)
 - Completly configurable with routes
+- Swagger for API documentation
+- Completly customizable by event driven design
 
 ## Installation
 
