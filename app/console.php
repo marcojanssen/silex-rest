@@ -1,7 +1,6 @@
 <?php
 use Silex\Application AS SilexApplication;
 use Symfony\Component\Console\Application AS ConsoleApplication;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Helper\HelperSet;
 use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
@@ -46,6 +45,6 @@ $helperSet = new HelperSet(array(
 ));
 
 $console->setHelperSet($helperSet);
-Doctrine\ORM\Tools\Console\ConsoleRunner::addCommands($console);
+ConsoleRunner::addCommands($console);
 
 $console->run();
