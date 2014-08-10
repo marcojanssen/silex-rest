@@ -13,11 +13,12 @@ silex-rest
 ## Installation
 
 - Install [Composer](http://getcomposer.org)
-- Install/update your dependencies (composer install)
+- Install/update your dependencies
 
 ```cli
 composer install
 ```
+
 - Create your database (default database name: silexrest)
 - Create your database schema (default database username/password: root/root)
 
@@ -26,3 +27,8 @@ php app/console orm:schema-tool:create
 ```
 
 - Access the API at http://domain/core/items
+
+## Todo
+
+- Implement hypermedia
+- Implement multiple formats (only supports JSON)
