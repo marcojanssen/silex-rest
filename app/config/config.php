@@ -9,14 +9,14 @@ return array(
         'charset' => 'UTF8',
         'master' => array(
             'user'     => 'root',
-            'password' => 'root',
+            'password' => '$5$XEOG7jH16dHhB$0r94lMxDeIC612ZByCZXAIpI0mfI5zC/PpubwJmiEz9',
             'host'     => 'localhost',
             'dbname'   => 'silexrest'
         ),
         'slaves' => array(
             array(
                 'user'     => 'root',
-                'password' => 'root',
+                'password' => '$5$XEOG7jH16dHhB$0r94lMxDeIC612ZByCZXAIpI0mfI5zC/PpubwJmiEz9',
                 'host'     => 'localhost',
                 'dbname'   => 'silexrest'
             )
@@ -25,7 +25,7 @@ return array(
     ),
 
     'orm.proxies_dir'   => '%app.path%/app/cache/Doctrine/Proxies',
-    'orm.default_cache' => 'apc', #should be set to apc/xcache on production
+    'orm.default_cache' => 'xcache', #should be set to apc/xcache on production
     'orm.em.options'    => array(
         'mappings' => array(
             array(
