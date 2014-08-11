@@ -9,14 +9,14 @@ return array(
         'charset' => 'UTF8',
         'master' => array(
             'user'     => 'root',
-            'password' => '$5$XEOG7jH16dHhB$0r94lMxDeIC612ZByCZXAIpI0mfI5zC/PpubwJmiEz9',
+            'password' => 'root',
             'host'     => 'localhost',
             'dbname'   => 'silexrest'
         ),
         'slaves' => array(
             array(
                 'user'     => 'root',
-                'password' => '$5$XEOG7jH16dHhB$0r94lMxDeIC612ZByCZXAIpI0mfI5zC/PpubwJmiEz9',
+                'password' => 'root',
                 'host'     => 'localhost',
                 'dbname'   => 'silexrest'
             )
