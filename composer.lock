@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4956e7bce33dfc8df0c60fff81ec8026",
+    "hash": "eb376ee5a67c31217398ffdf5d5f7c7f",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -1048,16 +1048,16 @@
         },
         {
             "name": "marcojanssen/silex-rest-service-providers",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/marcojanssen/silex-rest-service-providers.git",
-                "reference": "208cd904c4983ced3c21e19378a5fdc329d28b95"
+                "reference": "8b4626f053560f3121a1f37df3b3c341d0638575"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marcojanssen/silex-rest-service-providers/zipball/208cd904c4983ced3c21e19378a5fdc329d28b95",
-                "reference": "208cd904c4983ced3c21e19378a5fdc329d28b95",
+                "url": "https://api.github.com/repos/marcojanssen/silex-rest-service-providers/zipball/8b4626f053560f3121a1f37df3b3c341d0638575",
+                "reference": "8b4626f053560f3121a1f37df3b3c341d0638575",
                 "shasum": ""
             },
             "require": {
@@ -1105,7 +1105,7 @@
                 "rest",
                 "silex"
             ],
-            "time": "2014-08-08 13:50:02"
+            "time": "2014-08-11 06:49:51"
         },
         {
             "name": "marcojanssen/silex-routing-service-provider",
@@ -3696,9 +3696,10 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "marcojanssen/silex-rest-service-providers": 20
-    },
+    "stability-flags": [
+
+    ],
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.3.0"
     },
